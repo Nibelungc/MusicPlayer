@@ -8,7 +8,14 @@
 
 #import "AppDelegate.h"
 
+#import "NKConfigurator.h"
+#import "NKApplicationFactory.h"
+
 @interface AppDelegate ()
+
+@property (strong, nonatomic) id <NKConfigurator> thirdPartiesConfigurator;
+
+@property (strong, nonatomic) id <NKConfigurator> applicationConfigurator;
 
 @end
 
@@ -16,7 +23,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    NKApplicationFactory* applicationFactory = [[NKApplicationFactory alloc] init];
+    [[applicationFactory thirdPartiesConfigurator] configurate];
+    [[applicationFactory applicationConfigurator] configurate];
+    
     return YES;
 }
 

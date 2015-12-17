@@ -13,19 +13,60 @@
 		08A1A0EA1C22734B005B478B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0E81C22734B005B478B /* Main.storyboard */; };
 		08A1A0EC1C22734B005B478B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0EB1C22734B005B478B /* Assets.xcassets */; };
 		08A1A0EF1C22734B005B478B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0ED1C22734B005B478B /* LaunchScreen.storyboard */; };
+		08A1A18A1C227DE6005B478B /* NKAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A1891C227DE6005B478B /* NKAudioTrack.m */; };
+		08A1A18F1C229E29005B478B /* NKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A18E1C229E29005B478B /* NKUser.m */; };
+		08A1A1981C22A418005B478B /* NKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A1971C22A418005B478B /* NKLoginViewController.m */; };
+		08A1A19C1C22A8D3005B478B /* NKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A19B1C22A8D3005B478B /* NKConstants.m */; };
+		08A1A1AC1C22F74E005B478B /* NKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */; };
+		08ADEE7A1C22FCEE003542EB /* NKThirdPartiesConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE791C22FCEE003542EB /* NKThirdPartiesConfigurator.m */; };
+		08ADEE7E1C23010A003542EB /* NKApplicationConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE7D1C23010A003542EB /* NKApplicationConfigurator.m */; };
+		08ADEE821C230364003542EB /* NKApplicationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE811C230364003542EB /* NKApplicationFactory.m */; };
+		08ADEE851C230994003542EB /* NKLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE841C230994003542EB /* NKLoginWireframe.m */; };
+		08ADEE881C2309E6003542EB /* NKRootWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE871C2309E6003542EB /* NKRootWireframe.m */; };
+		08ADEE8B1C230C36003542EB /* NKLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE8A1C230C36003542EB /* NKLoginPresenter.m */; };
+		D0814F5F3D0E232CB101449C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		08A1A0DC1C22734B005B478B /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A1A0E01C22734B005B478B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		08A1A0E21C22734B005B478B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		08A1A0E31C22734B005B478B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		08A1A0E21C22734B005B478B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		08A1A0E31C22734B005B478B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		08A1A0E51C22734B005B478B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		08A1A0E61C22734B005B478B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		08A1A0E91C22734B005B478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		08A1A0EB1C22734B005B478B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A1A0EE1C22734B005B478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08A1A0F01C22734B005B478B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08A1A0FA1C2274D1005B478B /* NKLoginModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginModule.h; sourceTree = "<group>"; };
+		08A1A1881C227DE6005B478B /* NKAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKAudioTrack.h; path = ../NKAudioTrack.h; sourceTree = "<group>"; };
+		08A1A1891C227DE6005B478B /* NKAudioTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKAudioTrack.m; path = ../NKAudioTrack.m; sourceTree = "<group>"; };
+		08A1A18D1C229E29005B478B /* NKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKUser.h; sourceTree = "<group>"; };
+		08A1A18E1C229E29005B478B /* NKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUser.m; sourceTree = "<group>"; };
+		08A1A1951C22A338005B478B /* NKLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginView.h; sourceTree = "<group>"; };
+		08A1A1961C22A418005B478B /* NKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginViewController.h; sourceTree = "<group>"; };
+		08A1A1971C22A418005B478B /* NKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginViewController.m; sourceTree = "<group>"; };
+		08A1A19A1C22A8D3005B478B /* NKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKConstants.h; sourceTree = "<group>"; };
+		08A1A19B1C22A8D3005B478B /* NKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKConstants.m; sourceTree = "<group>"; };
+		08A1A1A91C22F616005B478B /* NKBaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKBaseModule.h; sourceTree = "<group>"; };
+		08A1A1AA1C22F74E005B478B /* NKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKBaseViewController.h; sourceTree = "<group>"; };
+		08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKBaseViewController.m; sourceTree = "<group>"; };
+		08ADEE781C22FCEE003542EB /* NKThirdPartiesConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKThirdPartiesConfigurator.h; path = ../NKThirdPartiesConfigurator.h; sourceTree = "<group>"; };
+		08ADEE791C22FCEE003542EB /* NKThirdPartiesConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKThirdPartiesConfigurator.m; path = ../NKThirdPartiesConfigurator.m; sourceTree = "<group>"; };
+		08ADEE7C1C23010A003542EB /* NKApplicationConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKApplicationConfigurator.h; sourceTree = "<group>"; };
+		08ADEE7D1C23010A003542EB /* NKApplicationConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKApplicationConfigurator.m; sourceTree = "<group>"; };
+		08ADEE7F1C2301E8003542EB /* NKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKConfigurator.h; sourceTree = "<group>"; };
+		08ADEE801C230364003542EB /* NKApplicationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKApplicationFactory.h; sourceTree = "<group>"; };
+		08ADEE811C230364003542EB /* NKApplicationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKApplicationFactory.m; sourceTree = "<group>"; };
+		08ADEE831C230994003542EB /* NKLoginWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginWireframe.h; sourceTree = "<group>"; };
+		08ADEE841C230994003542EB /* NKLoginWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginWireframe.m; sourceTree = "<group>"; };
+		08ADEE861C2309E6003542EB /* NKRootWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKRootWireframe.h; sourceTree = "<group>"; };
+		08ADEE871C2309E6003542EB /* NKRootWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKRootWireframe.m; sourceTree = "<group>"; };
+		08ADEE891C230C36003542EB /* NKLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginPresenter.h; sourceTree = "<group>"; };
+		08ADEE8A1C230C36003542EB /* NKLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginPresenter.m; sourceTree = "<group>"; };
+		1603F17F27DD683F8B9A1F18 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		364804C9C29BB94A1C05C0AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0814F5F3D0E232CB101449C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +86,8 @@
 			children = (
 				08A1A0DE1C22734B005B478B /* MusicPlayer */,
 				08A1A0DD1C22734B005B478B /* Products */,
+				1F0C3A9E77BF0156615CD027 /* Pods */,
+				5AA9D78F202B04CA3302240B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,15 +102,16 @@
 		08A1A0DE1C22734B005B478B /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				08A1A0E21C22734B005B478B /* AppDelegate.h */,
-				08A1A0E31C22734B005B478B /* AppDelegate.m */,
+				08ADEE7B1C22FD0A003542EB /* Application */,
+				08A1A1851C227A99005B478B /* Common */,
+				08A1A0F71C2273B2005B478B /* Modules */,
+				08A1A0DF1C22734B005B478B /* Supporting Files */,
+				08A1A0EB1C22734B005B478B /* Assets.xcassets */,
+				08A1A0F01C22734B005B478B /* Info.plist */,
+				08A1A0ED1C22734B005B478B /* LaunchScreen.storyboard */,
+				08A1A0E81C22734B005B478B /* Main.storyboard */,
 				08A1A0E51C22734B005B478B /* ViewController.h */,
 				08A1A0E61C22734B005B478B /* ViewController.m */,
-				08A1A0E81C22734B005B478B /* Main.storyboard */,
-				08A1A0EB1C22734B005B478B /* Assets.xcassets */,
-				08A1A0ED1C22734B005B478B /* LaunchScreen.storyboard */,
-				08A1A0F01C22734B005B478B /* Info.plist */,
-				08A1A0DF1C22734B005B478B /* Supporting Files */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";
@@ -76,7 +121,185 @@
 			children = (
 				08A1A0E01C22734B005B478B /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		08A1A0F71C2273B2005B478B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A0F81C2273D5005B478B /* Login */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		08A1A0F81C2273D5005B478B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A1901C22A240005B478B /* Application Logic */,
+				08A1A0F91C227464005B478B /* Module Interface */,
+				08A1A1911C22A250005B478B /* User interface */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		08A1A0F91C227464005B478B /* Module Interface */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A0FA1C2274D1005B478B /* NKLoginModule.h */,
+			);
+			path = "Module Interface";
+			sourceTree = "<group>";
+		};
+		08A1A1851C227A99005B478B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A19E1C22F4C9005B478B /* View */,
+				08A1A19D1C22AAF0005B478B /* Categories */,
+				08A1A1991C22A8AE005B478B /* Constants */,
+				08A1A1871C227B8E005B478B /* Model */,
+				08A1A1861C227AE9005B478B /* Services */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		08A1A1861C227AE9005B478B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		08A1A1871C227B8E005B478B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A18C1C227EF9005B478B /* Managed Objects */,
+				08A1A18B1C227EEA005B478B /* Plain Objects */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		08A1A18B1C227EEA005B478B /* Plain Objects */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A1881C227DE6005B478B /* NKAudioTrack.h */,
+				08A1A1891C227DE6005B478B /* NKAudioTrack.m */,
+				08A1A18D1C229E29005B478B /* NKUser.h */,
+				08A1A18E1C229E29005B478B /* NKUser.m */,
+			);
+			path = "Plain Objects";
+			sourceTree = "<group>";
+		};
+		08A1A18C1C227EF9005B478B /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		08A1A1901C22A240005B478B /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Application Logic";
+			sourceTree = "<group>";
+		};
+		08A1A1911C22A250005B478B /* User interface */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A1941C22A2EE005B478B /* Wireframe */,
+				08A1A1931C22A2D7005B478B /* View */,
+				08A1A1921C22A2CC005B478B /* Presenter */,
+			);
+			path = "User interface";
+			sourceTree = "<group>";
+		};
+		08A1A1921C22A2CC005B478B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				08ADEE891C230C36003542EB /* NKLoginPresenter.h */,
+				08ADEE8A1C230C36003542EB /* NKLoginPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		08A1A1931C22A2D7005B478B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A1951C22A338005B478B /* NKLoginView.h */,
+				08A1A1961C22A418005B478B /* NKLoginViewController.h */,
+				08A1A1971C22A418005B478B /* NKLoginViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		08A1A1941C22A2EE005B478B /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				08ADEE831C230994003542EB /* NKLoginWireframe.h */,
+				08ADEE841C230994003542EB /* NKLoginWireframe.m */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		08A1A1991C22A8AE005B478B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A19A1C22A8D3005B478B /* NKConstants.h */,
+				08A1A19B1C22A8D3005B478B /* NKConstants.m */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		08A1A19D1C22AAF0005B478B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		08A1A19E1C22F4C9005B478B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A1A91C22F616005B478B /* NKBaseModule.h */,
+				08A1A1AA1C22F74E005B478B /* NKBaseViewController.h */,
+				08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */,
+				08ADEE861C2309E6003542EB /* NKRootWireframe.h */,
+				08ADEE871C2309E6003542EB /* NKRootWireframe.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		08ADEE7B1C22FD0A003542EB /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A0E21C22734B005B478B /* AppDelegate.h */,
+				08A1A0E31C22734B005B478B /* AppDelegate.m */,
+				08ADEE7F1C2301E8003542EB /* NKConfigurator.h */,
+				08ADEE781C22FCEE003542EB /* NKThirdPartiesConfigurator.h */,
+				08ADEE791C22FCEE003542EB /* NKThirdPartiesConfigurator.m */,
+				08ADEE7C1C23010A003542EB /* NKApplicationConfigurator.h */,
+				08ADEE7D1C23010A003542EB /* NKApplicationConfigurator.m */,
+				08ADEE801C230364003542EB /* NKApplicationFactory.h */,
+				08ADEE811C230364003542EB /* NKApplicationFactory.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		1F0C3A9E77BF0156615CD027 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				364804C9C29BB94A1C05C0AD /* Pods.debug.xcconfig */,
+				1603F17F27DD683F8B9A1F18 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5AA9D78F202B04CA3302240B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +309,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08A1A0F31C22734B005B478B /* Build configuration list for PBXNativeTarget "MusicPlayer" */;
 			buildPhases = (
+				D072A2DCA03B9575DA7ECADF /* Check Pods Manifest.lock */,
 				08A1A0D81C22734B005B478B /* Sources */,
 				08A1A0D91C22734B005B478B /* Frameworks */,
 				08A1A0DA1C22734B005B478B /* Resources */,
+				E7F179E4D07190348398B797 /* Embed Pods Frameworks */,
+				05C5A6C9F8B3B60DC105214D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,14 +370,73 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05C5A6C9F8B3B60DC105214D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D072A2DCA03B9575DA7ECADF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7F179E4D07190348398B797 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		08A1A0D81C22734B005B478B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08ADEE821C230364003542EB /* NKApplicationFactory.m in Sources */,
+				08ADEE7E1C23010A003542EB /* NKApplicationConfigurator.m in Sources */,
+				08A1A19C1C22A8D3005B478B /* NKConstants.m in Sources */,
 				08A1A0E71C22734B005B478B /* ViewController.m in Sources */,
+				08ADEE7A1C22FCEE003542EB /* NKThirdPartiesConfigurator.m in Sources */,
+				08A1A18A1C227DE6005B478B /* NKAudioTrack.m in Sources */,
+				08ADEE881C2309E6003542EB /* NKRootWireframe.m in Sources */,
 				08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */,
+				08A1A1AC1C22F74E005B478B /* NKBaseViewController.m in Sources */,
 				08A1A0E11C22734B005B478B /* main.m in Sources */,
+				08ADEE851C230994003542EB /* NKLoginWireframe.m in Sources */,
+				08ADEE8B1C230C36003542EB /* NKLoginPresenter.m in Sources */,
+				08A1A18F1C229E29005B478B /* NKUser.m in Sources */,
+				08A1A1981C22A418005B478B /* NKLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +449,7 @@
 				08A1A0E91C22734B005B478B /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		08A1A0ED1C22734B005B478B /* LaunchScreen.storyboard */ = {
@@ -172,6 +458,7 @@
 				08A1A0EE1C22734B005B478B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -259,9 +546,11 @@
 		};
 		08A1A0F41C22734B005B478B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 364804C9C29BB94A1C05C0AD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sequenia.MusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -270,9 +559,11 @@
 		};
 		08A1A0F51C22734B005B478B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1603F17F27DD683F8B9A1F18 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sequenia.MusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -298,6 +589,7 @@
 				08A1A0F51C22734B005B478B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
