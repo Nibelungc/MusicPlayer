@@ -13,11 +13,11 @@
 
 @implementation NKApplicationFactory
 
-- (id<NKConfigurator>) thirdPartiesConfigurator{
++ (id<NKConfigurator>) thirdPartiesConfigurator{
     return [[NKThirdPartiesConfigurator alloc] init];
 }
 
-- (id<NKConfigurator>) applicationConfigurator{
++ (id<NKConfigurator>) applicationConfigurator{
     return [[NKApplicationConfigurator alloc] init];
 }
 

@@ -10,6 +10,10 @@
 
 @interface NKUser : NSObject
 
+@property (strong, nonatomic) NSString* token;
+
+@property (strong, nonatomic) NSURL* imageUrl;
+
 @property (strong, nonatomic) NSString* firstName;
 
 @property (strong, nonatomic) NSString* lastName;

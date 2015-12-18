@@ -7,7 +7,30 @@
 //
 
 #import "NKLoginPresenter.h"
+#import "NKLoginView.h"
+#import "NKCategories.h"
 
 @implementation NKLoginPresenter
+
+@dynamic output;
+
+#pragma mark - NKLoginModule
+
+- (void) loadView {
+    [self.interactor getListOfServices];
+}
+
+- (void) loginActionWithServiceTitle: (NSString*) serviceTitle {
+    NSLog(@"Login with service: %@", serviceTitle);
+}
+
+#pragma mark - NKLoginInteractorOutput
+
+- (void) setListOfServices: (NSArray*) listOfServices {
+    NSArray* titles = [listOfServices map:^id(id obj) {
+        return [obj title];
+    }];
+    [self.output setServicesTitles: titles];
+}
 
 @end

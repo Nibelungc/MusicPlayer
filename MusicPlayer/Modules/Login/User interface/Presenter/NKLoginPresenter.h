@@ -9,7 +9,15 @@
 #import <Foundation/Foundation.h>
 
 #import "NKLoginModule.h"
+#import "NKBasePresenter.h"
+#import "NKLoginInteractorIO.h"
 
-@interface NKLoginPresenter : NSObject <NKLoginModule>
+@protocol NKLoginView;
+
+@interface NKLoginPresenter : NKBasePresenter <NKLoginModule, NKLoginInteractorOutput>
+
+@property (strong, nonatomic) UIViewController<NKLoginView>* output;
+
+@property (strong, nonatomic) id <NKLoginInteractorInput> interactor;
 
 @end

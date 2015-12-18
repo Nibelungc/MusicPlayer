@@ -10,10 +10,13 @@
 
 #import "NKConfigurator.h"
 
+@protocol NKAudioService;
+
 @interface NKApplicationFactory : NSObject
 
-- (id<NKConfigurator>) thirdPartiesConfigurator;
++ (id<NKConfigurator>) thirdPartiesConfigurator;
 
-- (id<NKConfigurator>) applicationConfigurator;
++ (id<NKConfigurator>) applicationConfigurator;
+
 
 @end

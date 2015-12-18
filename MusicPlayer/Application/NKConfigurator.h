@@ -8,8 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class UIWindow, UIApplication;
+
 @protocol NKConfigurator <NSObject>
 
 - (void) configurate;
+
+@optional
+
+- (void) configurateWithWindow: (UIWindow*) window;
+
+- (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

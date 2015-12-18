@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NKBaseModule.h"
+#import "NKModule.h"
+#import "NKView.h"
 
-@interface NKBaseViewController : UIViewController
+@interface NKBaseViewController : UIViewController <NKView>
 
-@property (weak, nonatomic) id <NKBaseModule> eventHandler;
+@property (weak, nonatomic) id <NKModule> eventHandler;
 
 @end

@@ -18,4 +18,6 @@
 
 @property (strong, nonatomic) NSNumber* duration;
 
+@property (strong, nonatomic) NSURL* url;
+
 @end

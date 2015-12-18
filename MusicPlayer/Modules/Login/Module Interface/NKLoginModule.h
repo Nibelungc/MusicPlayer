@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NKBaseModule.h"
+#import "NKModule.h"
 
-@protocol NKLoginModule <NKBaseModule>
+@protocol NKLoginModule <NKModule>
 
 - (void) loginActionWithServiceTitle: (NSString*) serviceTitle;
 

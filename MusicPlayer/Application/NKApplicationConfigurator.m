@@ -6,8 +6,12 @@
 //  Copyright © 2015 Sequenia. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "NKApplicationConfigurator.h"
 #import "NKRootWireframe.h"
+#import "NKLoginWireframe.h"
+#import "NKWireframe.h"
 
 @interface NKApplicationConfigurator ()
 
@@ -20,17 +24,26 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        [self configurateDependencies];
+        NKLoginWireframe* initialWireframe = [[NKLoginWireframe alloc] init];
+        _rootWireframe = [[NKRootWireframe alloc] initWithInitialWireframe:initialWireframe];
+        initialWireframe.rootWireframe = _rootWireframe;
     }
     return self;
 }
 
-- (void) configurate {
-    
+- (void) configurateWithWindow:(UIWindow *)window {
+    [self configureApplicationAppearanceForWindow: window];
+    [self.rootWireframe.initialWireframe presentInterfaceFromWindow: window];
 }
 
-- (void) configurateDependencies {
-    self.rootWireframe = [[NKRootWireframe alloc] init];
+- (void) configurate {
+    UIWindow* window = [[UIApplication sharedApplication] windows].firstObject;
+    [self configurateWithWindow: window];
+}
+
+- (void) configureApplicationAppearanceForWindow: (UIWindow*) window {
+    [window setTintColor: [UIColor grayColor]];
+    
 }
 
 

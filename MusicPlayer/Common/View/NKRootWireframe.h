@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol NKBaseModule;
+@protocol NKModule;
+@protocol NKWireframe;
 
 @interface NKRootWireframe : NSObject
 
-- (id <NKBaseModule>) initialModule;
+@property (strong, nonatomic) id <NKWireframe> initialWireframe;
+
+- (instancetype)initWithInitialWireframe: (id <NKWireframe>) wireframe;
 
 @end

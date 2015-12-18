@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class NKRootWireframe;
+#import "NKWireframe.h"
 
-@interface NKLoginWireframe : NSObject
+@class NKRootWireframe;
+@class NKLoginPresenter;
+
+@interface NKLoginWireframe : NSObject <NKWireframe>
 
 @property (weak, nonatomic) NKRootWireframe* rootWireframe;
+
+@property (strong, nonatomic) NKLoginPresenter* loginPresenter;
 
 @end

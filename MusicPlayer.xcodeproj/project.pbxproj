@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083DB0DD1C2407EB0043B214 /* NSArray+HOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB0DC1C2407EB0043B214 /* NSArray+HOM.m */; };
+		083DB0E71C2414920043B214 /* music_background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 083DB0E61C2414920043B214 /* music_background@2x.jpg */; };
+		083DB0EA1C24190D0043B214 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB0E91C24190D0043B214 /* UIColor+AppColors.m */; };
 		08A1A0E11C22734B005B478B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E01C22734B005B478B /* main.m */; };
 		08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E31C22734B005B478B /* AppDelegate.m */; };
-		08A1A0E71C22734B005B478B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E61C22734B005B478B /* ViewController.m */; };
 		08A1A0EA1C22734B005B478B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0E81C22734B005B478B /* Main.storyboard */; };
 		08A1A0EC1C22734B005B478B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0EB1C22734B005B478B /* Assets.xcassets */; };
 		08A1A0EF1C22734B005B478B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0ED1C22734B005B478B /* LaunchScreen.storyboard */; };
@@ -24,16 +26,25 @@
 		08ADEE851C230994003542EB /* NKLoginWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE841C230994003542EB /* NKLoginWireframe.m */; };
 		08ADEE881C2309E6003542EB /* NKRootWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE871C2309E6003542EB /* NKRootWireframe.m */; };
 		08ADEE8B1C230C36003542EB /* NKLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE8A1C230C36003542EB /* NKLoginPresenter.m */; };
+		08ADEE901C23C045003542EB /* NKBasePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE8F1C23C045003542EB /* NKBasePresenter.m */; };
+		08ADEE941C23C26A003542EB /* NKLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE931C23C26A003542EB /* NKLoginInteractor.m */; };
+		08ADEE981C23D58E003542EB /* NKAudioAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE971C23D58E003542EB /* NKAudioAlbum.m */; };
+		08ADEE9B1C23D989003542EB /* VKontakteAudioService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE9A1C23D989003542EB /* VKontakteAudioService.m */; };
 		D0814F5F3D0E232CB101449C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		083DB0DB1C2407EB0043B214 /* NSArray+HOM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HOM.h"; sourceTree = "<group>"; };
+		083DB0DC1C2407EB0043B214 /* NSArray+HOM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HOM.m"; sourceTree = "<group>"; };
+		083DB0DF1C240AD30043B214 /* NKCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCategories.h; sourceTree = "<group>"; };
+		083DB0E21C240E150043B214 /* NKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKView.h; sourceTree = "<group>"; };
+		083DB0E61C2414920043B214 /* music_background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "music_background@2x.jpg"; sourceTree = "<group>"; };
+		083DB0E81C24190D0043B214 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
+		083DB0E91C24190D0043B214 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
 		08A1A0DC1C22734B005B478B /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A1A0E01C22734B005B478B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08A1A0E21C22734B005B478B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
 		08A1A0E31C22734B005B478B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
-		08A1A0E51C22734B005B478B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		08A1A0E61C22734B005B478B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		08A1A0E91C22734B005B478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		08A1A0EB1C22734B005B478B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A1A0EE1C22734B005B478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,9 +59,9 @@
 		08A1A1971C22A418005B478B /* NKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginViewController.m; sourceTree = "<group>"; };
 		08A1A19A1C22A8D3005B478B /* NKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKConstants.h; sourceTree = "<group>"; };
 		08A1A19B1C22A8D3005B478B /* NKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKConstants.m; sourceTree = "<group>"; };
-		08A1A1A91C22F616005B478B /* NKBaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKBaseModule.h; sourceTree = "<group>"; };
-		08A1A1AA1C22F74E005B478B /* NKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKBaseViewController.h; sourceTree = "<group>"; };
-		08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKBaseViewController.m; sourceTree = "<group>"; };
+		08A1A1A91C22F616005B478B /* NKModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKModule.h; sourceTree = "<group>"; };
+		08A1A1AA1C22F74E005B478B /* NKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKBaseViewController.h; path = ../View/NKBaseViewController.h; sourceTree = "<group>"; };
+		08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKBaseViewController.m; path = ../View/NKBaseViewController.m; sourceTree = "<group>"; };
 		08ADEE781C22FCEE003542EB /* NKThirdPartiesConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKThirdPartiesConfigurator.h; path = ../NKThirdPartiesConfigurator.h; sourceTree = "<group>"; };
 		08ADEE791C22FCEE003542EB /* NKThirdPartiesConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKThirdPartiesConfigurator.m; path = ../NKThirdPartiesConfigurator.m; sourceTree = "<group>"; };
 		08ADEE7C1C23010A003542EB /* NKApplicationConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKApplicationConfigurator.h; sourceTree = "<group>"; };
@@ -60,10 +71,21 @@
 		08ADEE811C230364003542EB /* NKApplicationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKApplicationFactory.m; sourceTree = "<group>"; };
 		08ADEE831C230994003542EB /* NKLoginWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginWireframe.h; sourceTree = "<group>"; };
 		08ADEE841C230994003542EB /* NKLoginWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginWireframe.m; sourceTree = "<group>"; };
-		08ADEE861C2309E6003542EB /* NKRootWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKRootWireframe.h; sourceTree = "<group>"; };
-		08ADEE871C2309E6003542EB /* NKRootWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKRootWireframe.m; sourceTree = "<group>"; };
+		08ADEE861C2309E6003542EB /* NKRootWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKRootWireframe.h; path = ../View/NKRootWireframe.h; sourceTree = "<group>"; };
+		08ADEE871C2309E6003542EB /* NKRootWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKRootWireframe.m; path = ../View/NKRootWireframe.m; sourceTree = "<group>"; };
 		08ADEE891C230C36003542EB /* NKLoginPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginPresenter.h; sourceTree = "<group>"; };
 		08ADEE8A1C230C36003542EB /* NKLoginPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginPresenter.m; sourceTree = "<group>"; };
+		08ADEE8C1C23B97B003542EB /* NKWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKWireframe.h; sourceTree = "<group>"; };
+		08ADEE8E1C23C045003542EB /* NKBasePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKBasePresenter.h; sourceTree = "<group>"; };
+		08ADEE8F1C23C045003542EB /* NKBasePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKBasePresenter.m; sourceTree = "<group>"; };
+		08ADEE911C23C252003542EB /* NKLoginInteractorIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginInteractorIO.h; sourceTree = "<group>"; };
+		08ADEE921C23C26A003542EB /* NKLoginInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginInteractor.h; sourceTree = "<group>"; };
+		08ADEE931C23C26A003542EB /* NKLoginInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKLoginInteractor.m; sourceTree = "<group>"; };
+		08ADEE951C23D4E0003542EB /* NKAudioService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKAudioService.h; sourceTree = "<group>"; };
+		08ADEE961C23D58E003542EB /* NKAudioAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKAudioAlbum.h; sourceTree = "<group>"; };
+		08ADEE971C23D58E003542EB /* NKAudioAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKAudioAlbum.m; sourceTree = "<group>"; };
+		08ADEE991C23D989003542EB /* VKontakteAudioService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKontakteAudioService.h; sourceTree = "<group>"; };
+		08ADEE9A1C23D989003542EB /* VKontakteAudioService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKontakteAudioService.m; sourceTree = "<group>"; };
 		1603F17F27DD683F8B9A1F18 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		364804C9C29BB94A1C05C0AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +103,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		083DB0E41C2414820043B214 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				083DB0E51C2414820043B214 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		083DB0E51C2414820043B214 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				083DB0E61C2414920043B214 /* music_background@2x.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		08A1A0D31C22734B005B478B = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +140,7 @@
 		08A1A0DE1C22734B005B478B /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				083DB0E41C2414820043B214 /* Resources */,
 				08ADEE7B1C22FD0A003542EB /* Application */,
 				08A1A1851C227A99005B478B /* Common */,
 				08A1A0F71C2273B2005B478B /* Modules */,
@@ -110,8 +149,6 @@
 				08A1A0F01C22734B005B478B /* Info.plist */,
 				08A1A0ED1C22734B005B478B /* LaunchScreen.storyboard */,
 				08A1A0E81C22734B005B478B /* Main.storyboard */,
-				08A1A0E51C22734B005B478B /* ViewController.h */,
-				08A1A0E61C22734B005B478B /* ViewController.m */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";
@@ -153,7 +190,8 @@
 		08A1A1851C227A99005B478B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				08A1A19E1C22F4C9005B478B /* View */,
+				08ADEE8D1C23BFB4003542EB /* Base Classes */,
+				08A1A19E1C22F4C9005B478B /* Base Protocols */,
 				08A1A19D1C22AAF0005B478B /* Categories */,
 				08A1A1991C22A8AE005B478B /* Constants */,
 				08A1A1871C227B8E005B478B /* Model */,
@@ -165,6 +203,9 @@
 		08A1A1861C227AE9005B478B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				08ADEE951C23D4E0003542EB /* NKAudioService.h */,
+				08ADEE991C23D989003542EB /* VKontakteAudioService.h */,
+				08ADEE9A1C23D989003542EB /* VKontakteAudioService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -183,6 +224,8 @@
 			children = (
 				08A1A1881C227DE6005B478B /* NKAudioTrack.h */,
 				08A1A1891C227DE6005B478B /* NKAudioTrack.m */,
+				08ADEE961C23D58E003542EB /* NKAudioAlbum.h */,
+				08ADEE971C23D58E003542EB /* NKAudioAlbum.m */,
 				08A1A18D1C229E29005B478B /* NKUser.h */,
 				08A1A18E1C229E29005B478B /* NKUser.m */,
 			);
@@ -199,6 +242,9 @@
 		08A1A1901C22A240005B478B /* Application Logic */ = {
 			isa = PBXGroup;
 			children = (
+				08ADEE911C23C252003542EB /* NKLoginInteractorIO.h */,
+				08ADEE921C23C26A003542EB /* NKLoginInteractor.h */,
+				08ADEE931C23C26A003542EB /* NKLoginInteractor.m */,
 			);
 			path = "Application Logic";
 			sourceTree = "<group>";
@@ -253,19 +299,23 @@
 		08A1A19D1C22AAF0005B478B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				083DB0DF1C240AD30043B214 /* NKCategories.h */,
+				083DB0DB1C2407EB0043B214 /* NSArray+HOM.h */,
+				083DB0DC1C2407EB0043B214 /* NSArray+HOM.m */,
+				083DB0E81C24190D0043B214 /* UIColor+AppColors.h */,
+				083DB0E91C24190D0043B214 /* UIColor+AppColors.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		08A1A19E1C22F4C9005B478B /* View */ = {
+		08A1A19E1C22F4C9005B478B /* Base Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				08A1A1A91C22F616005B478B /* NKBaseModule.h */,
-				08A1A1AA1C22F74E005B478B /* NKBaseViewController.h */,
-				08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */,
-				08ADEE861C2309E6003542EB /* NKRootWireframe.h */,
-				08ADEE871C2309E6003542EB /* NKRootWireframe.m */,
+				08A1A1A91C22F616005B478B /* NKModule.h */,
+				08ADEE8C1C23B97B003542EB /* NKWireframe.h */,
+				083DB0E21C240E150043B214 /* NKView.h */,
 			);
+			name = "Base Protocols";
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -283,6 +333,19 @@
 				08ADEE811C230364003542EB /* NKApplicationFactory.m */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		08ADEE8D1C23BFB4003542EB /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				08A1A1AA1C22F74E005B478B /* NKBaseViewController.h */,
+				08A1A1AB1C22F74E005B478B /* NKBaseViewController.m */,
+				08ADEE8E1C23C045003542EB /* NKBasePresenter.h */,
+				08ADEE8F1C23C045003542EB /* NKBasePresenter.m */,
+				08ADEE861C2309E6003542EB /* NKRootWireframe.h */,
+				08ADEE871C2309E6003542EB /* NKRootWireframe.m */,
+			);
+			path = "Base Classes";
 			sourceTree = "<group>";
 		};
 		1F0C3A9E77BF0156615CD027 /* Pods */ = {
@@ -365,6 +428,7 @@
 				08A1A0EF1C22734B005B478B /* LaunchScreen.storyboard in Resources */,
 				08A1A0EC1C22734B005B478B /* Assets.xcassets in Resources */,
 				08A1A0EA1C22734B005B478B /* Main.storyboard in Resources */,
+				083DB0E71C2414920043B214 /* music_background@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,16 +487,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08ADEE9B1C23D989003542EB /* VKontakteAudioService.m in Sources */,
 				08ADEE821C230364003542EB /* NKApplicationFactory.m in Sources */,
 				08ADEE7E1C23010A003542EB /* NKApplicationConfigurator.m in Sources */,
 				08A1A19C1C22A8D3005B478B /* NKConstants.m in Sources */,
-				08A1A0E71C22734B005B478B /* ViewController.m in Sources */,
+				083DB0DD1C2407EB0043B214 /* NSArray+HOM.m in Sources */,
 				08ADEE7A1C22FCEE003542EB /* NKThirdPartiesConfigurator.m in Sources */,
 				08A1A18A1C227DE6005B478B /* NKAudioTrack.m in Sources */,
 				08ADEE881C2309E6003542EB /* NKRootWireframe.m in Sources */,
 				08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */,
+				08ADEE981C23D58E003542EB /* NKAudioAlbum.m in Sources */,
+				08ADEE901C23C045003542EB /* NKBasePresenter.m in Sources */,
 				08A1A1AC1C22F74E005B478B /* NKBaseViewController.m in Sources */,
+				083DB0EA1C24190D0043B214 /* UIColor+AppColors.m in Sources */,
 				08A1A0E11C22734B005B478B /* main.m in Sources */,
+				08ADEE941C23C26A003542EB /* NKLoginInteractor.m in Sources */,
 				08ADEE851C230994003542EB /* NKLoginWireframe.m in Sources */,
 				08ADEE8B1C230C36003542EB /* NKLoginPresenter.m in Sources */,
 				08A1A18F1C229E29005B478B /* NKUser.m in Sources */,

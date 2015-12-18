@@ -12,6 +12,8 @@
 
 @interface NKThirdPartiesConfigurator : NSObject <NKConfigurator>
 
++ (NSArray*) availableServices;
+
 - (void) configurate;
 
 @end

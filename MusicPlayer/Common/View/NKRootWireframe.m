@@ -8,12 +8,17 @@
 
 #import "NKRootWireframe.h"
 
-#import "NKLoginPresenter.h"
+#import "NKLoginWireframe.h"
 
 @implementation NKRootWireframe
 
-- (id <NKBaseModule>) initialModule{
-    return [[NKLoginPresenter alloc] init];
+- (instancetype)initWithInitialWireframe: (id <NKWireframe>) wireframe{
+    self = [super init];
+    if (self) {
+        _initialWireframe = wireframe;
+    }
+    return self;
 }
+
 
 @end

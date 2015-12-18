@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol NKBaseModule <NSObject>
+@protocol NKModule <NSObject>
+
+@optional
 
 - (void) updateView;
+
+- (void) loadView;
 
 @end

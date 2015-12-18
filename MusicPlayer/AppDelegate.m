@@ -23,12 +23,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    NKApplicationFactory* applicationFactory = [[NKApplicationFactory alloc] init];
-    [[applicationFactory thirdPartiesConfigurator] configurate];
-    [[applicationFactory applicationConfigurator] configurate];
+    
+    self.thirdPartiesConfigurator = [NKApplicationFactory thirdPartiesConfigurator];
+    self.applicationConfigurator = [NKApplicationFactory applicationConfigurator];
+    [self.thirdPartiesConfigurator configurate];
+    [self.applicationConfigurator configurateWithWindow: self.window];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self.thirdPartiesConfigurator application: application openURL: url sourceApplication: sourceApplication annotation: annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

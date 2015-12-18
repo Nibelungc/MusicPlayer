@@ -12,4 +12,5 @@
 
 @interface NKApplicationConfigurator : NSObject <NKConfigurator>
 
+
 @end
