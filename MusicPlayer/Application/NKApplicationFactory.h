@@ -11,6 +11,7 @@
 #import "NKConfigurator.h"
 
 @protocol NKAudioService;
+@protocol NKMessageService;
 
 @interface NKApplicationFactory : NSObject
 
@@ -18,5 +19,6 @@
 
 + (id<NKConfigurator>) applicationConfigurator;
 
++ (id<NKMessageService>) applicationErrorHandler;
 
 @end

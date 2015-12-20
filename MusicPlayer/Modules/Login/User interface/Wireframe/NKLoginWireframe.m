@@ -25,6 +25,7 @@
     
     loginPresenter.output = loginViewcontroller;
     loginPresenter.interactor = loginInteractor;
+    loginPresenter.loginWireframe = self;
     
     loginInteractor.output = loginPresenter;
     

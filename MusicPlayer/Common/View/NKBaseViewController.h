@@ -11,8 +11,16 @@
 #import "NKModule.h"
 #import "NKView.h"
 
+@protocol NKMessageService;
+
 @interface NKBaseViewController : UIViewController <NKView>
 
 @property (weak, nonatomic) id <NKModule> eventHandler;
+
+@property (strong, nonatomic) id <NKMessageService> errorHandler;
+
+//- (void) showErrorMessage: (NSString*) message withTitle: (NSString*) title;
+//
+//- (void) showMessage: (NSString*) message withTitle: (NSString*) title;
 
 @end

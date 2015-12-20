@@ -10,6 +10,7 @@
 
 #import "NKThirdPartiesConfigurator.h"
 #import "NKApplicationConfigurator.h"
+#import "NKNotificationService.h"
 
 @implementation NKApplicationFactory
 
@@ -19,6 +20,10 @@
 
 + (id<NKConfigurator>) applicationConfigurator{
     return [[NKApplicationConfigurator alloc] init];
+}
+
++ (id<NKMessageService>) applicationErrorHandler{
+    return [[NKNotificationService alloc] init];
 }
 
 @end

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NKView.h"
 
-@protocol NKLoginView <NSObject>
+@protocol NKLoginView <NKView>
 
 - (void) setServicesTitles: (NSArray <NSString *> *) titles;
 

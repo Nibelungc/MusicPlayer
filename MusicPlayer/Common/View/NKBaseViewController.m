@@ -7,8 +7,12 @@
 //
 
 #import "NKBaseViewController.h"
+#import "NKMessageService.h"
+#import "NKApplicationFactory.h"
 
 @implementation NKBaseViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,20 +32,21 @@
 
 #pragma mark - NKView
 
-- (void) showErrorMessage: (NSString*) message{
-
-}
-
 - (void) showErrorMessage: (NSString*) message withTitle: (NSString*) title{
-
-}
-
-- (void) showMessage: (NSString*) message{
-
+    [self.errorHandler showErrorMessage: message withTitle: title];
 }
 
 - (void) showMessage: (NSString*) message withTitle: (NSString*) title{
+    [self.errorHandler showMessage: message withTitle: title];
+}
 
+#pragma mark - Accessors
+
+- (id <NKMessageService>) errorHandler {
+    if (!_errorHandler){
+        _errorHandler = [NKApplicationFactory applicationErrorHandler];
+    }
+    return _errorHandler;
 }
 
 @end

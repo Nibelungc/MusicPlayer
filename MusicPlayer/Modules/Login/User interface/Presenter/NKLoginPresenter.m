@@ -9,6 +9,13 @@
 #import "NKLoginPresenter.h"
 #import "NKLoginView.h"
 #import "NKCategories.h"
+#import "NKUser.h"
+
+@interface NKLoginPresenter ()
+
+@property (strong, nonatomic) NSArray* services;
+
+@end
 
 @implementation NKLoginPresenter
 
@@ -21,16 +28,28 @@
 }
 
 - (void) loginActionWithServiceTitle: (NSString*) serviceTitle {
-    NSLog(@"Login with service: %@", serviceTitle);
+    NSPredicate* titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@", serviceTitle];
+    NSArray* servicesWithTitle = [self.services filteredArrayUsingPredicate: titlePredicate];
+    [self.interactor loginWithService: servicesWithTitle.firstObject];
 }
 
 #pragma mark - NKLoginInteractorOutput
 
 - (void) setListOfServices: (NSArray*) listOfServices {
+    self.services = listOfServices;
     NSArray* titles = [listOfServices map:^id(id obj) {
         return [obj title];
     }];
     [self.output setServicesTitles: titles];
+}
+
+- (void) loginSucceededWithUser: (NKUser*) user{
+    NSString* message = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+    [self.output showMessage: message withTitle: @"Успешная авторизация"];
+}
+
+- (void) loginFailedWithError: (NSError*) error{
+    [self.output showErrorMessage: error.localizedDescription withTitle: @"Ошибка авторизации"];
 }
 
 @end

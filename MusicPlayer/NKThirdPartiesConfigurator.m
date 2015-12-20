@@ -11,8 +11,7 @@
 #import "VkSdk.h"
 #import "VKontakteAudioService.h"
 
-#warning SET VK APP ID
-NSString* const VK_APP_ID = @"";
+NSString* const VK_APP_ID = @"5195154";
 
 @implementation NKThirdPartiesConfigurator
 
