@@ -19,8 +19,4 @@
 
 @property (strong, nonatomic) id <NKMessageService> errorHandler;
 
-//- (void) showErrorMessage: (NSString*) message withTitle: (NSString*) title;
-//
-//- (void) showMessage: (NSString*) message withTitle: (NSString*) title;
-
 @end

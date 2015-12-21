@@ -11,6 +11,11 @@
 		083DB0E71C2414920043B214 /* music_background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 083DB0E61C2414920043B214 /* music_background@2x.jpg */; };
 		083DB0EA1C24190D0043B214 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB0E91C24190D0043B214 /* UIColor+AppColors.m */; };
 		083DB0F01C26C45B0043B214 /* NKNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB0EF1C26C45B0043B214 /* NKNotificationService.m */; };
+		083DB1291C2850860043B214 /* NKMenuInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB1281C2850860043B214 /* NKMenuInteractor.m */; };
+		083DB12D1C2852410043B214 /* NKMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB12C1C2852410043B214 /* NKMenuItem.m */; };
+		083DB1341C2855200043B214 /* NKMenuPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB1331C2855200043B214 /* NKMenuPresenter.m */; };
+		083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB13A1C2856B60043B214 /* NKMenuViewController.m */; };
+		083DB13F1C285F030043B214 /* NKMenuWireFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB13E1C285F030043B214 /* NKMenuWireFrame.m */; };
 		08A1A0E11C22734B005B478B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E01C22734B005B478B /* main.m */; };
 		08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E31C22734B005B478B /* AppDelegate.m */; };
 		08A1A0EA1C22734B005B478B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0E81C22734B005B478B /* Main.storyboard */; };
@@ -45,6 +50,19 @@
 		083DB0ED1C26C3430043B214 /* NKMessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMessageService.h; sourceTree = "<group>"; };
 		083DB0EE1C26C45B0043B214 /* NKNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKNotificationService.h; sourceTree = "<group>"; };
 		083DB0EF1C26C45B0043B214 /* NKNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNotificationService.m; sourceTree = "<group>"; };
+		083DB1271C2850860043B214 /* NKMenuInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuInteractor.h; sourceTree = "<group>"; };
+		083DB1281C2850860043B214 /* NKMenuInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuInteractor.m; sourceTree = "<group>"; };
+		083DB12A1C28509C0043B214 /* NKMenuInteractorIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuInteractorIO.h; sourceTree = "<group>"; };
+		083DB12B1C2852410043B214 /* NKMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuItem.h; sourceTree = "<group>"; };
+		083DB12C1C2852410043B214 /* NKMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuItem.m; sourceTree = "<group>"; };
+		083DB1321C2855200043B214 /* NKMenuPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuPresenter.h; sourceTree = "<group>"; };
+		083DB1331C2855200043B214 /* NKMenuPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuPresenter.m; sourceTree = "<group>"; };
+		083DB1381C2855EA0043B214 /* NKMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuView.h; sourceTree = "<group>"; };
+		083DB1391C2856B60043B214 /* NKMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuViewController.h; sourceTree = "<group>"; };
+		083DB13A1C2856B60043B214 /* NKMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuViewController.m; sourceTree = "<group>"; };
+		083DB13C1C2859040043B214 /* NKMenuModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuModule.h; sourceTree = "<group>"; };
+		083DB13D1C285F030043B214 /* NKMenuWireFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuWireFrame.h; sourceTree = "<group>"; };
+		083DB13E1C285F030043B214 /* NKMenuWireFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuWireFrame.m; sourceTree = "<group>"; };
 		08A1A0DC1C22734B005B478B /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A1A0E01C22734B005B478B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08A1A0E21C22734B005B478B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -153,6 +171,65 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		083DB1251C2839BA0043B214 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				083DB1261C28505D0043B214 /* Application Logic */,
+				083DB1351C2855970043B214 /* User Interface */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		083DB1261C28505D0043B214 /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				083DB12A1C28509C0043B214 /* NKMenuInteractorIO.h */,
+				083DB1271C2850860043B214 /* NKMenuInteractor.h */,
+				083DB1281C2850860043B214 /* NKMenuInteractor.m */,
+			);
+			path = "Application Logic";
+			sourceTree = "<group>";
+		};
+		083DB12E1C2854630043B214 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				083DB13C1C2859040043B214 /* NKMenuModule.h */,
+				083DB1321C2855200043B214 /* NKMenuPresenter.h */,
+				083DB1331C2855200043B214 /* NKMenuPresenter.m */,
+			);
+			name = Presenter;
+			path = ../Presenter;
+			sourceTree = "<group>";
+		};
+		083DB1351C2855970043B214 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				083DB1371C2855CA0043B214 /* Wireframe */,
+				083DB12E1C2854630043B214 /* Presenter */,
+				083DB1361C2855AB0043B214 /* View */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		083DB1361C2855AB0043B214 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				083DB1381C2855EA0043B214 /* NKMenuView.h */,
+				083DB1391C2856B60043B214 /* NKMenuViewController.h */,
+				083DB13A1C2856B60043B214 /* NKMenuViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		083DB1371C2855CA0043B214 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				083DB13D1C285F030043B214 /* NKMenuWireFrame.h */,
+				083DB13E1C285F030043B214 /* NKMenuWireFrame.m */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
 		08A1A0D31C22734B005B478B = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +272,7 @@
 		08A1A0F71C2273B2005B478B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				083DB1251C2839BA0043B214 /* Menu */,
 				08A1A0F81C2273D5005B478B /* Login */,
 			);
 			path = Modules;
@@ -259,6 +337,8 @@
 				08A1A1891C227DE6005B478B /* NKAudioTrack.m */,
 				08A1A18D1C229E29005B478B /* NKUser.h */,
 				08A1A18E1C229E29005B478B /* NKUser.m */,
+				083DB12B1C2852410043B214 /* NKMenuItem.h */,
+				083DB12C1C2852410043B214 /* NKMenuItem.m */,
 			);
 			path = "Plain Objects";
 			sourceTree = "<group>";
@@ -519,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08ADEE9B1C23D989003542EB /* VKontakteAudioService.m in Sources */,
+				083DB13F1C285F030043B214 /* NKMenuWireFrame.m in Sources */,
 				08ADEE821C230364003542EB /* NKApplicationFactory.m in Sources */,
 				08ADEE7E1C23010A003542EB /* NKApplicationConfigurator.m in Sources */,
 				083DB0F01C26C45B0043B214 /* NKNotificationService.m in Sources */,
@@ -534,9 +615,13 @@
 				083DB0EA1C24190D0043B214 /* UIColor+AppColors.m in Sources */,
 				08A1A0E11C22734B005B478B /* main.m in Sources */,
 				08ADEE941C23C26A003542EB /* NKLoginInteractor.m in Sources */,
+				083DB1291C2850860043B214 /* NKMenuInteractor.m in Sources */,
 				08ADEE851C230994003542EB /* NKLoginWireframe.m in Sources */,
+				083DB1341C2855200043B214 /* NKMenuPresenter.m in Sources */,
 				08ADEE8B1C230C36003542EB /* NKLoginPresenter.m in Sources */,
 				08A1A18F1C229E29005B478B /* NKUser.m in Sources */,
+				083DB12D1C2852410043B214 /* NKMenuItem.m in Sources */,
+				083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */,
 				08A1A1981C22A418005B478B /* NKLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
