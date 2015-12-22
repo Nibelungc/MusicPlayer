@@ -14,7 +14,7 @@
 
 NSString * const VKServiceTitle = @"Вконтакте";
 
-@interface VKontakteAudioService ()
+@interface VKontakteAudioService () <VKSdkUIDelegate>
 
 @property (nonatomic, copy) NKAudioServiceLoginComletion loginCompletion;
 
@@ -46,6 +46,8 @@ NSString * const VKServiceTitle = @"Вконтакте";
 - (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginComletion) completion {
     self.loginCompletion = completion;
     NSArray* permissions = @[VK_PER_AUDIO];
+    
+    [[VKSdk instance] setUiDelegate: self];
     [VKSdk authorize: permissions];
     
 }
@@ -87,6 +89,23 @@ NSString * const VKServiceTitle = @"Вконтакте";
 - (void)vkSdkUserAuthorizationFailed{
     NSLog(@"VK authorization failed");
     self.loginCompletion(nil, nil);
+}
+
+#pragma mark - VKSdkUIDelegate
+
+- (void)vkSdkShouldPresentViewController:(UIViewController *)controller{
+#warning Get viewcontroller by another way
+    UIWindow* window = [[UIApplication sharedApplication].delegate window];
+    [window.rootViewController presentViewController: controller animated: YES completion: nil];
+}
+
+/**
+ Calls when user must perform captcha-check
+ @param captchaError error returned from API. You can load captcha image from <b>captchaImg</b> property.
+ After user answered current captcha, call answerCaptcha: method with user entered answer.
+ */
+- (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError {
+    NSLog(@"Need captcha enter: %@", captchaError);
 }
 
 @end
