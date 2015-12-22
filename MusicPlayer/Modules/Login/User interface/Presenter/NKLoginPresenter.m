@@ -7,6 +7,7 @@
 //
 
 #import "NKLoginPresenter.h"
+#import "NKLoginWireframe.h"
 #import "NKLoginView.h"
 #import "NKCategories.h"
 #import "NKUser.h"
@@ -46,6 +47,7 @@
 - (void) loginSucceededWithUser: (NKUser*) user{
     NSString* message = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
     [self.output showMessage: message withTitle: @"Успешная авторизация"];
+    [self.loginWireframe presentMainController];
 }
 
 - (void) loginFailedWithError: (NSError*) error{

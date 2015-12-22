@@ -11,6 +11,7 @@
 #import "NKWireframe.h"
 
 @class NKRootWireframe;
+@class NKMenuWireFrame;
 @class NKLoginPresenter;
 
 @interface NKLoginWireframe : NSObject <NKWireframe>
@@ -18,5 +19,9 @@
 @property (weak, nonatomic) NKRootWireframe* rootWireframe;
 
 @property (strong, nonatomic) NKLoginPresenter* loginPresenter;
+
+@property (strong, nonatomic) NKMenuWireFrame* menuWireframe;
+
+- (void) presentMainController;
 
 @end

@@ -45,7 +45,9 @@ NSString * const VKServiceTitle = @"Вконтакте";
 
 - (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginComletion) completion {
     self.loginCompletion = completion;
-    [VKSdk authorize: @[VK_PER_AUDIO]];
+    NSArray* permissions = @[VK_PER_AUDIO];
+    [VKSdk authorize: permissions];
+    
 }
 
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion {

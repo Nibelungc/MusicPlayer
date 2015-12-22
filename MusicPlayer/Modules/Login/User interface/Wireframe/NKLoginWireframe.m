@@ -13,6 +13,8 @@
 #import "NKLoginPresenter.h"
 #import "NKLoginInteractor.h"
 
+#import "NKMenuWireFrame.h"
+
 @implementation NKLoginWireframe
 
 - (void) presentInterfaceFromWindow:(UIWindow *)window {
@@ -33,6 +35,18 @@
     
     window.rootViewController = loginViewcontroller;
     [window makeKeyAndVisible];
+}
+
+- (void) presentMainController {
+    NKMenuWireFrame* menuWireframe = [[NKMenuWireFrame alloc] init];
+    UIViewController<NKMenuView> *viewcontroller = menuWireframe.presenter.output;
+    UIWindow* applicationWindow = [[UIApplication sharedApplication].delegate window];
+    
+    [UIView transitionWithView: applicationWindow
+                      duration: 0.3
+                       options: UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                           applicationWindow.rootViewController = viewcontroller;
+                       } completion:nil];
 }
 
 @end

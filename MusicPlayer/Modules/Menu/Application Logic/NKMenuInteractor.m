@@ -26,7 +26,7 @@
     NKUser* user = [[NKUser alloc] init];
     user.firstName = @"Nikolay";
     user.lastName = @"Kagala";
-    user.imageUrl = [[NSBundle mainBundle] URLForResource:@"music_background@2x" withExtension:@"jpg"];
+    user.imageUrl = [[NSBundle mainBundle] URLForResource:@"music_background" withExtension:@"jpg"];
     [self.output userWasFound: user];
 }
 
