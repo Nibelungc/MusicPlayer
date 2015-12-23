@@ -14,39 +14,45 @@
 #import "NKLoginInteractor.h"
 
 #import "NKMenuWireFrame.h"
+#import <MMDrawerController.h>
+#import <MMDrawerVisualState.h>
 
 @implementation NKLoginWireframe
 
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        NKLoginViewController* loginViewcontroller = [[NKLoginViewController alloc] init];
+        NKLoginPresenter* loginPresenter = [[NKLoginPresenter alloc] init];
+        NKLoginInteractor* loginInteractor = [[NKLoginInteractor alloc] init];
+        
+        loginViewcontroller.eventHandler = loginPresenter;
+        
+        loginPresenter.output = loginViewcontroller;
+        loginPresenter.interactor = loginInteractor;
+        loginPresenter.loginWireframe = self;
+        
+        loginInteractor.output = loginPresenter;
+        
+        _loginPresenter = loginPresenter;
+    }
+    return self;
+}
+
+- (BOOL) hasLoggedUser{
+#warning ask for any logged user (presenter/interactor?)
+    return NO;
+}
+
 - (void) presentInterfaceFromWindow:(UIWindow *)window {
-    
-    NKLoginViewController* loginViewcontroller = [[NKLoginViewController alloc] init];
-    NKLoginPresenter* loginPresenter = [[NKLoginPresenter alloc] init];
-    NKLoginInteractor* loginInteractor = [[NKLoginInteractor alloc] init];
-    
-    loginViewcontroller.eventHandler = loginPresenter;
-    
-    loginPresenter.output = loginViewcontroller;
-    loginPresenter.interactor = loginInteractor;
-    loginPresenter.loginWireframe = self;
-    
-    loginInteractor.output = loginPresenter;
-    
-    self.loginPresenter = loginPresenter;
-    
-    window.rootViewController = loginViewcontroller;
+    window.rootViewController = self.loginPresenter.output;
     [window makeKeyAndVisible];
 }
 
 - (void) presentMainController {
     NKMenuWireFrame* menuWireframe = [[NKMenuWireFrame alloc] init];
-    UIViewController<NKMenuView> *viewcontroller = menuWireframe.presenter.output;
     UIWindow* applicationWindow = [[UIApplication sharedApplication].delegate window];
-    
-    [UIView transitionWithView: applicationWindow
-                      duration: 0.3
-                       options: UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                           applicationWindow.rootViewController = viewcontroller;
-                       } completion:nil];
+    [menuWireframe presentInterfaceFromWindow:applicationWindow];
 }
 
 @end

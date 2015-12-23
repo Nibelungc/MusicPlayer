@@ -20,4 +20,6 @@
 
 - (void) loginWithService: (id <NKAudioService>) service;
 
+- (void) tryToWakeupLastSession;
+
 @end

@@ -12,6 +12,9 @@
 #import "NKApplicationConfigurator.h"
 #import "NKNotificationService.h"
 
+#import "NKLoginWireframe.h"
+#import "NKMenuWireFrame.h"
+
 @implementation NKApplicationFactory
 
 + (id<NKConfigurator>) thirdPartiesConfigurator{
@@ -24,6 +27,15 @@
 
 + (id<NKMessageService>) applicationErrorHandler{
     return [[NKNotificationService alloc] init];
+}
+
++ (id<NKWireframe>) initialWireframe{
+    NKLoginWireframe* loginWireframe = [[NKLoginWireframe alloc] init];
+    if ([loginWireframe hasLoggedUser]){
+        return [[NKMenuWireFrame alloc] init];;
+    } else {
+        return loginWireframe;
+    }
 }
 
 @end

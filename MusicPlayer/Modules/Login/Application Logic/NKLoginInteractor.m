@@ -27,4 +27,8 @@
     }];
 }
 
+- (void) tryToWakeupLastSession{
+#warning Get user from data storage
+}
+
 @end

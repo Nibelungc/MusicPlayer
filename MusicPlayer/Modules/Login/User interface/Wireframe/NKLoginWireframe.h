@@ -16,12 +16,12 @@
 
 @interface NKLoginWireframe : NSObject <NKWireframe>
 
-@property (weak, nonatomic) NKRootWireframe* rootWireframe;
-
 @property (strong, nonatomic) NKLoginPresenter* loginPresenter;
 
 @property (strong, nonatomic) NKMenuWireFrame* menuWireframe;
 
 - (void) presentMainController;
+
+- (BOOL) hasLoggedUser;
 
 @end

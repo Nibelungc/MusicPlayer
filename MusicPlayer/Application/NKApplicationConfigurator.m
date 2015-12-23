@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "NKApplicationConfigurator.h"
+
+#import "NKApplicationFactory.h"
 #import "NKRootWireframe.h"
 #import "NKLoginWireframe.h"
 #import "NKWireframe.h"
@@ -24,9 +25,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        NKLoginWireframe* initialWireframe = [[NKLoginWireframe alloc] init];
+        id <NKWireframe> initialWireframe = [NKApplicationFactory initialWireframe];
         _rootWireframe = [[NKRootWireframe alloc] initWithInitialWireframe:initialWireframe];
-        initialWireframe.rootWireframe = _rootWireframe;
     }
     return self;
 }

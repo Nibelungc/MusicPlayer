@@ -48,9 +48,20 @@ NSString * const VKServiceTitle = @"Вконтакте";
     NSArray* permissions = @[VK_PER_AUDIO];
     
     [[VKSdk instance] setUiDelegate: self];
-    [VKSdk authorize: permissions];
-    
+    [VKSdk wakeUpSession:permissions
+               completeBlock:^(VKAuthorizationState state, NSError *error) {
+                   if (state == VKAuthorizationAuthorized){
+                       if (self.loginCompletion){
+                           self.loginCompletion(nil, nil);
+#warning get current user
+                       }
+                   } else {
+                       [VKSdk authorize: permissions];
+                   }
+               }];
 }
+
+
 
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion {
 

@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "NKMenuPresenter.h"
+#import "NKWireframe.h"
 
 @class UIViewController;
 
 @protocol NKMenuModule;
 
-@interface NKMenuWireFrame : NSObject
+@interface NKMenuWireFrame : NSObject <NKWireframe>
 
 @property (strong, nonatomic) NKMenuPresenter* presenter;
 

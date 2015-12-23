@@ -12,6 +12,9 @@
 #import "NKMenuPresenter.h"
 #import "NKMenuViewController.h"
 
+#import <MMDrawerController.h>
+#import <MMDrawerVisualState.h>
+
 @implementation NKMenuWireFrame
 
 - (instancetype)init{
@@ -31,6 +34,33 @@
         _presenter = presenter;
     }
     return self;
+}
+
+- (void) presentInterfaceFromWindow: (UIWindow*) applicationWindow{
+    UIViewController<NKMenuView> *viewcontroller = self.presenter.output;
+    
+    UIViewController* centerViewcontroller = [[UIViewController alloc] init];
+    centerViewcontroller.view.backgroundColor = [UIColor cyanColor];
+    UINavigationController* mainNavigationController = [[UINavigationController alloc] initWithRootViewController: centerViewcontroller];
+    
+    MMDrawerController* drawerController = [self drawerControllerWithCenterVC: mainNavigationController
+                                                                    andLeftVC: viewcontroller];
+    [UIView transitionWithView: applicationWindow
+                      duration: 0.3
+                       options: UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                           applicationWindow.rootViewController = drawerController;
+                       } completion:nil];
+}
+
+
+- (MMDrawerController*) drawerControllerWithCenterVC: (UIViewController*) centerVC andLeftVC: (UIViewController*) leftVC {
+    MMDrawerController* drawerController = [[MMDrawerController alloc] initWithCenterViewController: centerVC
+                                                                           leftDrawerViewController: leftVC];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setCloseDrawerGestureModeMask: MMCloseDrawerGestureModeAll];
+    drawerController.shouldStretchDrawer = NO;
+    [drawerController setDrawerVisualStateBlock:[MMDrawerVisualState slideAndScaleVisualStateBlock]];
+    return drawerController;
 }
 
 @end

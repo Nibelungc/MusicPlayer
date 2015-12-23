@@ -12,6 +12,7 @@
 
 @protocol NKAudioService;
 @protocol NKMessageService;
+@protocol NKWireframe;
 
 @interface NKApplicationFactory : NSObject
 
@@ -20,5 +21,7 @@
 + (id<NKConfigurator>) applicationConfigurator;
 
 + (id<NKMessageService>) applicationErrorHandler;
+
++ (id<NKWireframe>) initialWireframe;
 
 @end

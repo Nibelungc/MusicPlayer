@@ -18,6 +18,8 @@
 
 - (void) loginWithService: (id <NKAudioService>) service;
 
+- (void) tryToWakeupLastSession;
+
 @end
 
 @protocol NKLoginInteractorOutput <NSObject>
@@ -27,5 +29,9 @@
 - (void) loginSucceededWithUser: (NKUser*) user;
 
 - (void) loginFailedWithError: (NSError*) error;
+
+- (void) lastSessionWokenUp;
+
+- (void) lastSessionWasntFound;
 
 @end
