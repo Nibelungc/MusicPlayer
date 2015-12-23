@@ -27,7 +27,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"music_background.jpg"]];
+    
+    [self.view insertSubview: [self createMotionView] atIndex: 0];
+}
+
+- (UIView*) createMotionView {
+    CGFloat shift = 20.0;
+    UIView* motionView = [[UIView alloc] initWithFrame: CGRectInset(self.view.bounds, -shift, -shift)];
+    motionView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"music_background.jpg"]];
+    
+    UIInterpolatingMotionEffect *verticalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                    type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    
+    verticalMotionEffect.minimumRelativeValue = @(-shift);
+    verticalMotionEffect.maximumRelativeValue = @(shift);
+    
+    UIInterpolatingMotionEffect *horizontalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                    type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalMotionEffect.minimumRelativeValue = @(-shift);
+    horizontalMotionEffect.maximumRelativeValue = @(shift);
+    
+    // Create group to combine both
+    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+    [motionView addMotionEffect: group];
+    return motionView;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
