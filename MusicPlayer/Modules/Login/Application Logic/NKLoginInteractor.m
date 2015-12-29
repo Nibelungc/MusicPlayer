@@ -19,7 +19,7 @@
 
 - (void) loginWithService: (id <NKAudioService>) service{
     [service loginWithCompletion:^(NKUser * _Nullable user, NSError * _Nullable errorOrNil) {
-        if (errorOrNil) {
+        if (errorOrNil != nil) {
             [self.output loginFailedWithError: errorOrNil];
         } else {
             [self.output loginSucceededWithUser: user];

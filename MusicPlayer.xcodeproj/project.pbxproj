@@ -16,6 +16,7 @@
 		083DB1341C2855200043B214 /* NKMenuPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB1331C2855200043B214 /* NKMenuPresenter.m */; };
 		083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB13A1C2856B60043B214 /* NKMenuViewController.m */; };
 		083DB13F1C285F030043B214 /* NKMenuWireFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB13E1C285F030043B214 /* NKMenuWireFrame.m */; };
+		087955301C32CEEE002761C6 /* NKCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */; };
 		08A1A0E11C22734B005B478B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E01C22734B005B478B /* main.m */; };
 		08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E31C22734B005B478B /* AppDelegate.m */; };
 		08A1A0EA1C22734B005B478B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A1A0E81C22734B005B478B /* Main.storyboard */; };
@@ -63,6 +64,9 @@
 		083DB13C1C2859040043B214 /* NKMenuModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuModule.h; sourceTree = "<group>"; };
 		083DB13D1C285F030043B214 /* NKMenuWireFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuWireFrame.h; sourceTree = "<group>"; };
 		083DB13E1C285F030043B214 /* NKMenuWireFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuWireFrame.m; sourceTree = "<group>"; };
+		0879552D1C32CED7002761C6 /* NKDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKDataStorage.h; sourceTree = "<group>"; };
+		0879552E1C32CEEE002761C6 /* NKCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCoreDataStorage.h; sourceTree = "<group>"; };
+		0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCoreDataStorage.m; sourceTree = "<group>"; };
 		08A1A0DC1C22734B005B478B /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A1A0E01C22734B005B478B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08A1A0E21C22734B005B478B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -230,6 +234,16 @@
 			path = Wireframe;
 			sourceTree = "<group>";
 		};
+		0879552C1C32CE3F002761C6 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				0879552D1C32CED7002761C6 /* NKDataStorage.h */,
+				0879552E1C32CEEE002761C6 /* NKCoreDataStorage.h */,
+				0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		08A1A0D31C22734B005B478B = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +313,7 @@
 		08A1A1851C227A99005B478B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0879552C1C32CE3F002761C6 /* Storage */,
 				08ADEE8D1C23BFB4003542EB /* Base Classes */,
 				08A1A19E1C22F4C9005B478B /* Base Protocols */,
 				08A1A19D1C22AAF0005B478B /* Categories */,
@@ -623,6 +638,7 @@
 				083DB12D1C2852410043B214 /* NKMenuItem.m in Sources */,
 				083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */,
 				08A1A1981C22A418005B478B /* NKLoginViewController.m in Sources */,
+				087955301C32CEEE002761C6 /* NKCoreDataStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
