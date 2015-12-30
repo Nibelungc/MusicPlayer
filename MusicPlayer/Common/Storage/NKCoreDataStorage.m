@@ -7,15 +7,56 @@
 //
 
 #import "NKCoreDataStorage.h"
+#import <MagicalRecord/MagicalRecord.h>
+
+#import "NKManagedUser.h"
+#import "NKUser.h"
 
 @implementation NKCoreDataStorage
 
-- (void) fetchSavedUser: (_Nonnull NKDataStorageSavedUserCompletion) completion {
-    fetchSavedUser
+- (void) saveContext {
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError *error) {
+        if (!contextDidSave){
+            NSLog(@"MR_saveToPersistentStoreWithCompletion: Context not saved.");
+            if (error){
+                NSLog(@"Error saving context: %@", error.localizedDescription);
+            }
+        }
+    }];
 }
 
-- (void) saveUser: ( NKUser* _Nonnull ) user {
-    saveUser
+#pragma mark - User
+
+- (void) fetchSavedUser: (_Nonnull NKDataStorageSavedUserCompletion) completion {
+    NSArray* results = [NKManagedUser MR_findAll];
+    NKManagedUser* managedUser = (NKManagedUser*) results.firstObject;
+    completion([self userFromManagedObject: managedUser]);
+}
+
+- (void) saveUserAndDeleteOldOne: ( NKUser* _Nonnull ) user {
+    [NKManagedUser MR_truncateAll];
+    [self createManagedUserFromUser: user];
+    [self saveContext];
+}
+
+#pragma mark - Mapping
+
+- (NKUser*) userFromManagedObject: (NKManagedUser*) managedUser {
+    NKUser* user = [[NKUser alloc] init];
+    user.firstName = managedUser.firstName;
+    user.lastName = managedUser.lastName;
+    user.token = managedUser.token;
+    user.imageUrl = [NSURL URLWithString: managedUser.imageUrl];
+    return user;
+}
+
+- (NKManagedUser*) createManagedUserFromUser: (NKUser*) user {
+    NKManagedUser* managedUser = [NKManagedUser MR_createEntity];
+    managedUser.firstName = user.firstName;
+    managedUser.lastName = user.lastName;
+    managedUser.token = user.token;
+    managedUser.imageUrl = [user.imageUrl absoluteString];
+    return managedUser;
 }
 
 @end

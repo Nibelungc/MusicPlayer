@@ -49,16 +49,13 @@ NSString * const VKServiceTitle = @"Вконтакте";
     
     [[VKSdk instance] setUiDelegate: self];
     [VKSdk wakeUpSession:permissions
-               completeBlock:^(VKAuthorizationState state, NSError *error) {
-                   if (state == VKAuthorizationAuthorized){
-                       if (self.loginCompletion){
-                           self.loginCompletion(nil, nil);
-#warning get current user
-                       }
-                   } else {
-                       [VKSdk authorize: permissions];
-                   }
-               }];
+           completeBlock:^(VKAuthorizationState state, NSError *error) {
+               if (state == VKAuthorizationAuthorized){
+                   self.loginCompletion(nil, nil);
+               } else {
+                   [VKSdk authorize: permissions];
+               }
+           }];
 }
 
 

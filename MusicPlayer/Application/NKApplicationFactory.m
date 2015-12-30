@@ -31,11 +31,15 @@
 
 + (id<NKWireframe>) initialWireframe{
     NKLoginWireframe* loginWireframe = [[NKLoginWireframe alloc] init];
-    if ([loginWireframe hasLoggedUser]){
-        return [[NKMenuWireFrame alloc] init];;
-    } else {
-        return loginWireframe;
-    }
+
+    __block id <NKWireframe> initialWireframe = loginWireframe;
+    
+    [loginWireframe loginWithLastSession:^(BOOL success) {
+        if (success) {
+            initialWireframe = [[NKMenuWireFrame alloc] init];
+        }
+    }];
+    return initialWireframe;
 }
 
 @end

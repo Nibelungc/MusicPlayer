@@ -16,6 +16,9 @@
 		083DB1341C2855200043B214 /* NKMenuPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB1331C2855200043B214 /* NKMenuPresenter.m */; };
 		083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB13A1C2856B60043B214 /* NKMenuViewController.m */; };
 		083DB13F1C285F030043B214 /* NKMenuWireFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 083DB13E1C285F030043B214 /* NKMenuWireFrame.m */; };
+		086D70A31C33C7F600FB8143 /* MusicPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 086D70A11C33C7F600FB8143 /* MusicPlayer.xcdatamodeld */; };
+		086D70A81C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 086D70A51C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m */; };
+		086D70A91C33CA0200FB8143 /* NKManagedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 086D70A71C33CA0200FB8143 /* NKManagedUser.m */; };
 		087955301C32CEEE002761C6 /* NKCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */; };
 		08A1A0E11C22734B005B478B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E01C22734B005B478B /* main.m */; };
 		08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1A0E31C22734B005B478B /* AppDelegate.m */; };
@@ -64,6 +67,12 @@
 		083DB13C1C2859040043B214 /* NKMenuModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuModule.h; sourceTree = "<group>"; };
 		083DB13D1C285F030043B214 /* NKMenuWireFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuWireFrame.h; sourceTree = "<group>"; };
 		083DB13E1C285F030043B214 /* NKMenuWireFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuWireFrame.m; sourceTree = "<group>"; };
+		086D70A01C33C68000FB8143 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		086D70A21C33C7F600FB8143 /* MusicPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicPlayer.xcdatamodel; sourceTree = "<group>"; };
+		086D70A41C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NKManagedUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		086D70A51C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NKManagedUser+CoreDataProperties.m"; sourceTree = "<group>"; };
+		086D70A61C33CA0200FB8143 /* NKManagedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKManagedUser.h; sourceTree = "<group>"; };
+		086D70A71C33CA0200FB8143 /* NKManagedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKManagedUser.m; sourceTree = "<group>"; };
 		0879552D1C32CED7002761C6 /* NKDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKDataStorage.h; sourceTree = "<group>"; };
 		0879552E1C32CEEE002761C6 /* NKCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCoreDataStorage.h; sourceTree = "<group>"; };
 		0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCoreDataStorage.m; sourceTree = "<group>"; };
@@ -240,6 +249,7 @@
 				0879552D1C32CED7002761C6 /* NKDataStorage.h */,
 				0879552E1C32CEEE002761C6 /* NKCoreDataStorage.h */,
 				0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */,
+				086D70A11C33C7F600FB8143 /* MusicPlayer.xcdatamodeld */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -247,8 +257,8 @@
 		08A1A0D31C22734B005B478B = {
 			isa = PBXGroup;
 			children = (
-				5AA9D78F202B04CA3302240B /* Frameworks */,
 				08A1A0DE1C22734B005B478B /* MusicPlayer */,
+				5AA9D78F202B04CA3302240B /* Frameworks */,
 				1F0C3A9E77BF0156615CD027 /* Pods */,
 				08A1A0DD1C22734B005B478B /* Products */,
 			);
@@ -279,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				08A1A0E01C22734B005B478B /* main.m */,
+				086D70A01C33C68000FB8143 /* PrefixHeader.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -361,6 +372,10 @@
 		08A1A18C1C227EF9005B478B /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
+				086D70A41C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.h */,
+				086D70A51C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m */,
+				086D70A61C33CA0200FB8143 /* NKManagedUser.h */,
+				086D70A71C33CA0200FB8143 /* NKManagedUser.m */,
 			);
 			path = "Managed Objects";
 			sourceTree = "<group>";
@@ -614,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08ADEE9B1C23D989003542EB /* VKontakteAudioService.m in Sources */,
+				086D70A31C33C7F600FB8143 /* MusicPlayer.xcdatamodeld in Sources */,
 				083DB13F1C285F030043B214 /* NKMenuWireFrame.m in Sources */,
 				08ADEE821C230364003542EB /* NKApplicationFactory.m in Sources */,
 				08ADEE7E1C23010A003542EB /* NKApplicationConfigurator.m in Sources */,
@@ -625,6 +641,7 @@
 				08ADEE881C2309E6003542EB /* NKRootWireframe.m in Sources */,
 				08A1A0E41C22734B005B478B /* AppDelegate.m in Sources */,
 				08ADEE981C23D58E003542EB /* NKAudioAlbum.m in Sources */,
+				086D70A91C33CA0200FB8143 /* NKManagedUser.m in Sources */,
 				08ADEE901C23C045003542EB /* NKBasePresenter.m in Sources */,
 				08A1A1AC1C22F74E005B478B /* NKBaseViewController.m in Sources */,
 				083DB0EA1C24190D0043B214 /* UIColor+AppColors.m in Sources */,
@@ -637,6 +654,7 @@
 				08A1A18F1C229E29005B478B /* NKUser.m in Sources */,
 				083DB12D1C2852410043B214 /* NKMenuItem.m in Sources */,
 				083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */,
+				086D70A81C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m in Sources */,
 				08A1A1981C22A418005B478B /* NKLoginViewController.m in Sources */,
 				087955301C32CEEE002761C6 /* NKCoreDataStorage.m in Sources */,
 			);
@@ -752,6 +770,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MusicPlayer/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -766,6 +785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MusicPlayer/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -796,6 +816,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		086D70A11C33C7F600FB8143 /* MusicPlayer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				086D70A21C33C7F600FB8143 /* MusicPlayer.xcdatamodel */,
+			);
+			currentVersion = 086D70A21C33C7F600FB8143 /* MusicPlayer.xcdatamodel */;
+			path = MusicPlayer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 08A1A0D41C22734B005B478B /* Project object */;
 }

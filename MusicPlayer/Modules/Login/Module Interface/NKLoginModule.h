@@ -14,4 +14,6 @@
 
 - (void) loginActionWithServiceTitle: (NSString*) serviceTitle;
 
+- (void) tryToLoginWithLastSession;
+
 @end

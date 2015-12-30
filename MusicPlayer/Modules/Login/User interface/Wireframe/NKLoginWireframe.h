@@ -14,6 +14,8 @@
 @class NKMenuWireFrame;
 @class NKLoginPresenter;
 
+typedef void(^NKLoginLastSessionCompletion)(BOOL success);
+
 @interface NKLoginWireframe : NSObject <NKWireframe>
 
 @property (strong, nonatomic) NKLoginPresenter* loginPresenter;
@@ -22,6 +24,8 @@
 
 - (void) presentMainController;
 
-- (BOOL) hasLoggedUser;
+- (void) loginWithLastSession: (void(^)(BOOL success)) completion;
+
+- (void) loginWithLastSessionEnded: (BOOL) success;
 
 @end

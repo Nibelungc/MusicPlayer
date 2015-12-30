@@ -10,11 +10,14 @@
 
 #import "NKLoginInteractorIO.h"
 
+@protocol NKDataStorage;
 @protocol NKAudioService;
 
 @interface NKLoginInteractor : NSObject <NKLoginInteractorInput>
 
 @property (weak, nonatomic) id <NKLoginInteractorOutput> output;
+
+@property (strong, nonatomic) id <NKDataStorage> dataStorage;
 
 - (void) getListOfServices;
 

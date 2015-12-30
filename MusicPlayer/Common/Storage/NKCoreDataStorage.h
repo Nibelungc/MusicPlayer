@@ -14,6 +14,6 @@
 
 - (void) fetchSavedUser: (_Nonnull NKDataStorageSavedUserCompletion) completion;
 
-- (void) saveUser: ( NKUser* _Nonnull ) user;
+- (void) saveUserAndDeleteOldOne: ( NKUser* _Nonnull ) user;
 
 @end

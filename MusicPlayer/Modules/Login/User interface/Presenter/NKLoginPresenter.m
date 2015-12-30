@@ -34,6 +34,10 @@
     [self.interactor loginWithService: servicesWithTitle.firstObject];
 }
 
+- (void) tryToLoginWithLastSession {
+    [self.interactor tryToWakeupLastSession];
+}
+
 #pragma mark - NKLoginInteractorOutput
 
 - (void) setListOfServices: (NSArray*) listOfServices {
@@ -52,6 +56,14 @@
 
 - (void) loginFailedWithError: (NSError*) error{
     [self.output showErrorMessage: error.localizedDescription withTitle: @"Ошибка авторизации"];
+}
+
+- (void) lastSessionWokenUp {
+    [self.loginWireframe loginWithLastSessionEnded: YES];
+}
+
+- (void) lastSessionWasntFound {
+    [self.loginWireframe loginWithLastSessionEnded: NO];
 }
 
 @end

@@ -12,10 +12,17 @@
 #import "NKLoginViewController.h"
 #import "NKLoginPresenter.h"
 #import "NKLoginInteractor.h"
+#import "NKCoreDataStorage.h"
 
 #import "NKMenuWireFrame.h"
 #import <MMDrawerController.h>
 #import <MMDrawerVisualState.h>
+
+@interface NKLoginWireframe ()
+
+@property (copy, nonatomic) NKLoginLastSessionCompletion lastSessionCompletion;
+
+@end
 
 @implementation NKLoginWireframe
 
@@ -25,6 +32,7 @@
         NKLoginViewController* loginViewcontroller = [[NKLoginViewController alloc] init];
         NKLoginPresenter* loginPresenter = [[NKLoginPresenter alloc] init];
         NKLoginInteractor* loginInteractor = [[NKLoginInteractor alloc] init];
+        NKCoreDataStorage* coreDataStorage = [[NKCoreDataStorage alloc] init];
         
         loginViewcontroller.eventHandler = loginPresenter;
         
@@ -33,15 +41,20 @@
         loginPresenter.loginWireframe = self;
         
         loginInteractor.output = loginPresenter;
+        loginInteractor.dataStorage = coreDataStorage;
         
         _loginPresenter = loginPresenter;
     }
     return self;
 }
 
-- (BOOL) hasLoggedUser{
-#warning ask for any logged user (presenter/interactor?)
-    return NO;
+- (void) loginWithLastSession: (void(^)(BOOL success)) completion {
+    self.lastSessionCompletion = completion;
+    [self.loginPresenter tryToLoginWithLastSession];
+}
+
+- (void) loginWithLastSessionEnded: (BOOL) success{
+    self.lastSessionCompletion(success);
 }
 
 - (void) presentInterfaceFromWindow:(UIWindow *)window {

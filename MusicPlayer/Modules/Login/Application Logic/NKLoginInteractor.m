@@ -9,6 +9,7 @@
 #import "NKLoginInteractor.h"
 #import "NKThirdPartiesConfigurator.h"
 #import "NKAudioService.h"
+#import "NKDataStorage.h"
 
 @implementation NKLoginInteractor
 
@@ -22,13 +23,28 @@
         if (errorOrNil != nil) {
             [self.output loginFailedWithError: errorOrNil];
         } else {
-            [self.output loginSucceededWithUser: user];
+            __block NKUser* currentUser = user;
+            if (!currentUser){
+                [self.dataStorage fetchSavedUser:^(NKUser * _Nullable savedUser) {
+                    currentUser = savedUser;
+                }];
+            } else {
+                [self.dataStorage saveUserAndDeleteOldOne: currentUser];
+            }
+            [self.output loginSucceededWithUser: currentUser];
         }
     }];
 }
 
 - (void) tryToWakeupLastSession{
-#warning Get user from data storage
+    __weak typeof(self) welf = self;
+    [self.dataStorage fetchSavedUser:^(NKUser * _Nullable user) {
+        if (user){
+            [welf.output lastSessionWokenUp];
+        } else {
+            [welf.output lastSessionWasntFound];
+        }
+    }];
 }
 
 @end
