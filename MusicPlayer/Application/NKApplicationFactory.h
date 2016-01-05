@@ -22,6 +22,6 @@
 
 + (id<NKMessageService>) applicationErrorHandler;
 
-+ (id<NKWireframe>) initialWireframe;
++ (void) getInitialWireframe: (void(^)(id <NKWireframe> wireframe)) completion;
 
 @end

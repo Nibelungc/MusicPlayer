@@ -10,7 +10,7 @@
 
 @class NSString, NSArray, UIImage;
 
-@protocol NKView;
+#include "NKView.h"
 
 @protocol NKMenuView <NKView>
 

@@ -17,5 +17,6 @@
 @dynamic lastName;
 @dynamic imageUrl;
 @dynamic token;
+@dynamic audioService;
 
 @end

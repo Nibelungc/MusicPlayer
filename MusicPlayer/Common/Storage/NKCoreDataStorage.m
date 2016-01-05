@@ -42,20 +42,24 @@
 #pragma mark - Mapping
 
 - (NKUser*) userFromManagedObject: (NKManagedUser*) managedUser {
+    if (!managedUser) { return nil; }
     NKUser* user = [[NKUser alloc] init];
     user.firstName = managedUser.firstName;
     user.lastName = managedUser.lastName;
     user.token = managedUser.token;
     user.imageUrl = [NSURL URLWithString: managedUser.imageUrl];
+    user.audioService = managedUser.audioService;
     return user;
 }
 
 - (NKManagedUser*) createManagedUserFromUser: (NKUser*) user {
+    if (!user) { return nil; }
     NKManagedUser* managedUser = [NKManagedUser MR_createEntity];
     managedUser.firstName = user.firstName;
     managedUser.lastName = user.lastName;
     managedUser.token = user.token;
     managedUser.imageUrl = [user.imageUrl absoluteString];
+    managedUser.audioService = user.audioService;
     return managedUser;
 }
 

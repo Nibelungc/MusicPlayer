@@ -15,11 +15,15 @@
 
 + (_Nonnull instancetype) sharedService;
 
-- (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginComletion) completion;
+- (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
-- (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion;
+- (void) wakeUpSessionWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
-- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nonnull) identitier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion;
+- (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString
+                        withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion;
+
+- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nonnull) identitier
+                           withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion;
 
 - (void) getAlbumsWithCompletion: (_Nonnull NKAudioServiceAlbumsCompletion) completion;
 

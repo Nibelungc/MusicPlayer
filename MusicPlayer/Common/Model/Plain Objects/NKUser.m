@@ -10,5 +10,11 @@
 
 @implementation NKUser
 
+- (id <NKAudioService>) audioServiceImpl {
+    id <NKAudioService> service = nil;
+    Class clazz = NSClassFromString(self.audioService);
+    service = [[clazz alloc] init];
+    return service;
+}
 
 @end

@@ -10,6 +10,7 @@
 #import "NKThirdPartiesConfigurator.h"
 #import "NKAudioService.h"
 #import "NKDataStorage.h"
+#import "NKUser.h"
 
 @implementation NKLoginInteractor
 
@@ -40,7 +41,14 @@
     __weak typeof(self) welf = self;
     [self.dataStorage fetchSavedUser:^(NKUser * _Nullable user) {
         if (user){
-            [welf.output lastSessionWokenUp];
+            id <NKAudioService> service = user.audioServiceImpl;
+            [service wakeUpSessionWithCompletion:^(NKUser * _Nullable user, NSError * _Nullable errorOrNil) {
+                if (errorOrNil == nil) {
+                    [welf.output lastSessionWokenUp];
+                } else {
+                    [welf.output lastSessionWasntFound];
+                }
+            }];
         } else {
             [welf.output lastSessionWasntFound];
         }

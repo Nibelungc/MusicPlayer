@@ -16,7 +16,9 @@ NSString * const VKServiceTitle = @"Вконтакте";
 
 @interface VKontakteAudioService () <VKSdkUIDelegate>
 
-@property (nonatomic, copy) NKAudioServiceLoginComletion loginCompletion;
+@property (nonatomic, copy) NKAudioServiceLoginCompletion loginCompletion;
+
+@property (strong, nonatomic) NSArray* permissions;
 
 @end
 
@@ -24,15 +26,16 @@ NSString * const VKServiceTitle = @"Вконтакте";
 
 @synthesize title;
 
-#pragma mark - NKAudioService
-
 - (instancetype)init{
     self = [super init];
     if (self) {
         title = VKServiceTitle;
+        _permissions = @[VK_PER_AUDIO];
     }
     return self;
 }
+
+#pragma mark - NKAudioService
 
 + (_Nonnull instancetype) sharedService{
     static VKontakteAudioService* instance = nil;
@@ -43,25 +46,28 @@ NSString * const VKServiceTitle = @"Вконтакте";
     return instance;
 }
 
-- (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginComletion) completion {
+- (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion {
     self.loginCompletion = completion;
-    NSArray* permissions = @[VK_PER_AUDIO];
     
     [[VKSdk instance] setUiDelegate: self];
-    [VKSdk wakeUpSession:permissions
+    [VKSdk authorize: self.permissions];
+    
+}
+
+- (void) wakeUpSessionWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion {
+    
+    [VKSdk wakeUpSession: self.permissions
            completeBlock:^(VKAuthorizationState state, NSError *error) {
                if (state == VKAuthorizationAuthorized){
-                   self.loginCompletion(nil, nil);
+                   completion([self userFromVKSdk], nil);
                } else {
-                   [VKSdk authorize: permissions];
+                   completion(nil, error);
                }
            }];
 }
 
-
-
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion {
-
+    
 }
 
 - (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nonnull) identitier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion {
@@ -69,7 +75,53 @@ NSString * const VKServiceTitle = @"Вконтакте";
 }
 
 - (void) getAlbumsWithCompletion: (_Nonnull NKAudioServiceAlbumsCompletion) completion {
+    NSString* methodName = @"getAlbums";
+    NSString* userId = [self currentUserID];
+    NSDictionary* parametrs = @{@"owner_id" : userId,
+                                @"conut"   : @(20)};
+    VKRequest* request = [VKApi requestWithMethod: [self audioRequsetWithMethodName: methodName]
+                                    andParameters: parametrs];
+    
+    [request executeWithResultBlock:^(VKResponse *response) {
+        /*
+         count = 1;
+         items = (
+             {
+                 id = 67930243;
+                 "owner_id" = 174600511;
+                 title = Test;
+             }
+         );
+        */
+    } errorBlock:^(NSError *error) {
+        
+    }];
+}
 
+#pragma mark - Private
+
+- (NSString*) currentUserID {
+    return [NSString stringWithFormat:@"%@", [VKSdk accessToken].localUser.id];
+}
+
+- (NKUser*) userFromVKSdk {
+    NKUser* user = [self userFromVKUser: [VKSdk accessToken].localUser];
+    user.token = [VKSdk accessToken].accessToken;
+    return [self userFromVKUser: [VKSdk accessToken].localUser];
+}
+
+- (NKUser*) userFromVKUser: (VKUser*) vkUser {
+    if (!vkUser) { return nil; }
+    NKUser* user = [[NKUser alloc] init];
+    user.firstName = vkUser.first_name;
+    user.lastName = vkUser.last_name;
+    user.imageUrl = [NSURL URLWithString: vkUser.photo_100];
+    user.audioService = NSStringFromClass([self class]);
+    return user;
+}
+
+- (NSString*) audioRequsetWithMethodName: (NSString*) name {
+    return [NSString stringWithFormat: @"audio.%@", name];
 }
 
 #pragma mark - VKSdkDelegate
@@ -83,11 +135,8 @@ NSString * const VKServiceTitle = @"Вконтакте";
         self.loginCompletion(nil, result.error);
         return;
     }
-    NKUser* user = [[NKUser alloc] init];
+    NKUser* user = [self userFromVKUser: result.user];
     user.token = result.token.accessToken;
-    user.firstName = result.user.first_name;
-    user.lastName = result.user.last_name;
-    user.imageUrl = [NSURL URLWithString: result.user.photo_100];
     self.loginCompletion(user, nil);
 }
 
@@ -102,7 +151,6 @@ NSString * const VKServiceTitle = @"Вконтакте";
 #pragma mark - VKSdkUIDelegate
 
 - (void)vkSdkShouldPresentViewController:(UIViewController *)controller{
-#warning Get viewcontroller by another way
     UIWindow* window = [[UIApplication sharedApplication].delegate window];
     [window.rootViewController presentViewController: controller animated: YES completion: nil];
 }

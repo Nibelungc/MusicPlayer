@@ -9,9 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "NKMenuInteractorIO.h"
+#import "NKAudioService.h"
+
+@protocol NKDataStorage;
 
 @interface NKMenuInteractor : NSObject <NKMenuInteractorInput>
 
 @property (weak, nonatomic) id<NKMenuInteractorOutput> output;
+
+@property (strong, nonatomic) id <NKDataStorage> dataStorage;
+
+@property (strong, nonatomic) id <NKAudioService> audioService;
 
 @end

@@ -29,17 +29,17 @@
     return [[NKNotificationService alloc] init];
 }
 
-+ (id<NKWireframe>) initialWireframe{
++ (void) getInitialWireframe: (void(^)(id <NKWireframe> wireframe)) completion {
     NKLoginWireframe* loginWireframe = [[NKLoginWireframe alloc] init];
-
+    
     __block id <NKWireframe> initialWireframe = loginWireframe;
     
     [loginWireframe loginWithLastSession:^(BOOL success) {
         if (success) {
             initialWireframe = [[NKMenuWireFrame alloc] init];
         }
+        completion(initialWireframe);
     }];
-    return initialWireframe;
 }
 
 @end

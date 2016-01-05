@@ -16,10 +16,20 @@
 #pragma mark - NKMenuInteractorInput
 
 - (void) getMenuItems {
-    NKMenuItem* item = [[NKMenuItem alloc] init];
-    item.title = @"First menu item";
-    item.index = 0;
-    [self.output menuItemsWereFound: @[item]];
+    [self.audioService getAlbumsWithCompletion:^(NSArray<NKAudioAlbum *> * _Nullable albums, NSError * _Nullable errorOrNil) {
+        if (errorOrNil == nil) {
+            NSArray* mapItems = [albums map:^id(id obj) {
+                NKMenuItem* item = [[NKMenuItem alloc] init];
+                NSInteger index = [albums indexOfObject: obj];
+                item.title = [obj title];
+                item.index = @(index);
+                return item;
+            }];
+            [self.output menuItemsWereFound: mapItems];
+        } else {
+            [self.output menuItemsNotFound: errorOrNil];
+        }
+    }];
 }
 
 - (void) getUser {

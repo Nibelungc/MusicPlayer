@@ -7,12 +7,17 @@
 //
 
 #import "NKMenuPresenter.h"
+#import "NKMenuView.h"
 
 @implementation NKMenuPresenter
 
 @dynamic output;
 
 #pragma mark - NKMenuModule
+
+- (void) loadView {
+    [self.interactor getMenuItems];
+}
 
 - (void) menuItemChosenWithTitle: (NSString*) title {
 #warning Show appropriate module
@@ -25,7 +30,14 @@
 #pragma mark - NKMenuInteractorOutput
 
 - (void) menuItemsWereFound: (NSArray <NKMenuItem *>* ) items {
-#warning Pepare for view
+    NSArray* menuItemTitles = [items map:^id(id obj) {
+        return [obj title];
+    }];
+    [self.output setMenuItemsWithTitles: menuItemTitles];
+}
+
+- (void) menuItemsNotFound:(NSError *)errorOrNil {
+    [self.output showErrorMessage: errorOrNil.localizedDescription withTitle: @"Ошибка загруки меню"];
 }
 
 - (void) userWasFound: (NKUser*) user {

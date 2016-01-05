@@ -27,6 +27,8 @@
 
 - (void) menuItemsWereFound: (NSArray <NKMenuItem *>* ) items;
 
+- (void) menuItemsNotFound: (NSError*) errorOrNil;
+
 - (void) userWasFound: (NKUser*) user;
 
 - (void) logoutCompleted;

@@ -11,6 +11,8 @@
 #import "NKMenuInteractor.h"
 #import "NKMenuPresenter.h"
 #import "NKMenuViewController.h"
+#import "NKCoreDataStorage.h"
+#import "NKUser.h"
 
 #import <MMDrawerController.h>
 #import <MMDrawerVisualState.h>
@@ -23,8 +25,13 @@
         NKMenuInteractor* interactor = [[NKMenuInteractor alloc] init];
         NKMenuPresenter* presenter = [[NKMenuPresenter alloc] init];
         NKMenuViewController* view = [[NKMenuViewController alloc] init];
+        NKCoreDataStorage* dataStorage = [[NKCoreDataStorage alloc] init];
+        [dataStorage fetchSavedUser:^(NKUser * _Nullable user) {
+            interactor.audioService = [user audioServiceImpl];
+        }];
         
         interactor.output = presenter;
+        interactor.dataStorage = dataStorage;
         
         presenter.interactor = interactor;
         presenter.output = view;
