@@ -10,6 +10,7 @@
 
 #import "NKMenuItem.h"
 #import "NKUser.h"
+#import "NKDataStorage.h"
 
 @implementation NKMenuInteractor
 
@@ -18,14 +19,14 @@
 - (void) getMenuItems {
     [self.audioService getAlbumsWithCompletion:^(NSArray<NKAudioAlbum *> * _Nullable albums, NSError * _Nullable errorOrNil) {
         if (errorOrNil == nil) {
-            NSArray* mapItems = [albums map:^id(id obj) {
+            NSArray* menuItems = [albums map:^id(id obj) {
                 NKMenuItem* item = [[NKMenuItem alloc] init];
                 NSInteger index = [albums indexOfObject: obj];
                 item.title = [obj title];
                 item.index = @(index);
                 return item;
             }];
-            [self.output menuItemsWereFound: mapItems];
+            [self.output menuItemsWereFound: menuItems];
         } else {
             [self.output menuItemsNotFound: errorOrNil];
         }
@@ -33,15 +34,14 @@
 }
 
 - (void) getUser {
-    NKUser* user = [[NKUser alloc] init];
-    user.firstName = @"Nikolay";
-    user.lastName = @"Kagala";
-    user.imageUrl = [[NSBundle mainBundle] URLForResource:@"music_background" withExtension:@"jpg"];
-    [self.output userWasFound: user];
+    __weak typeof(self) welf = self;
+    [self.dataStorage fetchSavedUser:^(NKUser * _Nullable user) {
+        [welf.output userWasFound: user];
+    }];
 }
 
 - (void) logout {
-    NSLog(@"Logout finished");
+    [self.audioService forceLogout];
     [self.output logoutCompleted];
 }
 

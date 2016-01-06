@@ -11,8 +11,9 @@
 #import "NKUser.h"
 #import "NKAudioTrack.h"
 #import "NKAudioAlbum.h"
+#import "NKAudioAlbum+VKService.h"
 
-NSString * const VKServiceTitle = @"Вконтакте";
+NSString * const VKServiceTitle = @"Vkontakte";
 
 @interface VKontakteAudioService () <VKSdkUIDelegate>
 
@@ -35,8 +36,6 @@ NSString * const VKServiceTitle = @"Вконтакте";
     return self;
 }
 
-#pragma mark - NKAudioService
-
 + (_Nonnull instancetype) sharedService{
     static VKontakteAudioService* instance = nil;
     static dispatch_once_t onceToken;
@@ -46,12 +45,17 @@ NSString * const VKServiceTitle = @"Вконтакте";
     return instance;
 }
 
+#pragma mark - NKAudioService
+
 - (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion {
     self.loginCompletion = completion;
     
     [[VKSdk instance] setUiDelegate: self];
     [VKSdk authorize: self.permissions];
-    
+}
+
+- (void) forceLogout {
+//    [VKSdk forceLogout];
 }
 
 - (void) wakeUpSessionWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion {
@@ -83,18 +87,13 @@ NSString * const VKServiceTitle = @"Вконтакте";
                                     andParameters: parametrs];
     
     [request executeWithResultBlock:^(VKResponse *response) {
-        /*
-         count = 1;
-         items = (
-             {
-                 id = 67930243;
-                 "owner_id" = 174600511;
-                 title = Test;
-             }
-         );
-        */
+        NSArray* albumsJson = response.json[@"items"];
+        NSArray* albums = [albumsJson map:^id(id json) {
+            return [[NKAudioAlbum alloc] initWithVKJson: json];
+        }];
+        completion(albums, nil);
     } errorBlock:^(NSError *error) {
-        
+        completion(nil, error);
     }];
 }
 

@@ -13,6 +13,7 @@
 #import "NKMenuViewController.h"
 #import "NKCoreDataStorage.h"
 #import "NKUser.h"
+#import "NKLoginWireframe.h"
 
 #import <MMDrawerController.h>
 #import <MMDrawerVisualState.h>
@@ -35,15 +36,18 @@
         
         presenter.interactor = interactor;
         presenter.output = view;
+        presenter.wireframe = self;
         
         view.eventHandler = presenter;
         
         _presenter = presenter;
+        _loginWireframe = [[NKLoginWireframe alloc] init];
     }
     return self;
 }
 
 - (void) presentInterfaceFromWindow: (UIWindow*) applicationWindow{
+    _applicationWindow = applicationWindow;
     UIViewController<NKMenuView> *viewcontroller = self.presenter.output;
     
     UIViewController* centerViewcontroller = [[UIViewController alloc] init];
@@ -52,6 +56,7 @@
     
     MMDrawerController* drawerController = [self drawerControllerWithCenterVC: mainNavigationController
                                                                     andLeftVC: viewcontroller];
+    
     [UIView transitionWithView: applicationWindow
                       duration: 0.3
                        options: UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -68,6 +73,10 @@
     drawerController.shouldStretchDrawer = NO;
     [drawerController setDrawerVisualStateBlock:[MMDrawerVisualState slideAndScaleVisualStateBlock]];
     return drawerController;
+}
+
+- (void) goToLoginModule {
+    [self.loginWireframe presentInterfaceFromWindow: self.applicationWindow];
 }
 
 @end

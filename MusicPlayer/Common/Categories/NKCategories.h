@@ -8,3 +8,4 @@
 
 #import "NSArray+HOM.h"
 #import "UIColor+AppColors.h"
+#import "UIImageView+NKExtended.h"

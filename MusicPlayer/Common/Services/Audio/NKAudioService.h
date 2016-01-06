@@ -31,6 +31,8 @@ typedef void(^NKAudioServiceWakeupSessionCompletion)(BOOL success, NSError* __nu
 
 - (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
+- (void) forceLogout;
+
 - (void) wakeUpSessionWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion;

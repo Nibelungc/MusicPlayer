@@ -11,11 +11,18 @@
 #import "NKWireframe.h"
 
 @class UIViewController;
+@class NKLoginWireframe;
 
 @protocol NKMenuModule;
 
 @interface NKMenuWireFrame : NSObject <NKWireframe>
 
 @property (strong, nonatomic) NKMenuPresenter* presenter;
+
+@property (strong, nonatomic) NKLoginWireframe* loginWireframe;
+
+@property (weak, nonatomic) UIWindow* applicationWindow;
+
+- (void) goToLoginModule;
 
 @end

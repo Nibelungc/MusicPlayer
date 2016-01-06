@@ -7,13 +7,20 @@
 //
 
 #import "NKMenuViewController.h"
-#import "NKMenuItem.h"
+
+#import <UIViewController+MMDrawerController.h>
+
+CGFloat const kUserInfoHeightInPercent = 20;
 
 @interface NKMenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) UITableView* tableView;
 
-@property (weak, nonatomic) NSMutableArray* dataSource;
+@property (weak, nonatomic) UIImageView* avatarImageView;
+
+@property (weak, nonatomic) UILabel* userNameLabel;
+
+@property (strong, nonatomic) NSMutableArray* dataSource;
 
 @end
 
@@ -21,18 +28,116 @@
 
 @dynamic eventHandler;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor purpleColor];
+#pragma mark - Lifecycle
 
-    UITableView* tableView = [[UITableView alloc] initWithFrame: self.view.bounds
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    [self configureView];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self hideApplicationStatusBar: YES];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self hideApplicationStatusBar: NO];
+}
+
+#pragma mark - Configuration
+
+- (void) configureView {
+    self.view.backgroundColor = [UIColor brownColor];
+    
+    CGRect drawerRect = [self.view bounds];
+    drawerRect.size.width = [self.mm_drawerController maximumLeftDrawerWidth];
+    
+    CGFloat userInfoHeight = CGRectGetHeight(drawerRect) * kUserInfoHeightInPercent/100.0;
+    CGRect userInfoRect, menuRect;
+    CGRectDivide(drawerRect, &userInfoRect, &menuRect, userInfoHeight, CGRectMinYEdge);
+    CGFloat leftPadding = kDefaultPadding * 2.0;
+    CGFloat rightPadding = leftPadding;
+    
+    /** User info */
+    CGFloat avatarSideSize = userInfoHeight * 0.5;
+    CGFloat avatarHeight = avatarSideSize;
+    CGFloat avatarWidth = avatarSideSize;
+    CGFloat userInfoContentMinY = CGRectGetMidY(userInfoRect) - avatarSideSize/2.0;
+    CGRect avatarFrame = CGRectMake(leftPadding, userInfoContentMinY,
+                                    avatarWidth, avatarHeight);
+    UIImageView* avatarImageView = [[UIImageView alloc] initWithFrame: avatarFrame];
+    avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
+    avatarImageView.layer.masksToBounds = YES;
+    avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    avatarImageView.layer.cornerRadius = avatarHeight/2.0;
+    
+    [self.view addSubview: avatarImageView];
+    
+    self.avatarImageView = avatarImageView;
+    
+    CGFloat avatarMaxXWithPadding = CGRectGetMaxX(avatarFrame) + kDefaultPadding;
+    CGRect userNameFrame = CGRectMake(avatarMaxXWithPadding, userInfoContentMinY,
+                                      CGRectGetWidth(drawerRect) - avatarMaxXWithPadding - rightPadding , avatarHeight);
+    UILabel* userNameLabel = [[UILabel alloc] initWithFrame: userNameFrame];
+    userNameLabel.textAlignment = NSTextAlignmentLeft;
+    userNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    userNameLabel.numberOfLines = 0;
+    [self.view addSubview: userNameLabel];
+    
+    self.userNameLabel = userNameLabel;
+    
+    /** Menu items */
+    UITableView* tableView = [[UITableView alloc] initWithFrame: menuRect
                                                           style: UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview: tableView];
     
     self.tableView = tableView;
+    tableView.tableFooterView = [UIView new];
+    tableView.backgroundColor = self.view.backgroundColor;
+    
+    [self.view addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(logoutAction:)]];
+}
+
+#pragma mark - Actions
+
+- (void) logoutAction: (id) sender {
+    
+    static UIAlertController* alertController = nil;
+    if (!alertController){
+        NSString* alertTitle = @"Log out";
+        NSString* alertMessage = [NSString stringWithFormat:@"Are you sure, %@?", self.userNameLabel.text];
+        alertController = [UIAlertController alertControllerWithTitle: alertTitle
+                                                               message: alertMessage
+                                                        preferredStyle: UIAlertControllerStyleActionSheet];
+        __weak typeof(self) welf = self;
+        UIAlertAction* logoutAction = [UIAlertAction actionWithTitle:@"Log out"
+                                                               style: UIAlertActionStyleDestructive
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 __strong typeof(self) sWelf = welf;
+                                                                 [sWelf.eventHandler userLogoutAction];
+                                                            }];
+        [alertController addAction: logoutAction];
+        
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style: UIAlertActionStyleCancel
+                                                             handler: nil];
+        [alertController addAction: cancelAction];
+    }
+    [self presentViewController: alertController
+                       animated: YES
+                     completion: nil];
+}
+
+#pragma mark - Private
+
+- (void) hideApplicationStatusBar: (BOOL) hidden {
+    [[UIApplication sharedApplication] setStatusBarHidden: hidden withAnimation: UIStatusBarAnimationSlide];
 }
 
 - (void) reloadData {
@@ -47,7 +152,14 @@
 }
 
 - (void) setUserInfoWithName: (NSString*) name andImage: (UIImage*) image {
-#warning Fill user info
+    [self.avatarImageView setImage:image animated: YES];
+    self.userNameLabel.text = name;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath: indexPath animated: YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -63,8 +175,8 @@
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleValue1
                                       reuseIdentifier: cellIdentifier];
     }
-    NKMenuItem* item = self.dataSource[indexPath.row];
-    cell.textLabel.text = item.title;
+    cell.textLabel.text = self.dataSource[indexPath.row];
+    cell.backgroundColor = tableView.backgroundColor;
     return cell;
 }
 

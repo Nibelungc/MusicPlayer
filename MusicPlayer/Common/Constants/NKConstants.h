@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-extern CGFloat const DefaultPadding;
+extern CGFloat const kDefaultPadding;
 
 @interface NKConstants : NSObject
 

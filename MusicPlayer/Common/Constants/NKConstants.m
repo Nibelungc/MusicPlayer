@@ -8,7 +8,7 @@
 
 #import "NKConstants.h"
 
-CGFloat const DefaultPadding = 8;
+CGFloat const kDefaultPadding = 8.0;
 
 @implementation NKConstants
 

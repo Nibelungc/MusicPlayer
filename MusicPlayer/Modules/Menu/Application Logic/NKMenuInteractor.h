@@ -21,4 +21,10 @@
 
 @property (strong, nonatomic) id <NKAudioService> audioService;
 
+- (void) getMenuItems;
+
+- (void) getUser;
+
+- (void) logout;
+
 @end

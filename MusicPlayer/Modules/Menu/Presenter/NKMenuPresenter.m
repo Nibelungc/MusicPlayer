@@ -7,7 +7,9 @@
 //
 
 #import "NKMenuPresenter.h"
+#import "NKMenuWireFrame.h"
 #import "NKMenuView.h"
+#import "NKUser.h"
 
 @implementation NKMenuPresenter
 
@@ -17,6 +19,7 @@
 
 - (void) loadView {
     [self.interactor getMenuItems];
+    [self.interactor getUser];
 }
 
 - (void) menuItemChosenWithTitle: (NSString*) title {
@@ -24,7 +27,7 @@
 }
 
 - (void) userLogoutAction {
-#warning Perform logout
+    [self.interactor logout];
 }
 
 #pragma mark - NKMenuInteractorOutput
@@ -41,11 +44,16 @@
 }
 
 - (void) userWasFound: (NKUser*) user {
-#warning Prepeare for view
+    NSString* name = [NSString stringWithFormat: @"%@ %@", user.firstName, user.lastName];
+    [self.output setUserInfoWithName: name andImage: nil];
+    [NKUtils downloadImageFromURL: user.imageUrl
+                   withCompletion:^(UIImage *image, NSError *errorOrNil) {
+                       [self.output setUserInfoWithName: name andImage: image];
+                   }];
 }
 
 - (void) logoutCompleted {
-#warning Go to root wireframe
+    [self.wireframe goToLoginModule];
 }
 
 @end

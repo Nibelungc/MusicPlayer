@@ -17,6 +17,8 @@
 
 - (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
+- (void) forceLogout;
+
 - (void) wakeUpSessionWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString

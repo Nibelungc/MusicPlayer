@@ -31,6 +31,45 @@
     [self.view insertSubview: [self createMotionView] atIndex: 0];
 }
 
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden: YES withAnimation: UIStatusBarAnimationSlide];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden: NO withAnimation: UIStatusBarAnimationSlide];
+}
+
+#pragma mark - Configuration
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+- (void) createButtonsWithTitles: (NSArray <NSString *> *) titles withAction: (SEL) action {
+    [self.buttonsContainer removeFromSuperview];
+    
+    CGFloat sidePaddnig = kDefaultPadding;
+    CGFloat bottomPadding = kDefaultPadding;
+    CGFloat buttonHeight = 50.0;
+    CGFloat containerHeight = titles.count * (buttonHeight + bottomPadding);
+    CGRect containerFrame = CGRectInset(self.view.bounds, sidePaddnig, (CGRectGetHeight(self.view.bounds) - containerHeight)/2);
+    UIView* container = [[UIView alloc] initWithFrame: containerFrame];
+    [self.view addSubview: container];
+    [titles enumerateObjectsUsingBlock:^(NSString * _Nonnull title, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGRect frame = CGRectMake(0, idx * (buttonHeight + bottomPadding), CGRectGetWidth(containerFrame), buttonHeight);
+        UIButton* button = [self buttonWithTitle: title andFrame: frame];
+        [button addTarget: self action: action forControlEvents: UIControlEventTouchUpInside];
+        [container addSubview: button];
+    }];
+    
+    self.buttonsContainer = container;
+}
+
 - (UIView*) createMotionView {
     CGFloat shift = 20.0;
     UIView* motionView = [[UIView alloc] initWithFrame: CGRectInset(self.view.bounds, -shift, -shift)];
@@ -56,43 +95,6 @@
     return motionView;
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden: YES withAnimation: UIStatusBarAnimationSlide];
-}
-
-- (void) viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden: NO withAnimation: UIStatusBarAnimationSlide];
-}
-
-#pragma mark - Configuration
-
-- (BOOL)prefersStatusBarHidden{
-    return YES;
-}
-
-- (void) createButtonsWithTitles: (NSArray <NSString *> *) titles withAction: (SEL) action {
-    [self.buttonsContainer removeFromSuperview];
-    
-    CGFloat sidePaddnig = DefaultPadding;
-    CGFloat bottomPadding = DefaultPadding;
-    CGFloat buttonHeight = 50.0;
-    CGFloat containerHeight = titles.count * (buttonHeight + bottomPadding);
-    CGRect containerFrame = CGRectInset(self.view.bounds, sidePaddnig, (CGRectGetHeight(self.view.bounds) - containerHeight)/2);
-    UIView* container = [[UIView alloc] initWithFrame: containerFrame];
-    [self.view addSubview: container];
-    [titles enumerateObjectsUsingBlock:^(NSString * _Nonnull title, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGRect frame = CGRectMake(0, idx * (buttonHeight + bottomPadding), CGRectGetWidth(containerFrame), buttonHeight);
-        UIButton* button = [self buttonWithTitle: title andFrame: frame];
-        [button addTarget: self action: action forControlEvents: UIControlEventTouchUpInside];
-        [container addSubview: button];
-    }];
-    
-    self.buttonsContainer = container;
-}
 
 - (UIButton*) buttonWithTitle: (NSString*) title andFrame: (CGRect) frame{
     UIButton* button = [UIButton buttonWithType: UIButtonTypeCustom];

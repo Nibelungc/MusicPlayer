@@ -14,10 +14,14 @@
 
 @protocol NKMenuView;
 
+@class NKMenuWireFrame;
+
 @interface NKMenuPresenter : NKBasePresenter <NKMenuInteractorOutput, NKMenuModule>
 
 @property (strong, nonatomic) id <NKMenuInteractorInput> interactor;
 
 @property (strong, nonatomic) UIViewController<NKMenuView>* output;
+
+@property (weak, nonatomic) NKMenuWireFrame* wireframe;
 
 @end
