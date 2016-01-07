@@ -51,7 +51,15 @@ NSString * const VKServiceTitle = @"Vkontakte";
     self.loginCompletion = completion;
     
     [[VKSdk instance] setUiDelegate: self];
-    [VKSdk authorize: self.permissions];
+    
+    [self wakeUpSessionWithCompletion:^(NKUser * _Nullable user, NSError * _Nullable errorOrNil) {
+        if (errorOrNil == nil) {
+            completion([self userFromVKSdk], nil);
+        } else {
+            [VKSdk authorize: self.permissions];
+        }
+    }];
+    
 }
 
 - (void) forceLogout {

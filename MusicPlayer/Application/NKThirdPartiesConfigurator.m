@@ -10,6 +10,7 @@
 
 #import "VkSdk.h"
 #import "VKontakteAudioService.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 NSString* const VK_APP_ID = @"5195154";
 
@@ -21,13 +22,19 @@ NSString* const VK_APP_ID = @"5195154";
 
 - (void) configurate {
     [self configurateVKSdk];
+    [self configurateMagicalRecord];
 }
 
 - (void) configurateVKSdk {
     VKSdk* sdk = [VKSdk initializeWithAppId: VK_APP_ID];
     [sdk registerDelegate: [VKontakteAudioService sharedService]];
-
 }
+
+- (void) configurateMagicalRecord {
+    [MagicalRecord setLoggingLevel: MagicalRecordLoggingLevelWarn];
+}
+
+#pragma mark - Application events
 
 - (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     BOOL successHandling = YES;

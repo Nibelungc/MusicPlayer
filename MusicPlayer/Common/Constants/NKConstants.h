@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 extern CGFloat const kDefaultPadding;
+extern CGFloat const kDefaultRowHeight;
 
 @interface NKConstants : NSObject
 

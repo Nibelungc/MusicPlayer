@@ -9,6 +9,7 @@
 #import "NKConstants.h"
 
 CGFloat const kDefaultPadding = 8.0;
+CGFloat const kDefaultRowHeight = 44.0;
 
 @implementation NKConstants
 

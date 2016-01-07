@@ -91,7 +91,10 @@ CGFloat const kUserInfoHeightInPercent = 20;
     self.userNameLabel = userNameLabel;
     
     /** Menu items */
-    UITableView* tableView = [[UITableView alloc] initWithFrame: menuRect
+    CGRect logoutButtonFrame, tableFrame;
+    CGRectDivide(menuRect, &logoutButtonFrame, &tableFrame, kDefaultRowHeight, CGRectMaxYEdge);
+    
+    UITableView* tableView = [[UITableView alloc] initWithFrame: tableFrame
                                                           style: UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -101,7 +104,13 @@ CGFloat const kUserInfoHeightInPercent = 20;
     tableView.tableFooterView = [UIView new];
     tableView.backgroundColor = self.view.backgroundColor;
     
-    [self.view addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(logoutAction:)]];
+    /** Log out*/
+    UIButton* logOutButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    logOutButton.frame = logoutButtonFrame;
+    [logOutButton setTitle: @"Log out" forState: UIControlStateNormal];
+    [logOutButton addTarget: self action: @selector(logoutAction:) forControlEvents: UIControlEventTouchUpInside];
+    [self.view addSubview: logOutButton];
+    
 }
 
 #pragma mark - Actions

@@ -71,6 +71,7 @@
     NKMenuWireFrame* menuWireframe = [[NKMenuWireFrame alloc] init];
     UIWindow* applicationWindow = [[UIApplication sharedApplication].delegate window];
     [menuWireframe presentInterfaceFromWindow:applicationWindow];
+    self.menuWireframe = menuWireframe;
 }
 
 @end
