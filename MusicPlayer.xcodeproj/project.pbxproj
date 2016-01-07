@@ -77,7 +77,7 @@
 		083DB1381C2855EA0043B214 /* NKMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuView.h; sourceTree = "<group>"; };
 		083DB1391C2856B60043B214 /* NKMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuViewController.h; sourceTree = "<group>"; };
 		083DB13A1C2856B60043B214 /* NKMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuViewController.m; sourceTree = "<group>"; };
-		083DB13C1C2859040043B214 /* NKMenuModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKMenuModule.h; path = ../Presenter/NKMenuModule.h; sourceTree = "<group>"; };
+		083DB13C1C2859040043B214 /* NKMenuModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuModule.h; sourceTree = "<group>"; };
 		083DB13D1C285F030043B214 /* NKMenuWireFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKMenuWireFrame.h; sourceTree = "<group>"; };
 		083DB13E1C285F030043B214 /* NKMenuWireFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKMenuWireFrame.m; sourceTree = "<group>"; };
 		086D70A01C33C68000FB8143 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		08A1A0EB1C22734B005B478B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A1A0EE1C22734B005B478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08A1A0F01C22734B005B478B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08A1A0FA1C2274D1005B478B /* NKLoginModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKLoginModule.h; path = "../Module Interface/NKLoginModule.h"; sourceTree = "<group>"; };
+		08A1A0FA1C2274D1005B478B /* NKLoginModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKLoginModule.h; sourceTree = "<group>"; };
 		08A1A1881C227DE6005B478B /* NKAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKAudioTrack.h; sourceTree = "<group>"; };
 		08A1A1891C227DE6005B478B /* NKAudioTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKAudioTrack.m; sourceTree = "<group>"; };
 		08A1A18D1C229E29005B478B /* NKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKUser.h; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 				08ADEE991C23D989003542EB /* VKontakteAudioService.h */,
 				08ADEE9A1C23D989003542EB /* VKontakteAudioService.m */,
 			);
-			name = Vkontakte;
+			path = Vkontakte;
 			sourceTree = "<group>";
 		};
 		08129F071C3D12BC0015CC31 /* Categories */ = {
@@ -178,7 +178,7 @@
 				08129F081C3D12FF0015CC31 /* NKAudioAlbum+VKService.h */,
 				08129F091C3D12FF0015CC31 /* NKAudioAlbum+VKService.m */,
 			);
-			name = Categories;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		08129F0E1C3D40610015CC31 /* Helper */ = {
@@ -187,7 +187,7 @@
 				08129F0F1C3D407A0015CC31 /* NKUtils.h */,
 				08129F101C3D407A0015CC31 /* NKUtils.m */,
 			);
-			name = Helper;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		083DB0E41C2414820043B214 /* Resources */ = {
@@ -238,9 +238,9 @@
 		083DB1251C2839BA0043B214 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				083DB1371C2855CA0043B214 /* Wireframe */,
 				083DB1261C28505D0043B214 /* Application Logic */,
 				083DB1351C2855970043B214 /* User Interface */,
+				083DB1371C2855CA0043B214 /* Wireframe */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -248,9 +248,9 @@
 		083DB1261C28505D0043B214 /* Application Logic */ = {
 			isa = PBXGroup;
 			children = (
-				083DB12A1C28509C0043B214 /* NKMenuInteractorIO.h */,
 				083DB1271C2850860043B214 /* NKMenuInteractor.h */,
 				083DB1281C2850860043B214 /* NKMenuInteractor.m */,
+				083DB12A1C28509C0043B214 /* NKMenuInteractorIO.h */,
 			);
 			path = "Application Logic";
 			sourceTree = "<group>";
@@ -261,16 +261,15 @@
 				083DB1321C2855200043B214 /* NKMenuPresenter.h */,
 				083DB1331C2855200043B214 /* NKMenuPresenter.m */,
 			);
-			name = Presenter;
-			path = ../Presenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		083DB1351C2855970043B214 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				083DB13C1C2859040043B214 /* NKMenuModule.h */,
 				083DB12E1C2854630043B214 /* Presenter */,
 				083DB1361C2855AB0043B214 /* View */,
+				083DB13C1C2859040043B214 /* NKMenuModule.h */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -291,17 +290,16 @@
 				083DB13D1C285F030043B214 /* NKMenuWireFrame.h */,
 				083DB13E1C285F030043B214 /* NKMenuWireFrame.m */,
 			);
-			name = Wireframe;
-			path = "User Interface/Wireframe";
+			path = Wireframe;
 			sourceTree = "<group>";
 		};
 		0879552C1C32CE3F002761C6 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0879552D1C32CED7002761C6 /* NKDataStorage.h */,
+				086D70A11C33C7F600FB8143 /* MusicPlayer.xcdatamodeld */,
 				0879552E1C32CEEE002761C6 /* NKCoreDataStorage.h */,
 				0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */,
-				086D70A11C33C7F600FB8143 /* MusicPlayer.xcdatamodeld */,
+				0879552D1C32CED7002761C6 /* NKDataStorage.h */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -309,8 +307,8 @@
 		08A1A0D31C22734B005B478B = {
 			isa = PBXGroup;
 			children = (
-				08A1A0DE1C22734B005B478B /* MusicPlayer */,
 				5AA9D78F202B04CA3302240B /* Frameworks */,
+				08A1A0DE1C22734B005B478B /* MusicPlayer */,
 				1F0C3A9E77BF0156615CD027 /* Pods */,
 				08A1A0DD1C22734B005B478B /* Products */,
 			);
@@ -340,8 +338,8 @@
 		08A1A0DF1C22734B005B478B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				08A1A0E01C22734B005B478B /* main.m */,
 				086D70A01C33C68000FB8143 /* PrefixHeader.pch */,
+				08A1A0E01C22734B005B478B /* main.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -350,8 +348,8 @@
 			isa = PBXGroup;
 			children = (
 				08CEF52A1C3E825000C10747 /* Album */,
-				083DB1251C2839BA0043B214 /* Menu */,
 				08A1A0F81C2273D5005B478B /* Login */,
+				083DB1251C2839BA0043B214 /* Menu */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -359,9 +357,9 @@
 		08A1A0F81C2273D5005B478B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				08A1A1941C22A2EE005B478B /* Wireframe */,
 				08A1A1901C22A240005B478B /* Application Logic */,
 				08A1A1911C22A250005B478B /* User interface */,
+				08A1A1941C22A2EE005B478B /* Wireframe */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -369,14 +367,14 @@
 		08A1A1851C227A99005B478B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				08129F0E1C3D40610015CC31 /* Helper */,
-				0879552C1C32CE3F002761C6 /* Storage */,
 				08ADEE8D1C23BFB4003542EB /* Base Classes */,
 				08A1A19E1C22F4C9005B478B /* Base Protocols */,
 				08A1A19D1C22AAF0005B478B /* Categories */,
 				08A1A1991C22A8AE005B478B /* Constants */,
+				08129F0E1C3D40610015CC31 /* Helper */,
 				08A1A1871C227B8E005B478B /* Model */,
 				08A1A1861C227AE9005B478B /* Services */,
+				0879552C1C32CE3F002761C6 /* Storage */,
 				083DB0F21C26C9ED0043B214 /* View */,
 			);
 			path = Common;
@@ -407,10 +405,10 @@
 				08ADEE971C23D58E003542EB /* NKAudioAlbum.m */,
 				08A1A1881C227DE6005B478B /* NKAudioTrack.h */,
 				08A1A1891C227DE6005B478B /* NKAudioTrack.m */,
-				08A1A18D1C229E29005B478B /* NKUser.h */,
-				08A1A18E1C229E29005B478B /* NKUser.m */,
 				083DB12B1C2852410043B214 /* NKMenuItem.h */,
 				083DB12C1C2852410043B214 /* NKMenuItem.m */,
+				08A1A18D1C229E29005B478B /* NKUser.h */,
+				08A1A18E1C229E29005B478B /* NKUser.m */,
 			);
 			path = "Plain Objects";
 			sourceTree = "<group>";
@@ -439,9 +437,9 @@
 		08A1A1911C22A250005B478B /* User interface */ = {
 			isa = PBXGroup;
 			children = (
-				08A1A0FA1C2274D1005B478B /* NKLoginModule.h */,
 				08A1A1921C22A2CC005B478B /* Presenter */,
 				08A1A1931C22A2D7005B478B /* View */,
+				08A1A0FA1C2274D1005B478B /* NKLoginModule.h */,
 			);
 			path = "User interface";
 			sourceTree = "<group>";
@@ -471,8 +469,7 @@
 				08ADEE831C230994003542EB /* NKLoginWireframe.h */,
 				08ADEE841C230994003542EB /* NKLoginWireframe.m */,
 			);
-			name = Wireframe;
-			path = "User interface/Wireframe";
+			path = Wireframe;
 			sourceTree = "<group>";
 		};
 		08A1A1991C22A8AE005B478B /* Constants */ = {
@@ -540,31 +537,31 @@
 		08CEF52A1C3E825000C10747 /* Album */ = {
 			isa = PBXGroup;
 			children = (
-				08CEF52E1C3E83FE00C10747 /* Wireframe */,
 				08CEF52B1C3E836100C10747 /* Application Logic */,
 				08CEF52D1C3E83A700C10747 /* User interface */,
+				08CEF52E1C3E83FE00C10747 /* Wireframe */,
 			);
-			name = Album;
+			path = Album;
 			sourceTree = "<group>";
 		};
 		08CEF52B1C3E836100C10747 /* Application Logic */ = {
 			isa = PBXGroup;
 			children = (
-				08CEF5341C3E84CD00C10747 /* NKAlbumInteractorIO.h */,
 				08CEF5351C3E84DF00C10747 /* NKAlbumInteractor.h */,
 				08CEF5361C3E84DF00C10747 /* NKAlbumInteractor.m */,
+				08CEF5341C3E84CD00C10747 /* NKAlbumInteractorIO.h */,
 			);
-			name = "Application Logic";
+			path = "Application Logic";
 			sourceTree = "<group>";
 		};
 		08CEF52D1C3E83A700C10747 /* User interface */ = {
 			isa = PBXGroup;
 			children = (
-				08CEF5381C3E871A00C10747 /* NKAlbumModule.h */,
 				08CEF5301C3E844400C10747 /* Presenter */,
 				08CEF52F1C3E843B00C10747 /* View */,
+				08CEF5381C3E871A00C10747 /* NKAlbumModule.h */,
 			);
-			name = "User interface";
+			path = "User interface";
 			sourceTree = "<group>";
 		};
 		08CEF52E1C3E83FE00C10747 /* Wireframe */ = {
@@ -573,17 +570,17 @@
 				08CEF5311C3E848000C10747 /* NKAlbumWireframe.h */,
 				08CEF5321C3E848000C10747 /* NKAlbumWireframe.m */,
 			);
-			name = Wireframe;
+			path = Wireframe;
 			sourceTree = "<group>";
 		};
 		08CEF52F1C3E843B00C10747 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				08CEF53C1C3E87A300C10747 /* NKAlbumView.h */,
 				08CEF53D1C3E880300C10747 /* NKAlbumVIewController.h */,
 				08CEF53E1C3E880300C10747 /* NKAlbumVIewController.m */,
+				08CEF53C1C3E87A300C10747 /* NKAlbumView.h */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		08CEF5301C3E844400C10747 /* Presenter */ = {
@@ -592,7 +589,7 @@
 				08CEF5391C3E877000C10747 /* NKAlbumPresenter.h */,
 				08CEF53A1C3E877000C10747 /* NKAlbumPresenter.m */,
 			);
-			name = Presenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		1F0C3A9E77BF0156615CD027 /* Pods */ = {
