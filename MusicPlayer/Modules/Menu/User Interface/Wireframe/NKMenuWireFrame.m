@@ -51,7 +51,7 @@
     UIViewController<NKMenuView> *viewcontroller = self.presenter.output;
     
     UIViewController* centerViewcontroller = [[UIViewController alloc] init];
-    centerViewcontroller.view.backgroundColor = [UIColor cyanColor];
+    centerViewcontroller.view.backgroundColor = [UIColor brownColor];
     UINavigationController* mainNavigationController = [[UINavigationController alloc] initWithRootViewController: centerViewcontroller];
     
     MMDrawerController* drawerController = [self drawerControllerWithCenterVC: mainNavigationController

@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class NSString, NSArray, UIImage;
-
-#include "NKView.h"
+#import "NKView.h"
 
 @protocol NKMenuView <NKView>
 
