@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class NKMenuWireFrame;
+@protocol NKAlbumModule;
+
 @interface NKAlbumWireframe : NSObject
 
+@property (strong, nonatomic) id <NKAlbumModule> presenter;
 
+@property (weak, nonatomic) NKMenuWireFrame* menuWireframe;
 
 @end

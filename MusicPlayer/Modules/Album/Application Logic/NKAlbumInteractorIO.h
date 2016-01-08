@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol NKAlbumInteractorIO <NSObject>
+@protocol NKAlbumInteractorInput <NSObject>
+
+@end
+
+@protocol NKAlbumInteractorOutput <NSObject>
 
 @end

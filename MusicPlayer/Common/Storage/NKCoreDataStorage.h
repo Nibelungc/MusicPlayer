@@ -16,4 +16,6 @@
 
 - (void) saveUserAndDeleteOldOne: ( NKUser* _Nonnull ) user;
 
+- (id<NKAudioService> __nullable) userAudioService;
+
 @end

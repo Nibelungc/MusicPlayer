@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class NKUser;
+@protocol NKAudioService;
 
 typedef void(^NKDataStorageSavedUserCompletion)(NKUser* __nullable user);
 
@@ -19,5 +20,7 @@ typedef void(^NKDataStorageSavedUserCompletion)(NKUser* __nullable user);
 - (void) fetchSavedUser: (_Nonnull NKDataStorageSavedUserCompletion) completion;
 
 - (void) saveUserAndDeleteOldOne: ( NKUser* _Nonnull ) user;
+
+- (id<NKAudioService> __nullable) userAudioService;
 
 @end

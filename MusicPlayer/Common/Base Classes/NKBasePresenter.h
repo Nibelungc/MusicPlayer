@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NKModule.h"
+
 @class UIViewController;
 
-@interface NKBasePresenter : NSObject
+@interface NKBasePresenter : NSObject <NKModule>
 
 @property (strong, nonatomic) UIViewController* output;
 

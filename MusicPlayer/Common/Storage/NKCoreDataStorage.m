@@ -28,8 +28,7 @@
 #pragma mark - User
 
 - (void) fetchSavedUser: (_Nonnull NKDataStorageSavedUserCompletion) completion {
-    NSArray* results = [NKManagedUser MR_findAll];
-    NKManagedUser* managedUser = (NKManagedUser*) results.firstObject;
+    NKManagedUser* managedUser = [self fetchSavedUser];
     completion([self userFromManagedObject: managedUser]);
 }
 
@@ -37,6 +36,20 @@
     [NKManagedUser MR_truncateAll];
     [self createManagedUserFromUser: user];
     [self saveContext];
+}
+
+- (id<NKAudioService> __nullable) userAudioService {
+    NKManagedUser* managedUser = [self fetchSavedUser];
+    NKUser* user = [self userFromManagedObject: managedUser];
+    return user.audioServiceImpl;
+}
+
+#pragma mark - Fetching
+
+- (NKManagedUser*) fetchSavedUser {
+    NSArray* results = [NKManagedUser MR_findAll];
+    NKManagedUser* managedUser = (NKManagedUser*) results.firstObject;
+    return managedUser;
 }
 
 #pragma mark - Mapping

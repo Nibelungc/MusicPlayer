@@ -10,6 +10,8 @@
 
 @protocol NKModule <NSObject>
 
+@property (strong, nonatomic) UIViewController* output;
+
 @optional
 
 - (void) updateView;

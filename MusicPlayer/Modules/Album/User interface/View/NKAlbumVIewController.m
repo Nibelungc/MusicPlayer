@@ -10,4 +10,14 @@
 
 @implementation NKAlbumVIewController
 
+@dynamic eventHandler;
+
+#pragma mark - Lifecycle
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor magentaColor];
+}
+
 @end

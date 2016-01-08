@@ -10,4 +10,6 @@
 
 @implementation NKAlbumPresenter
 
+@dynamic output;
+
 @end

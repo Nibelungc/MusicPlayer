@@ -13,7 +13,10 @@
 #import "NKMenuViewController.h"
 #import "NKCoreDataStorage.h"
 #import "NKUser.h"
+#import "NKAlbumModule.h"
+
 #import "NKLoginWireframe.h"
+#import "NKAlbumWireframe.h"
 
 #import <MMDrawerController.h>
 #import <MMDrawerVisualState.h>
@@ -27,10 +30,11 @@
         NKMenuPresenter* presenter = [[NKMenuPresenter alloc] init];
         NKMenuViewController* view = [[NKMenuViewController alloc] init];
         NKCoreDataStorage* dataStorage = [[NKCoreDataStorage alloc] init];
-        [dataStorage fetchSavedUser:^(NKUser * _Nullable user) {
-            interactor.audioService = [user audioServiceImpl];
-        }];
         
+        NKLoginWireframe* loginWireframe = [[NKLoginWireframe alloc] init];
+        NKAlbumWireframe* albumWireframe = [[NKAlbumWireframe alloc] init];
+        
+        interactor.audioService = [dataStorage userAudioService];
         interactor.output = presenter;
         interactor.dataStorage = dataStorage;
         
@@ -41,7 +45,8 @@
         view.eventHandler = presenter;
         
         _presenter = presenter;
-        _loginWireframe = [[NKLoginWireframe alloc] init];
+        _loginWireframe = loginWireframe;
+        _albumWireframe = albumWireframe;
     }
     return self;
 }
@@ -50,8 +55,8 @@
     _applicationWindow = applicationWindow;
     UIViewController<NKMenuView> *viewcontroller = self.presenter.output;
     
-    UIViewController* centerViewcontroller = [[UIViewController alloc] init];
-    centerViewcontroller.view.backgroundColor = [UIColor brownColor];
+    UIViewController* centerViewcontroller = self.albumWireframe.presenter.output;
+
     UINavigationController* mainNavigationController = [[UINavigationController alloc] initWithRootViewController: centerViewcontroller];
     
     MMDrawerController* drawerController = [self drawerControllerWithCenterVC: mainNavigationController

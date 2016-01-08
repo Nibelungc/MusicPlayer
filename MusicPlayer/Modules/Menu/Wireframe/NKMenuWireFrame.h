@@ -12,6 +12,7 @@
 
 @class UIViewController;
 @class NKLoginWireframe;
+@class NKAlbumWireframe;
 
 @protocol NKMenuModule;
 
@@ -20,6 +21,8 @@
 @property (strong, nonatomic) NKMenuPresenter* presenter;
 
 @property (strong, nonatomic) NKLoginWireframe* loginWireframe;
+
+@property (strong, nonatomic) NKAlbumWireframe* albumWireframe;
 
 @property (weak, nonatomic) UIWindow* applicationWindow;
 

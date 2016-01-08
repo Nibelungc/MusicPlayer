@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NKAlbumInteractor : NSObject
+#import "NKAlbumInteractorIO.h"
+
+@protocol NKAlbumModule;
+@protocol NKAudioService;
+@protocol NKDataStorage;
+
+@interface NKAlbumInteractor : NSObject <NKAlbumInteractorInput>
+
+@property (weak, nonatomic) id<NKAlbumModule> output;
+
+@property (strong, nonatomic) id<NKAudioService> audioService;
+
+@property (strong, nonatomic) id<NKDataStorage> dataStorage;
 
 @end

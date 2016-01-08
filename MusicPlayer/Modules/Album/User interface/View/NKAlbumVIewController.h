@@ -8,6 +8,11 @@
 
 #import "NKBaseViewController.h"
 
-@interface NKAlbumVIewController : NKBaseViewController
+#import "NKAlbumView.h"
+#import "NKAlbumModule.h"
+
+@interface NKAlbumVIewController : NKBaseViewController <NKAlbumView>
+
+@property (weak, nonatomic) id<NKAlbumModule> eventHandler;
 
 @end
