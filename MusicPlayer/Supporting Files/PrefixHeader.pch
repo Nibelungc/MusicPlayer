@@ -15,5 +15,6 @@
 #import "NKCategories.h"
 #import "NKConstants.h"
 #import "NKUtils.h"
+#import <libextobjc/extobjc.h>
 
 #endif /* PrefixHeader_pch */

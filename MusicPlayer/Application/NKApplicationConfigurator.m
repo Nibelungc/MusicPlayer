@@ -27,8 +27,10 @@ static NSString* const kCoreDataModelName = @"MusicPlayer";
 
 - (void) configurateWithWindow:(UIWindow *)window {
     [self setupCoreDataStack];
+    @weakify(self)
     [NKApplicationFactory getInitialWireframe:^(id<NKWireframe> wireframe) {
-        _rootWireframe = [[NKRootWireframe alloc] initWithInitialWireframe:wireframe];
+        @strongify(self)
+        self.rootWireframe = [[NKRootWireframe alloc] initWithInitialWireframe:wireframe];
         [self configureApplicationAppearanceForWindow: window];
         [self.rootWireframe.initialWireframe presentInterfaceFromWindow: window];
     }];

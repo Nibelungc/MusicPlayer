@@ -892,6 +892,7 @@
 			baseConfigurationReference = 364804C9C29BB94A1C05C0AD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MusicPlayer/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
@@ -907,6 +908,7 @@
 			baseConfigurationReference = 1603F17F27DD683F8B9A1F18 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MusicPlayer/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = MusicPlayer/Info.plist;

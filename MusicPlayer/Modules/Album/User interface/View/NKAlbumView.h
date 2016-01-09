@@ -19,4 +19,6 @@
 
 - (void) showEmptyListOfAudioTracks;
 
+- (void) setModuleTitle: (NSString*) title;
+
 @end

@@ -13,8 +13,10 @@
 @implementation NKAlbumInteractor
 
 - (void) getTracksForAlbumID: (NSNumber*) identifier {
+    @weakify(self)
     [self.audioService getAudioTracksForAlbumIdentifier: identifier
      withCompletion:^(NSArray<NKAudioTrack *> * _Nullable tracks, NSError * _Nullable errorOrNil) {
+         @strongify(self)
          if (errorOrNil == nil) {
              if (tracks.count > 0) {
                  [self.output tracksFound: tracks];
@@ -23,6 +25,19 @@
              }
          } else {
              [self.output tracksNotFoundWithError: errorOrNil];
+         }
+     }];
+}
+
+- (void) getTitleForAlbumID: (NSNumber*) identifier {
+    @weakify(self)
+    [self.audioService getAlbumTitleForIdentifier: identifier
+     withCompletion:^(NSString * _Nullable title, NSError * _Nullable errorOrNil) {
+         @strongify(self)
+         if (errorOrNil == nil){
+             [self.output albumTitleFound: title];
+         } else {
+             [self.output albumTitleNotFoundWithError: errorOrNil];
          }
      }];
 }

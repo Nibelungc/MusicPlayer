@@ -23,4 +23,6 @@
 
 - (void) getTracksForAlbumID: (NSNumber*) identifier;
 
+- (void) getTitleForAlbumID: (NSNumber*) identifier;
+
 @end

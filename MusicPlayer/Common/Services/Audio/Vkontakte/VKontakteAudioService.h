@@ -24,9 +24,12 @@
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString
                         withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion;
 
-- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nonnull) identitier
+- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nullable) identifier
                            withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion;
 
 - (void) getAlbumsWithCompletion: (_Nonnull NKAudioServiceAlbumsCompletion) completion;
+
+- (void) getAlbumTitleForIdentifier: (NSNumber* _Nullable) identifier
+                     withCompletion: (_Nonnull NKAudioServiceAlbumNameCompletion) completion;
 
 @end

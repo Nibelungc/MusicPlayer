@@ -34,14 +34,23 @@
     [self.output updateListOfAudioTracks: audioTracks];
 }
 
+- (void) albumTitleNotFoundWithError: (NSError*) error {
+    [self.output showErrorMessage: error.localizedDescription withTitle: @"Ошибка получения названия альбома"];
+}
+
+- (void) albumTitleFound: (NSString*) title {
+    [self.output setModuleTitle: title];
+}
+
 #pragma mark - NKAlbumModule
 
 - (void) albumWasLoaded {
+    [self.interactor getTitleForAlbumID: self.albumID];
     [self.albumWireframe closeMenu];
 }
 
 - (void) configureWithAlbumID: (NSNumber*) albumID {
-    if (albumID.integerValue == self.albumID.integerValue){
+    if (albumID && albumID.integerValue == self.albumID.integerValue){
         return;
     }
     self.albumID = albumID;

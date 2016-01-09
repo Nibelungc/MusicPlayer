@@ -18,6 +18,7 @@ typedef void(^NKAudioServiceLoginCompletion)(NKUser* __nullable user, NSError* _
 typedef void(^NKAudioServiceTracksCompletion)( NSArray <NKAudioTrack *> * __nullable tracks, NSError* __nullable errorOrNil);
 typedef void(^NKAudioServiceAlbumsCompletion)(NSArray <NKAudioAlbum *> * __nullable albums, NSError* __nullable errorOrNil);
 typedef void(^NKAudioServiceSearchCompletion)(NSArray <NKAudioTrack *> * __nullable tracks, NSError* __nullable errorOrNil);
+typedef void(^NKAudioServiceAlbumNameCompletion)(NSString* __nullable title, NSError* __nullable errorOrNil);
 
 typedef void(^NKAudioServiceWakeupSessionCompletion)(BOOL success, NSError* __nullable errorOrNil);
 
@@ -29,6 +30,8 @@ typedef void(^NKAudioServiceWakeupSessionCompletion)(BOOL success, NSError* __nu
 
 + (_Nonnull instancetype) sharedService;
 
+@required
+
 - (void) loginWithCompletion: (_Nonnull NKAudioServiceLoginCompletion) completion;
 
 - (void) forceLogout;
@@ -37,9 +40,12 @@ typedef void(^NKAudioServiceWakeupSessionCompletion)(BOOL success, NSError* __nu
 
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion;
 
-- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nonnull) identitier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion;
+- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nullable) identifier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion;
 
 - (void) getAlbumsWithCompletion: (_Nonnull NKAudioServiceAlbumsCompletion) completion;
+
+- (void) getAlbumTitleForIdentifier: (NSNumber* _Nullable) identifier
+                     withCompletion: (_Nonnull NKAudioServiceAlbumNameCompletion) completion;
 
 
 @end

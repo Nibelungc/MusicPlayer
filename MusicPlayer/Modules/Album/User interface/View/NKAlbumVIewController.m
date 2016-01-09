@@ -44,6 +44,10 @@
 
 #pragma mark - NKAlbumView
 
+- (void) setModuleTitle: (NSString*) title {
+    self.navigationItem.title = title.uppercaseString;
+}
+
 - (void) showEmptyListOfAudioTracks {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }

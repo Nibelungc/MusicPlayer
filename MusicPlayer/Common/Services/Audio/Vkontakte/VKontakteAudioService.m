@@ -17,6 +17,8 @@
 NSString * const VKServiceTitle = @"Vkontakte";
 NSString * const VK_API_ITEMS = @"items";
 
+static NSDictionary* albumsTitles;
+
 @interface VKontakteAudioService () <VKSdkUIDelegate>
 
 @property (nonatomic, copy) NKAudioServiceLoginCompletion loginCompletion;
@@ -65,6 +67,7 @@ NSString * const VK_API_ITEMS = @"items";
 }
 
 - (void) forceLogout {
+//    Cannot log in again after forceLogout. No error occurs, only vkSdkUserAuthorizationFailed invokes
 //    [VKSdk forceLogout];
 }
 
@@ -84,10 +87,10 @@ NSString * const VK_API_ITEMS = @"items";
     
 }
 
-- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nonnull) identitier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion {
+- (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nullable) identifier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion {
     NSString* methodName = @"get";
     NSDictionary* parametrs = @{VK_API_OWNER_ID : [self currentUserID],
-                                VK_API_ALBUM_ID : identitier};
+                                VK_API_ALBUM_ID : ZeroOrNSNumber(identifier)};
     
     VKRequest* request = [VKApi requestWithMethod: [self audioRequsetWithMethodName: methodName]
                                     andParameters: parametrs];
@@ -115,13 +118,36 @@ NSString * const VK_API_ITEMS = @"items";
         NSArray* albums = [albumsJson map:^id(id json) {
             return [[NKAudioAlbum alloc] initWithVKJson: json];
         }];
-        completion(albums, nil);
+        NSMutableArray* albumsWithMyMusic = [NSMutableArray arrayWithArray: albums];
+        [albumsWithMyMusic insertObject: [self myMusicAlbum] atIndex: 0];
+        [self saveAlbumsTitlesForAlbums: albumsWithMyMusic];
+        completion(albumsWithMyMusic, nil);
     } errorBlock:^(NSError *error) {
         completion(nil, error);
     }];
 }
 
+- (void) getAlbumTitleForIdentifier: (NSNumber* _Nullable) identifier
+                     withCompletion: (_Nonnull NKAudioServiceAlbumNameCompletion) completion {
+    completion(albumsTitles[ZeroOrNSNumber(identifier)], nil);
+}
+
 #pragma mark - Private
+
+- (void) saveAlbumsTitlesForAlbums: (NSArray <NKAudioAlbum *>*) albums {
+    NSMutableDictionary* titles = [NSMutableDictionary dictionary];
+    for (NKAudioAlbum* album in albums) {
+        [titles setObject: album.title forKey: ZeroOrNSNumber(album.identifier)];
+    }
+    albumsTitles = [NSDictionary dictionaryWithDictionary: titles];
+}
+
+- (NKAudioAlbum*) myMusicAlbum {
+    NKAudioAlbum* myMusic = [[NKAudioAlbum alloc] init];
+    myMusic.identifier = nil;
+    myMusic.title = @"My Music";
+    return myMusic;
+}
 
 - (NSString*) currentUserID {
     return [NSString stringWithFormat:@"%@", [VKSdk accessToken].localUser.id];
@@ -145,6 +171,10 @@ NSString * const VK_API_ITEMS = @"items";
 
 - (NSString*) audioRequsetWithMethodName: (NSString*) name {
     return [NSString stringWithFormat: @"audio.%@", name];
+}
+
+static id ZeroOrNSNumber(NSNumber* number) {
+    return number ?: @(0);
 }
 
 #pragma mark - VKSdkDelegate

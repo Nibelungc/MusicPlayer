@@ -10,4 +10,13 @@
 
 @implementation NKAudioAlbum
 
+#pragma mark - Accessors
+
+- (NSString*) title {
+    if (!_title){
+        return @"No name";
+    }
+    return _title;
+}
+
 @end

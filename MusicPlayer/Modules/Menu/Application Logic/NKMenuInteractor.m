@@ -18,7 +18,9 @@
 #pragma mark - NKMenuInteractorInput
 
 - (void) getMenuItems {
+    @weakify(self)
     [self.audioService getAlbumsWithCompletion:^(NSArray<NKAudioAlbum *> * _Nullable albums, NSError * _Nullable errorOrNil) {
+        @strongify(self)
         if (errorOrNil == nil) {
             NSArray* menuItems = [albums map:^id(NKAudioAlbum* album) {
                 NKMenuItem* item = [[NKMenuItem alloc] init];
