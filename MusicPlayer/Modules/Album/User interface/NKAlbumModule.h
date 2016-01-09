@@ -13,11 +13,15 @@
 
 @required
 
+- (void) selectAudioTrackWithID: (NSNumber*) trackID;
+
+- (void) deselectAudioTrackWithID: (NSNumber*) trackID;
+
 - (void) configureWithAlbumID: (NSNumber*) albumID;
 
 - (void) albumWasLoaded;
 
-- (void) playAudioTrackWithID: (NSInteger) trackID;
+- (void) playAudioTrackWithID: (NSNumber*) trackID;
 
 - (void) stopPlayingAudio;
 

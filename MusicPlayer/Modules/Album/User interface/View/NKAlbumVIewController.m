@@ -62,6 +62,16 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Private
+
+- (NKAudioTrack*) audioTrackForIndexPath: (NSIndexPath*) indexPath {
+    if (indexPath.row >= 0 &&
+        indexPath.row < self.audioTracks.count) {
+        return self.audioTracks[indexPath.row];
+    }
+    return nil;
+}
+
 @end
 
 #pragma mark - UITableViewDataSource
@@ -77,7 +87,7 @@
     if (!cell) {
         cell = [NKAudioTrackCell createCell];
     }
-    NKAudioTrack* track = self.audioTracks[indexPath.row];
+    NKAudioTrack* track = [self audioTrackForIndexPath: indexPath];
     [cell configureCellWithTrack: track];
     return cell;
 }
@@ -87,5 +97,15 @@
 #pragma mark - UITableViewDelegate
 
 @implementation NKAlbumVIewController (TableViewDelegate)
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NKAudioTrack* selectedTrack = [self audioTrackForIndexPath: indexPath];
+    [self.eventHandler selectAudioTrackWithID: selectedTrack.identifier];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NKAudioTrack* selectedTrack = [self audioTrackForIndexPath: indexPath];
+    [self.eventHandler deselectAudioTrackWithID: selectedTrack.identifier];
+}
 
 @end
