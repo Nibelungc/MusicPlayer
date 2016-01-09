@@ -7,12 +7,13 @@
 //
 
 #import "NKMenuViewController.h"
+#import "NKMenuItem.h"
 
 #import <UIViewController+MMDrawerController.h>
 
 CGFloat const kUserInfoHeightInPercent = 20;
 
-@interface NKMenuViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NKMenuViewController () <UITableViewDelegate>
 
 @property (weak, nonatomic) UITableView* tableView;
 
@@ -20,7 +21,7 @@ CGFloat const kUserInfoHeightInPercent = 20;
 
 @property (weak, nonatomic) UILabel* userNameLabel;
 
-@property (strong, nonatomic) NSMutableArray* dataSource;
+@property (strong, nonatomic) NSMutableArray <NKMenuItem *>* dataSource;
 
 @end
 
@@ -33,7 +34,6 @@ CGFloat const kUserInfoHeightInPercent = 20;
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    [self configureView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -51,6 +51,8 @@ CGFloat const kUserInfoHeightInPercent = 20;
 #pragma mark - Configuration
 
 - (void) configureView {
+    [super configureView];
+    
     self.view.backgroundColor = [UIColor brownColor];
     
     CGRect drawerRect = [self.view bounds];
@@ -153,10 +155,33 @@ CGFloat const kUserInfoHeightInPercent = 20;
     [self.tableView reloadData];
 }
 
+- (NKMenuItem*) menuItemWithIdentifier: (NSNumber*) identifier {
+    NSArray* itemsWithIdentifier = [self.dataSource filter:^BOOL(NKMenuItem* item) {
+        return item.identifier.integerValue == identifier.integerValue;
+    }];
+    return itemsWithIdentifier.firstObject;
+}
+
+- (NSIndexPath*) indexPathForMenuItem: (NKMenuItem*) item {
+    NSInteger indexOfItem = [self.dataSource indexOfObject: item];
+    if (indexOfItem != NSNotFound){
+        return [NSIndexPath indexPathForRow: indexOfItem inSection:0];
+    }
+    return nil;
+}
+
 #pragma mark - NKMenuView
 
-- (void) setMenuItemsWithTitles: (NSArray <NSString *>*) titles {
-    self.dataSource = [NSMutableArray arrayWithArray: titles];
+- (void) selectMenuItemWithIdentifier: (NSNumber*) identifier {
+    NKMenuItem* menuItem = [self menuItemWithIdentifier: identifier];
+    NSIndexPath* indexPath = [self indexPathForMenuItem: menuItem];
+    [self.tableView selectRowAtIndexPath: indexPath
+                                animated: NO
+                          scrollPosition: UITableViewScrollPositionNone];
+}
+
+- (void) setMenuItems: (NSArray <NKMenuItem *>*) items {
+    self.dataSource = [NSMutableArray arrayWithArray: items];
     [self reloadData];
 }
 
@@ -165,13 +190,22 @@ CGFloat const kUserInfoHeightInPercent = 20;
     self.userNameLabel.text = name;
 }
 
+@end
+
 #pragma mark - UITableViewDelegate
 
+@implementation NKMenuViewController (TableViewDelegate)
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath: indexPath animated: YES];
+    NKMenuItem* selectedItem = self.dataSource[indexPath.row];
+    [self.eventHandler menuItemChosenWithIdentifier: selectedItem.identifier];
 }
 
+@end
+
 #pragma mark - UITableViewDataSource
+
+@implementation NKMenuViewController (TableViewDataSource)
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.dataSource count];
@@ -184,7 +218,8 @@ CGFloat const kUserInfoHeightInPercent = 20;
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleValue1
                                       reuseIdentifier: cellIdentifier];
     }
-    cell.textLabel.text = self.dataSource[indexPath.row];
+    NKMenuItem* menuItem = self.dataSource[indexPath.row];
+    cell.textLabel.text = menuItem.title;
     cell.backgroundColor = tableView.backgroundColor;
     return cell;
 }

@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "NKView.h"
 
+@class NKAudioTrack;
+
 @protocol NKAlbumView <NKView>
+
+@required
+
+- (void) updateListOfAudioTracks: (NSArray <NKAudioTrack *>*) audioTracks;
+
+- (void) showEmptyListOfAudioTracks;
 
 @end

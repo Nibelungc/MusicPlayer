@@ -24,4 +24,6 @@
 
 @property (weak, nonatomic) NKMenuWireFrame* wireframe;
 
+@property (strong, nonatomic) NSArray <NKMenuItem *>* menuItems;
+
 @end

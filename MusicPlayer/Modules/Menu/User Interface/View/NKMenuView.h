@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "NKView.h"
 
+@class NKMenuItem;
+
 @protocol NKMenuView <NKView>
 
-- (void) setMenuItemsWithTitles: (NSArray <NSString *>*) titles;
+@required
+
+- (void) setMenuItems: (NSArray <NKMenuItem *>*) items;
 
 - (void) setUserInfoWithName: (NSString*) name andImage: (UIImage*) image;
+
+- (void) selectMenuItemWithIdentifier: (NSNumber*) identifier;
 
 @end

@@ -10,16 +10,17 @@
 
 #import "NKAlbumInteractorIO.h"
 
-@protocol NKAlbumModule;
 @protocol NKAudioService;
 @protocol NKDataStorage;
 
 @interface NKAlbumInteractor : NSObject <NKAlbumInteractorInput>
 
-@property (weak, nonatomic) id<NKAlbumModule> output;
+@property (weak, nonatomic) id<NKAlbumInteractorOutput> output;
 
 @property (strong, nonatomic) id<NKAudioService> audioService;
 
 @property (strong, nonatomic) id<NKDataStorage> dataStorage;
+
+- (void) getTracksForAlbumID: (NSNumber*) identifier;
 
 @end

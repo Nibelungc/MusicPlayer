@@ -58,7 +58,6 @@
 }
 
 - (void) presentInterfaceFromWindow:(UIWindow *)window {
-//    window.rootViewController = self.loginPresenter.output;
     [UIView transitionWithView: window
                       duration: 0.3
                        options: UIViewAnimationOptionTransitionCrossDissolve animations:^{

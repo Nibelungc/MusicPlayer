@@ -11,6 +11,7 @@
 #import "NKMenuItem.h"
 #import "NKUser.h"
 #import "NKDataStorage.h"
+#import "NKAudioAlbum.h"
 
 @implementation NKMenuInteractor
 
@@ -19,11 +20,12 @@
 - (void) getMenuItems {
     [self.audioService getAlbumsWithCompletion:^(NSArray<NKAudioAlbum *> * _Nullable albums, NSError * _Nullable errorOrNil) {
         if (errorOrNil == nil) {
-            NSArray* menuItems = [albums map:^id(id obj) {
+            NSArray* menuItems = [albums map:^id(NKAudioAlbum* album) {
                 NKMenuItem* item = [[NKMenuItem alloc] init];
-                NSInteger index = [albums indexOfObject: obj];
-                item.title = [obj title];
+                NSInteger index = [albums indexOfObject: album];
                 item.index = @(index);
+                item.title = album.title;
+                item.identifier = album.identifier;
                 return item;
             }];
             [self.output menuItemsWereFound: menuItems];

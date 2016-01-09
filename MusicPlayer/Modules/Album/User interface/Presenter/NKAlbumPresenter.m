@@ -7,9 +7,69 @@
 //
 
 #import "NKAlbumPresenter.h"
+#import "NKAlbumView.h"
+#import "NKAlbumWireframe.h"
+
+@interface NKAlbumPresenter ()
+
+
+@end
 
 @implementation NKAlbumPresenter
 
 @dynamic output;
+
+#pragma mark - NKAlbumInteractorOutput
+
+- (void) tracksNotFoundWithError: (NSError*) errorOrNil {
+    if (errorOrNil == nil){
+        [self.output showEmptyListOfAudioTracks];
+    } else {
+        [self.output showErrorMessage: errorOrNil.localizedDescription
+                            withTitle: @"Ошибка загрузки песен"];
+    }
+}
+
+- (void) tracksFound: (NSArray*) audioTracks {
+    [self.output updateListOfAudioTracks: audioTracks];
+}
+
+#pragma mark - NKAlbumModule
+
+- (void) albumWasLoaded {
+    [self.albumWireframe closeMenu];
+}
+
+- (void) configureWithAlbumID: (NSNumber*) albumID {
+    if (albumID.integerValue == self.albumID.integerValue){
+        return;
+    }
+    self.albumID = albumID;
+    [self.interactor getTracksForAlbumID: albumID];
+}
+
+- (void) loadView {
+    if (self.albumID){
+        [self.interactor getTracksForAlbumID: self.albumID];
+    } else {
+        [self.output showEmptyListOfAudioTracks];
+    }
+}
+
+- (void) playAudioTrackWithID: (NSInteger) trackID {
+
+}
+
+- (void) stopPlayingAudio {
+
+}
+
+- (void) playNextAudioTrack {
+
+}
+
+- (void) playPreviousAudioTrack {
+
+}
 
 @end

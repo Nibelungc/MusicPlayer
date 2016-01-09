@@ -12,7 +12,7 @@
 
 @protocol NKMenuModule <NKModule>
 
-- (void) menuItemChosenWithTitle: (NSString*) title;
+- (void) menuItemChosenWithIdentifier: (NSNumber*) identifier;
 
 - (void) userLogoutAction;
 

@@ -11,4 +11,18 @@
 
 @protocol NKAlbumModule <NKModule>
 
+@required
+
+- (void) configureWithAlbumID: (NSNumber*) albumID;
+
+- (void) albumWasLoaded;
+
+- (void) playAudioTrackWithID: (NSInteger) trackID;
+
+- (void) stopPlayingAudio;
+
+- (void) playNextAudioTrack;
+
+- (void) playPreviousAudioTrack;
+
 @end

@@ -21,4 +21,20 @@
 
 @property (weak, nonatomic) NKAlbumWireframe* albumWireframe;
 
+@property (strong, nonatomic) NSNumber* albumID;
+
+#pragma mark - NKAlbumModule
+
+- (void) configureWithAlbumID: (NSNumber*) albumID;
+
+- (void) albumWasLoaded;
+
+- (void) playAudioTrackWithID: (NSInteger) trackID;
+
+- (void) stopPlayingAudio;
+
+- (void) playNextAudioTrack;
+
+- (void) playPreviousAudioTrack;
+
 @end

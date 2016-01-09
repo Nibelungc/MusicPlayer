@@ -10,6 +10,7 @@
 #import "NKMenuWireFrame.h"
 #import "NKMenuView.h"
 #import "NKUser.h"
+#import "NKMenuItem.h"
 
 @implementation NKMenuPresenter
 
@@ -22,8 +23,8 @@
     [self.interactor getUser];
 }
 
-- (void) menuItemChosenWithTitle: (NSString*) title {
-#warning Show appropriate module
+- (void) menuItemChosenWithIdentifier: (NSNumber*) identifier {
+    [self.wireframe configureAlbumModuleWithItemID: identifier];
 }
 
 - (void) userLogoutAction {
@@ -33,10 +34,14 @@
 #pragma mark - NKMenuInteractorOutput
 
 - (void) menuItemsWereFound: (NSArray <NKMenuItem *>* ) items {
-    NSArray* menuItemTitles = [items map:^id(id obj) {
-        return [obj title];
-    }];
-    [self.output setMenuItemsWithTitles: menuItemTitles];
+    [self.output setMenuItems: items];
+    if (!self.menuItems) {
+        NKMenuItem* initialItem = (NKMenuItem*) items.firstObject;
+        [self.wireframe menuLoadedWithInitialItemID: initialItem.identifier];
+        [self.output selectMenuItemWithIdentifier: initialItem.identifier];
+    }
+    self.menuItems = items;
+    
 }
 
 - (void) menuItemsNotFound:(NSError *)errorOrNil {

@@ -14,6 +14,6 @@
 
 @property (strong, nonatomic) NSString* title;
 
-@property (strong, nonatomic) NSNumber* albumIdentifier;
+@property (strong, nonatomic) NSNumber* identifier;
 
 @end

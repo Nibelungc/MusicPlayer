@@ -19,4 +19,6 @@
 
 @property (strong, nonatomic) id <NKMessageService> errorHandler;
 
+- (void) configureView;
+
 @end

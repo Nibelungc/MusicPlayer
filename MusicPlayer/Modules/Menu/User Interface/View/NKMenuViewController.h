@@ -15,4 +15,16 @@
 
 @property (weak, nonatomic) id <NKMenuModule> eventHandler;
 
+- (void) selectMenuItemWithIdentifier: (NSNumber*) identifier;
+
+- (void) setMenuItems: (NSArray <NKMenuItem *>*) items;
+
+@end
+
+@interface NKMenuViewController (TableViewDataSource) <UITableViewDataSource>
+
+@end
+
+@interface NKMenuViewController (TableViewDelegate) <UITableViewDelegate>
+
 @end

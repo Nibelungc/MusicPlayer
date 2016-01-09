@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configureView];
     if ([self.eventHandler respondsToSelector: @selector(loadView)]){
         [self.eventHandler loadView];
     }
@@ -28,6 +29,12 @@
     if ([self.eventHandler respondsToSelector: @selector(updateView)]){
         [self.eventHandler updateView];
     }
+}
+
+#pragma mark - Configuration
+
+- (void) configureView{
+    /* Implement in a subclass */
 }
 
 #pragma mark - NKView

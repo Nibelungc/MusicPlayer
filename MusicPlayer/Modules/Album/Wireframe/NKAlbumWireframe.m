@@ -13,6 +13,7 @@
 #import "NKCoreDataStorage.h"
 #import "NKAudioService.h"
 #import "NKAlbumVIewController.h"
+#import "NKMenuWireFrame.h"
 
 @implementation NKAlbumWireframe
 
@@ -37,6 +38,14 @@
         _presenter = presenter;
     }
     return self;
+}
+
+- (void) configureWithAlbumID: (NSNumber*) albumID {
+    [self.presenter configureWithAlbumID: albumID];
+}
+
+- (void) closeMenu {
+    [self.menuWireframe closeMenu];
 }
 
 @end

@@ -33,6 +33,7 @@
         
         NKLoginWireframe* loginWireframe = [[NKLoginWireframe alloc] init];
         NKAlbumWireframe* albumWireframe = [[NKAlbumWireframe alloc] init];
+        albumWireframe.menuWireframe = self;
         
         interactor.audioService = [dataStorage userAudioService];
         interactor.output = presenter;
@@ -82,6 +83,19 @@
 
 - (void) goToLoginModule {
     [self.loginWireframe presentInterfaceFromWindow: self.applicationWindow];
+}
+
+- (void) menuLoadedWithInitialItemID: (NSNumber*) initialItemID {
+    [self.albumWireframe configureWithAlbumID: initialItemID];
+}
+
+- (void) configureAlbumModuleWithItemID: (NSNumber*) identifier {
+    [self.albumWireframe configureWithAlbumID: identifier];
+}
+
+- (void) closeMenu {
+    MMDrawerController* drawer = (MMDrawerController*) self.applicationWindow.rootViewController;
+    [drawer closeDrawerAnimated: YES completion: nil];
 }
 
 @end

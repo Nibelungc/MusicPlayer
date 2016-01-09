@@ -10,8 +10,14 @@
 
 @protocol NKAlbumInteractorInput <NSObject>
 
+- (void) getTracksForAlbumID: (NSNumber*) identifier;
+
 @end
 
 @protocol NKAlbumInteractorOutput <NSObject>
+
+- (void) tracksNotFoundWithError: (NSError*) errorOrNil;
+
+- (void) tracksFound: (NSArray*) audioTracks;
 
 @end

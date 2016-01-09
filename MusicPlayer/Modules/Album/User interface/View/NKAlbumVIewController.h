@@ -15,4 +15,16 @@
 
 @property (weak, nonatomic) id<NKAlbumModule> eventHandler;
 
+@property (strong, nonatomic) NSArray* audioTracks;
+
+@end
+
+
+@interface NKAlbumVIewController (TableViewDataSource) <UITableViewDataSource>
+
+@end
+
+
+@interface NKAlbumVIewController (TableViewDelegate) <UITableViewDelegate>
+
 @end

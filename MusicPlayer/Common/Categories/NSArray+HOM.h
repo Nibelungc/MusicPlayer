@@ -12,4 +12,6 @@
 
 - (NSArray*) map: (id(^)(id obj)) block;
 
+- (NSArray*) filter: (BOOL(^)(id obj)) block;
+
 @end

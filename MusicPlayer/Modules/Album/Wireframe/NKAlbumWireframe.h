@@ -17,4 +17,8 @@
 
 @property (weak, nonatomic) NKMenuWireFrame* menuWireframe;
 
+- (void) configureWithAlbumID: (NSNumber*) albumID;
+
+- (void) closeMenu;
+
 @end

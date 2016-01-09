@@ -7,6 +7,14 @@
 //
 
 #import "NKAlbumVIewController.h"
+#import "NKAudioTrack.h"
+#import "NKAudioTrackCell.h"
+
+@interface NKAlbumVIewController ()
+
+@property (weak, nonatomic) UITableView* tableView;
+
+@end
 
 @implementation NKAlbumVIewController
 
@@ -17,7 +25,63 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor magentaColor];
 }
+
+#pragma mark - Configuration
+
+- (void) configureView {
+    [super configureView];
+    
+    self.view.backgroundColor = [UIColor magentaColor];
+    CGRect tableViewFrame = self.view.bounds;
+    UITableView* tableView = [[UITableView alloc] initWithFrame: tableViewFrame
+                                                          style: UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview: tableView];
+    self.tableView = tableView;
+}
+
+#pragma mark - NKAlbumView
+
+- (void) showEmptyListOfAudioTracks {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void) updateListOfAudioTracks: (NSArray <NKAudioTrack *>*) audioTracks {
+    self.audioTracks = audioTracks;
+    [self reloadData];
+    [self.eventHandler albumWasLoaded];
+}
+
+- (void) reloadData {
+    [self.tableView reloadData];
+}
+
+@end
+
+#pragma mark - UITableViewDataSource
+
+@implementation NKAlbumVIewController (TableViewDataSource)
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.audioTracks.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NKAudioTrackCell* cell = [tableView dequeueReusableCellWithIdentifier: [NKAudioTrackCell reuseIdentifier]];
+    if (!cell) {
+        cell = [NKAudioTrackCell createCell];
+    }
+    NKAudioTrack* track = self.audioTracks[indexPath.row];
+    [cell configureCellWithTrack: track];
+    return cell;
+}
+
+@end
+
+#pragma mark - UITableViewDelegate
+
+@implementation NKAlbumVIewController (TableViewDelegate)
 
 @end

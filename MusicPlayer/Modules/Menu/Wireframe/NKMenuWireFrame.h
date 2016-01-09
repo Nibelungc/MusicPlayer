@@ -28,4 +28,10 @@
 
 - (void) goToLoginModule;
 
+- (void) menuLoadedWithInitialItemID: (NSNumber*) initialAlbumID;
+
+- (void) configureAlbumModuleWithItemID: (NSNumber*) identifier;
+
+- (void) closeMenu;
+
 @end

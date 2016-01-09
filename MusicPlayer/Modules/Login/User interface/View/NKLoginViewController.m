@@ -28,23 +28,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view insertSubview: [self createMotionView] atIndex: 0];
 }
-
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[UIApplication sharedApplication] setStatusBarHidden: YES withAnimation: UIStatusBarAnimationSlide];
+    [self hideApplicationStatusBar: YES];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [[UIApplication sharedApplication] setStatusBarHidden: NO withAnimation: UIStatusBarAnimationSlide];
+    [self hideApplicationStatusBar: NO];
+}
+
+#pragma mark - Private
+
+- (void) hideApplicationStatusBar: (BOOL) hidden {
+    [[UIApplication sharedApplication] setStatusBarHidden: hidden withAnimation: UIStatusBarAnimationSlide];
 }
 
 #pragma mark - Configuration
+
+- (void) configureView {
+    [super configureView];
+    
+    [self.view insertSubview: [self createMotionView] atIndex: 0];
+}
 
 - (BOOL)prefersStatusBarHidden{
     return YES;

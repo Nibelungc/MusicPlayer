@@ -10,15 +10,23 @@
 
 @implementation NSArray (HOM)
 
-- (NSArray*) map: (id(^)(id obj)) block{
+- (NSArray*) map: (id(^)(id obj)) block {
     NSMutableArray* mappedArray = [[NSMutableArray alloc] initWithCapacity: self.count];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         id newObject = block(obj);
-        if (newObject){
-            [mappedArray addObject: newObject];
-        }
+        [mappedArray addObject: newObject];
     }];
     return mappedArray;
+}
+
+- (NSArray*) filter: (BOOL(^)(id obj)) block {
+    NSMutableArray* filteredArray = [[NSMutableArray alloc] initWithCapacity: self.count];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (block(obj)){
+            [filteredArray addObject: obj];
+        }
+    }];
+    return filteredArray;
 }
 
 @end
