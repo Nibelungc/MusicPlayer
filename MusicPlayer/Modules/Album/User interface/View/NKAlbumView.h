@@ -21,4 +21,6 @@
 
 - (void) setModuleTitle: (NSString*) title;
 
+- (void) presentPlayerController: (UIViewController*) playerController;
+
 @end

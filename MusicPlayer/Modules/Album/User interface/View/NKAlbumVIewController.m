@@ -40,6 +40,12 @@
     tableView.dataSource = self;
     [self.view addSubview: tableView];
     self.tableView = tableView;
+    
+    UIBarButtonItem* playerButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                  target:self.eventHandler
+                                                  action:@selector(showPlayer)];
+    self.navigationItem.rightBarButtonItem = playerButton;
 }
 
 #pragma mark - NKAlbumView
@@ -52,6 +58,14 @@
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
+- (void) presentPlayerController: (UIViewController*) playerController {
+    [self presentViewController: playerController
+                       animated: YES
+                     completion: nil];
+}
+
+#pragma mark - Private
+
 - (void) updateListOfAudioTracks: (NSArray <NKAudioTrack *>*) audioTracks {
     self.audioTracks = audioTracks;
     [self reloadData];
@@ -61,8 +75,6 @@
 - (void) reloadData {
     [self.tableView reloadData];
 }
-
-#pragma mark - Private
 
 - (NKAudioTrack*) audioTrackForIndexPath: (NSIndexPath*) indexPath {
     if (indexPath.row >= 0 &&

@@ -23,22 +23,4 @@
 
 @property (strong, nonatomic) NSNumber* albumID;
 
-#pragma mark - NKAlbumModule
-
-- (void) selectAudioTrackWithID: (NSNumber*) trackID;
-
-- (void) deselectAudioTrackWithID: (NSNumber*) trackID;
-
-- (void) configureWithAlbumID: (NSNumber*) albumID;
-
-- (void) albumWasLoaded;
-
-- (void) playAudioTrackWithID: (NSNumber*) trackID;
-
-- (void) stopPlayingAudio;
-
-- (void) playNextAudioTrack;
-
-- (void) playPreviousAudioTrack;
-
 @end

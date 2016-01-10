@@ -18,4 +18,6 @@
 
 - (void) stop;
 
+- (UIViewController*) playerViewController;
+
 @end

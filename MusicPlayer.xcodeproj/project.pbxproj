@@ -667,6 +667,11 @@
 					08A1A0DB1C22734B005B478B = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = GRJ6SLZM32;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

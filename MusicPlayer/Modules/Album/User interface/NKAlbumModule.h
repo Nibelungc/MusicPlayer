@@ -19,6 +19,8 @@
 
 - (void) configureWithAlbumID: (NSNumber*) albumID;
 
+- (void) showPlayer;
+
 - (void) albumWasLoaded;
 
 - (void) playAudioTrackWithID: (NSNumber*) trackID;

@@ -104,6 +104,10 @@
     [self.player stop];
 }
 
+- (void) showPlayer {
+    [self.output presentPlayerController: [self.player playerViewController]];
+}
+
 - (void) playNextAudioTrack {
 
 }
