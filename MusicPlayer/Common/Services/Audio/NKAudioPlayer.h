@@ -8,9 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol NKAudioPlayerDelegate;
+
 @interface NKAudioPlayer : NSObject
 
-- (void) playTrackWithURL: (NSURL*) url;
+@property (strong, nonatomic, nonnull) NSArray <NSURL *>* itemsURLs;
+
+@property (weak, nonatomic, nullable) id<NKAudioPlayerDelegate> delegate;
+
+- (nonnull instancetype)initWithItemsURLs: (nonnull NSArray <NSURL *>*) urls;
+
+- (void) playTrackAtIndex: (NSInteger) index;
+
+- (void) playNext;
+
+- (void) playPrevious;
 
 - (void) play;
 
@@ -18,6 +30,18 @@
 
 - (void) stop;
 
-- (UIViewController*) playerViewController;
+- (BOOL) isPlaying;
+
+- (nullable UIViewController*) playerViewController;
+
+@end
+
+@protocol NKAudioPlayerDelegate <NSObject>
+
+@optional
+
+- (void) trackDidStartPlayingWithIndex: (NSInteger) index;
+
+- (void) trackDidStopPlayingWithIndex: (NSInteger) index;
 
 @end

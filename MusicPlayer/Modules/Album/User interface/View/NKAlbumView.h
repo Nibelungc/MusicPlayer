@@ -23,4 +23,8 @@
 
 - (void) presentPlayerController: (UIViewController*) playerController;
 
+- (void) trackDidStartPlayingWithIndex: (NSInteger) index;
+
+- (void) trackDidStopPlayingWithIndex: (NSInteger) index;
+
 @end

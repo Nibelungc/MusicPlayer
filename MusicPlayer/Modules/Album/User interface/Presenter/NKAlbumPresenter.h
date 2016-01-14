@@ -9,6 +9,7 @@
 #import "NKBasePresenter.h"
 #import "NKAlbumModule.h"
 #import "NKAlbumInteractorIO.h"
+#import "NKAudioPlayer.h"
 
 @protocol NKAlbumView;
 @class NKAlbumWireframe;
@@ -22,5 +23,9 @@
 @property (weak, nonatomic) NKAlbumWireframe* albumWireframe;
 
 @property (strong, nonatomic) NSNumber* albumID;
+
+@end
+
+@interface NKAlbumPresenter (AudioPlayerDelegate) <NKAudioPlayerDelegate>
 
 @end

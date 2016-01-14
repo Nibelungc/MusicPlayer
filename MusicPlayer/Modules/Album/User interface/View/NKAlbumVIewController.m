@@ -42,10 +42,22 @@
     self.tableView = tableView;
     
     UIBarButtonItem* playerButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                  target:self.eventHandler
-                                                  action:@selector(showPlayer)];
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemPlay
+                                                  target: self.eventHandler
+                                                  action: @selector(showPlayer)];
     self.navigationItem.rightBarButtonItem = playerButton;
+    
+    UIBarButtonItem* prevButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFastForward
+                                                  target: self.eventHandler
+                                                  action: @selector(playNextAudioTrack)];
+    
+    UIBarButtonItem* nextButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemRewind
+                                                  target: self.eventHandler
+                                                  action: @selector(playPreviousAudioTrack)];
+    
+    self.navigationItem.leftBarButtonItems = @[nextButton, prevButton];
 }
 
 #pragma mark - NKAlbumView
@@ -63,6 +75,18 @@
                        animated: YES
                      completion: nil];
 }
+
+- (void) trackDidStartPlayingWithIndex: (NSInteger) index {
+    [self.tableView selectRowAtIndexPath: [self indexPathForIndex: index]
+                                animated: YES
+                          scrollPosition: UITableViewScrollPositionNone];
+}
+
+- (void) trackDidStopPlayingWithIndex: (NSInteger) index {
+    [self.tableView deselectRowAtIndexPath: [self indexPathForIndex: index]
+                                  animated: YES];
+}
+
 
 #pragma mark - Private
 
@@ -82,6 +106,10 @@
         return self.audioTracks[indexPath.row];
     }
     return nil;
+}
+
+- (NSIndexPath*) indexPathForIndex: (NSInteger) index {
+    return [NSIndexPath indexPathForRow: index inSection: 0];
 }
 
 @end

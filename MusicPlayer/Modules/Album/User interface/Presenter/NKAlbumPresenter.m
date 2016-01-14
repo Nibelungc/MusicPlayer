@@ -9,7 +9,6 @@
 #import "NKAlbumPresenter.h"
 #import "NKAlbumView.h"
 #import "NKAlbumWireframe.h"
-#import "NKAudioPlayer.h"
 
 #import "NKAudioTrack.h"
 
@@ -30,7 +29,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _player = [[NKAudioPlayer alloc] init];
+        
     }
     return self;
 }
@@ -63,7 +62,11 @@
 
 - (void) selectAudioTrackWithID: (NSNumber*) trackID {
     if (trackID.integerValue == self.playingTrackID.integerValue) {
-        [self stopPlayingAudio];
+        if ([self.player isPlaying]){
+            [self pausePlayingAudio];
+        } else {
+            [self.player play];
+        }
     } else {
         [self playAudioTrackWithID: trackID];
     }
@@ -75,6 +78,12 @@
 
 - (void) albumWasLoaded {
     [self.interactor getTitleForAlbumID: self.albumID];
+    NSArray* tracksUrls = [self.tracks map:^id(NKAudioTrack* track) {
+        return track.url;
+    }];
+    self.player = [[NKAudioPlayer alloc] initWithItemsURLs:tracksUrls];
+    self.player.delegate = self;
+    
     [self.albumWireframe closeMenu];
 }
 
@@ -96,12 +105,19 @@
 
 - (void) playAudioTrackWithID: (NSNumber*) trackID {
     NKAudioTrack* track = [self audioTrackForID: trackID];
-    [self.player playTrackWithURL: track.url];
+    NSInteger index = [self.tracks indexOfObject: track];
+    [self.player playTrackAtIndex:index];
     self.playingTrackID = trackID;
+    
+    [self.output trackDidStartPlayingWithIndex: index];
 }
 
 - (void) stopPlayingAudio {
     [self.player stop];
+}
+
+- (void) pausePlayingAudio {
+    [self.player pause];
 }
 
 - (void) showPlayer {
@@ -109,11 +125,11 @@
 }
 
 - (void) playNextAudioTrack {
-
+    [self.player playNext];
 }
 
 - (void) playPreviousAudioTrack {
-
+    [self.player playPrevious];
 }
 
 #pragma mark - Private
@@ -123,6 +139,20 @@
         return track.identifier.integerValue == identifier.integerValue;
     }];
     return filteredTracks.firstObject;
+}
+
+@end
+
+#pragma mark - NKAudioPlayerDelegate
+
+@implementation NKAlbumPresenter (AudioPlayerDelegate)
+
+- (void) trackDidStartPlayingWithIndex: (NSInteger) index {
+    [self.output trackDidStartPlayingWithIndex: index];
+}
+
+- (void) trackDidStopPlayingWithIndex: (NSInteger) index {
+    [self.output trackDidStopPlayingWithIndex: index];
 }
 
 @end
