@@ -9,10 +9,13 @@
 #import "NKAlbumVIewController.h"
 #import "NKAudioTrack.h"
 #import "NKAudioTrackCell.h"
+#import "NKPlayerView.h"
 
-@interface NKAlbumVIewController ()
+@interface NKAlbumVIewController () <NKPlayerViewDelegate>
 
 @property (weak, nonatomic) UITableView* tableView;
+
+@property (weak, nonatomic) NKPlayerView* playerView;
 
 @end
 
@@ -58,6 +61,15 @@
                                                   action: @selector(playPreviousAudioTrack)];
     
     self.navigationItem.leftBarButtonItems = @[nextButton, prevButton];
+    
+    CGFloat playerViewHeight = 88.0;
+    NKPlayerView* playerView = [[NKPlayerView alloc] initWithHeight: playerViewHeight];
+    playerView.backgroundColor = [UIColor brownColor];
+    [self.view addSubview: playerView];
+    [playerView.playButton addTarget: self.eventHandler action: @selector(stopPlayingAudio) forControlEvents: UIControlEventTouchUpInside];
+    playerView.delegate = self;
+    
+    self.playerView = playerView;
 }
 
 #pragma mark - NKAlbumView
@@ -77,9 +89,11 @@
 }
 
 - (void) trackDidStartPlayingWithIndex: (NSInteger) index {
+    [self.playerView showAnimated: YES];
     [self.tableView selectRowAtIndexPath: [self indexPathForIndex: index]
                                 animated: YES
                           scrollPosition: UITableViewScrollPositionNone];
+    
 }
 
 - (void) trackDidStopPlayingWithIndex: (NSInteger) index {
@@ -110,6 +124,22 @@
 
 - (NSIndexPath*) indexPathForIndex: (NSInteger) index {
     return [NSIndexPath indexPathForRow: index inSection: 0];
+}
+
+#pragma mark - NKPlayerViewDelegate
+
+- (void) playerViewDidShow: (nonnull NKPlayerView*) playerView animated: (BOOL) animated {
+    UIEdgeInsets currentInset = self.tableView.contentInset;
+    currentInset.bottom = CGRectGetHeight(playerView.bounds);
+    self.tableView.contentInset = currentInset;
+    self.tableView.scrollIndicatorInsets = currentInset;
+}
+
+- (void) playerViewDidHide: (nonnull NKPlayerView*) playerView animated: (BOOL) animated {
+    UIEdgeInsets currentInset = self.tableView.contentInset;
+    currentInset.bottom = 0.0;
+    self.tableView.contentInset = currentInset;
+    self.tableView.scrollIndicatorInsets = currentInset;
 }
 
 @end

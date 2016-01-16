@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080807611C4A47D20068A3EF /* NKPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 080807601C4A47D20068A3EF /* NKPlayerView.m */; };
 		08129F0A1C3D12FF0015CC31 /* NKAudioAlbum+VKService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08129F091C3D12FF0015CC31 /* NKAudioAlbum+VKService.m */; };
 		08129F0D1C3D3CDD0015CC31 /* UIImageView+NKExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 08129F0C1C3D3CDD0015CC31 /* UIImageView+NKExtended.m */; };
 		08129F111C3D407A0015CC31 /* NKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 08129F101C3D407A0015CC31 /* NKUtils.m */; };
@@ -54,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0808075F1C4A47D20068A3EF /* NKPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKPlayerView.h; sourceTree = "<group>"; };
+		080807601C4A47D20068A3EF /* NKPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKPlayerView.m; sourceTree = "<group>"; };
 		08129F081C3D12FF0015CC31 /* NKAudioAlbum+VKService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NKAudioAlbum+VKService.h"; sourceTree = "<group>"; };
 		08129F091C3D12FF0015CC31 /* NKAudioAlbum+VKService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NKAudioAlbum+VKService.m"; sourceTree = "<group>"; };
 		08129F0B1C3D3CDD0015CC31 /* UIImageView+NKExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+NKExtended.h"; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 				08CEF5401C3FF9CE00C10747 /* NKAudioTrackCell.h */,
 				08CEF5411C3FF9CE00C10747 /* NKAudioTrackCell.m */,
 				08CEF53C1C3E87A300C10747 /* NKAlbumView.h */,
+				0808075F1C4A47D20068A3EF /* NKPlayerView.h */,
+				080807601C4A47D20068A3EF /* NKPlayerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -770,6 +775,7 @@
 				08CEF53B1C3E877000C10747 /* NKAlbumPresenter.m in Sources */,
 				08CEF5451C4117D400C10747 /* NKAudioTrack+VKService.m in Sources */,
 				089621691C41691300FA6EC2 /* NKAudioPlayer.m in Sources */,
+				080807611C4A47D20068A3EF /* NKPlayerView.m in Sources */,
 				08A1A19C1C22A8D3005B478B /* NKConstants.m in Sources */,
 				083DB0DD1C2407EB0043B214 /* NSArray+HOM.m in Sources */,
 				08ADEE7A1C22FCEE003542EB /* NKThirdPartiesConfigurator.m in Sources */,

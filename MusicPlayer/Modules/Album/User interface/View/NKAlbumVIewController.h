@@ -11,6 +11,7 @@
 #import "NKAlbumView.h"
 #import "NKAlbumModule.h"
 
+
 @interface NKAlbumVIewController : NKBaseViewController <NKAlbumView>
 
 @property (weak, nonatomic) id<NKAlbumModule> eventHandler;
