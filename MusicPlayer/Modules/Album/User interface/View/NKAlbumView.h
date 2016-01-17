@@ -10,6 +10,7 @@
 #import "NKView.h"
 
 @class NKAudioTrack;
+@class NKPlayerView;
 
 @protocol NKAlbumView <NKView>
 
@@ -21,7 +22,7 @@
 
 - (void) setModuleTitle: (NSString*) title;
 
-- (void) presentPlayerController: (UIViewController*) playerController;
+- (void) presentPlayerView: (NKPlayerView*) playerView;
 
 - (void) trackDidStartPlayingWithIndex: (NSInteger) index;
 

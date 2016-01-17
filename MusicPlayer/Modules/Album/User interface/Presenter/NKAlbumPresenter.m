@@ -62,18 +62,10 @@
 
 - (void) selectAudioTrackWithID: (NSNumber*) trackID {
     if (trackID.integerValue == self.playingTrackID.integerValue) {
-        if ([self.player isPlaying]){
-            [self pausePlayingAudio];
-        } else {
-            [self.player play];
-        }
+        [self playOrPauseAudio];
     } else {
         [self playAudioTrackWithID: trackID];
     }
-}
-
-- (void) deselectAudioTrackWithID: (NSNumber*) trackID {
-    [self playAudioTrackWithID: trackID];
 }
 
 - (void) albumWasLoaded {
@@ -109,19 +101,18 @@
     [self.player playTrackAtIndex:index];
     self.playingTrackID = trackID;
     
-    [self.output trackDidStartPlayingWithIndex: index];
 }
 
-- (void) stopPlayingAudio {
-    [self.player stop];
+- (void) playOrPauseAudio {
+    if ([self.player isPlaying]){
+        [self.player pause];
+    } else {
+        [self.player play];
+    }
 }
 
-- (void) pausePlayingAudio {
-    [self.player pause];
-}
-
-- (void) showPlayer {
-    [self.output presentPlayerController: [self.player playerViewController]];
+- (void) needToAddPlayerWithHeight: (CGFloat) height {
+    [self.output presentPlayerView: [self.player playerViewWithHeight: height]];
 }
 
 - (void) playNextAudioTrack {
@@ -153,6 +144,10 @@
 
 - (void) trackDidStopPlayingWithIndex: (NSInteger) index {
     [self.output trackDidStopPlayingWithIndex: index];
+}
+
+- (void) audioDidPause {
+    
 }
 
 @end

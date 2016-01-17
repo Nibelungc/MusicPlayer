@@ -45,6 +45,10 @@
 		08ADEE941C23C26A003542EB /* NKLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE931C23C26A003542EB /* NKLoginInteractor.m */; };
 		08ADEE981C23D58E003542EB /* NKAudioAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE971C23D58E003542EB /* NKAudioAlbum.m */; };
 		08ADEE9B1C23D989003542EB /* VKontakteAudioService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08ADEE9A1C23D989003542EB /* VKontakteAudioService.m */; };
+		08CB5D4F1C4A88AB0002550A /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08CB5D4C1C4A88AB0002550A /* next@2x.png */; };
+		08CB5D501C4A88AB0002550A /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08CB5D4D1C4A88AB0002550A /* play@2x.png */; };
+		08CB5D511C4A88AB0002550A /* previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08CB5D4E1C4A88AB0002550A /* previous@2x.png */; };
+		08CB5D531C4A95810002550A /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08CB5D521C4A95810002550A /* pause@2x.png */; };
 		08CEF5331C3E848000C10747 /* NKAlbumWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CEF5321C3E848000C10747 /* NKAlbumWireframe.m */; };
 		08CEF5371C3E84DF00C10747 /* NKAlbumInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CEF5361C3E84DF00C10747 /* NKAlbumInteractor.m */; };
 		08CEF53B1C3E877000C10747 /* NKAlbumPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CEF53A1C3E877000C10747 /* NKAlbumPresenter.m */; };
@@ -55,8 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0808075F1C4A47D20068A3EF /* NKPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKPlayerView.h; sourceTree = "<group>"; };
-		080807601C4A47D20068A3EF /* NKPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKPlayerView.m; sourceTree = "<group>"; };
+		0808075F1C4A47D20068A3EF /* NKPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKPlayerView.h; path = "../../../Modules/Album/User interface/View/NKPlayerView.h"; sourceTree = "<group>"; };
+		080807601C4A47D20068A3EF /* NKPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKPlayerView.m; path = "../../../Modules/Album/User interface/View/NKPlayerView.m"; sourceTree = "<group>"; };
 		08129F081C3D12FF0015CC31 /* NKAudioAlbum+VKService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NKAudioAlbum+VKService.h"; sourceTree = "<group>"; };
 		08129F091C3D12FF0015CC31 /* NKAudioAlbum+VKService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NKAudioAlbum+VKService.m"; sourceTree = "<group>"; };
 		08129F0B1C3D3CDD0015CC31 /* UIImageView+NKExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+NKExtended.h"; sourceTree = "<group>"; };
@@ -142,6 +146,10 @@
 		08ADEE971C23D58E003542EB /* NKAudioAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKAudioAlbum.m; sourceTree = "<group>"; };
 		08ADEE991C23D989003542EB /* VKontakteAudioService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VKontakteAudioService.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		08ADEE9A1C23D989003542EB /* VKontakteAudioService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VKontakteAudioService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		08CB5D4C1C4A88AB0002550A /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
+		08CB5D4D1C4A88AB0002550A /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		08CB5D4E1C4A88AB0002550A /* previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previous@2x.png"; sourceTree = "<group>"; };
+		08CB5D521C4A95810002550A /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		08CEF5311C3E848000C10747 /* NKAlbumWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKAlbumWireframe.h; sourceTree = "<group>"; };
 		08CEF5321C3E848000C10747 /* NKAlbumWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKAlbumWireframe.m; sourceTree = "<group>"; };
 		08CEF5341C3E84CD00C10747 /* NKAlbumInteractorIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKAlbumInteractorIO.h; sourceTree = "<group>"; };
@@ -215,6 +223,11 @@
 		083DB0E51C2414820043B214 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				08CB5D521C4A95810002550A /* pause@2x.png */,
+				08CB5D4C1C4A88AB0002550A /* next@2x.png */,
+				08CB5D4D1C4A88AB0002550A /* play@2x.png */,
+				08CB5D4E1C4A88AB0002550A /* previous@2x.png */,
+				08CB5D451C4A88340002550A /* Icons */,
 				083DB0E61C2414920043B214 /* music_background@2x.jpg */,
 			);
 			path = Images;
@@ -324,6 +337,8 @@
 			children = (
 				089621671C41691300FA6EC2 /* NKAudioPlayer.h */,
 				089621681C41691300FA6EC2 /* NKAudioPlayer.m */,
+				0808075F1C4A47D20068A3EF /* NKPlayerView.h */,
+				080807601C4A47D20068A3EF /* NKPlayerView.m */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -558,6 +573,13 @@
 			path = "Base Classes";
 			sourceTree = "<group>";
 		};
+		08CB5D451C4A88340002550A /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		08CEF52A1C3E825000C10747 /* Album */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,8 +627,6 @@
 				08CEF5401C3FF9CE00C10747 /* NKAudioTrackCell.h */,
 				08CEF5411C3FF9CE00C10747 /* NKAudioTrackCell.m */,
 				08CEF53C1C3E87A300C10747 /* NKAlbumView.h */,
-				0808075F1C4A47D20068A3EF /* NKPlayerView.h */,
-				080807601C4A47D20068A3EF /* NKPlayerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -705,8 +725,12 @@
 			files = (
 				08A1A0EF1C22734B005B478B /* LaunchScreen.storyboard in Resources */,
 				08A1A0EC1C22734B005B478B /* Assets.xcassets in Resources */,
+				08CB5D511C4A88AB0002550A /* previous@2x.png in Resources */,
+				08CB5D501C4A88AB0002550A /* play@2x.png in Resources */,
 				08A1A0EA1C22734B005B478B /* Main.storyboard in Resources */,
+				08CB5D4F1C4A88AB0002550A /* next@2x.png in Resources */,
 				083DB0E71C2414920043B214 /* music_background@2x.jpg in Resources */,
+				08CB5D531C4A95810002550A /* pause@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

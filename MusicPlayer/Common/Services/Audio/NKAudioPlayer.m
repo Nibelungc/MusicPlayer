@@ -11,9 +11,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "NKPLayerView.h"
 
 static CGFloat kAudioPlayerPlayingRate = 1.0;
 static CGFloat kAudioPlayerStoppedRate = 0.0;
+
+static NSString* const kRateKey = @"rate";
 
 @interface NKAudioPlayer ()
 
@@ -72,16 +75,24 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
 
 - (void) play {
     [self.player play];
+    
+    if ([self.playbackDelegate respondsToSelector: @selector(audioDidStartPlaying)]){
+        [self.playbackDelegate audioDidStartPlaying];
+    }
 }
 
 - (void) pause {
     [self.player pause];
+    
+    if ([self.playbackDelegate respondsToSelector: @selector(audioDidPausePlaying)]){
+        [self.playbackDelegate audioDidPausePlaying];
+    }
 }
 
 - (void) stop {
     [self pause];
-    self.player = nil;
-    
+    [self destroyCurrentPlayer];
+   
     if ([self.delegate respondsToSelector:@selector(trackDidStopPlayingWithIndex:)]){
         [self.delegate trackDidStopPlayingWithIndex: self.currentTrackIndex];
     }
@@ -95,17 +106,30 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
 
 - (void) playTrackWithURL: (NSURL*) url {
     [self stop];
-    self.player = [[AVPlayer alloc] initWithURL: url];
-    self.playerController = [[AVPlayerViewController alloc] init];
-    self.playerController.player = self.player;
+    self.player = [self createPlayerWithUrl: url];
     [self play];
+}
+
+- (AVPlayer*) createPlayerWithUrl: (NSURL*) url {
+    AVPlayer* player = [[AVPlayer alloc] initWithURL: url];
+    self.playerController = [[AVPlayerViewController alloc] init];
+    self.playerController.player = player;
+    
+    
+    
+    return player;
+}
+
+- (void) destroyCurrentPlayer {
+    self.player = nil;
 }
 
 #pragma mark - Presentation layer
 
-- (UIViewController*) playerViewController {
-    return self.playerController;
+- (nullable NKPlayerView*) playerViewWithHeight: (CGFloat) height {
+    return [[NKPlayerView alloc] initWithHeight: height andPlayer: self];
 }
+
 
 #pragma mark - Events
 
@@ -124,6 +148,14 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
 
 - (void) stopReceivingRemoteControlEvents {
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+}
+
+#pragma mark - Observarion
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString: kRateKey]){
+        NSLog(@"Rate changed: %2.f", self.player.rate);
+    }
 }
 
 @end

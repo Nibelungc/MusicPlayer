@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol NKPlayerViewDelegate;
+@class NKAudioPlayer;
 
 @interface NKPlayerView : UIView
 
@@ -22,7 +23,7 @@
 
 @property (weak, nonatomic, nullable) id <NKPlayerViewDelegate> delegate;
 
-- (nonnull instancetype) initWithHeight: (CGFloat) height;
+- (nonnull instancetype) initWithHeight: (CGFloat) height andPlayer: (nullable NKAudioPlayer*) player;
 
 - (void) showAnimated: (BOOL) animated;
 

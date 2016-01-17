@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @protocol NKAudioPlayerDelegate;
+@protocol NKAudioPlayerPlaybackDelegate;
+@class NKPlayerView;
 
 @interface NKAudioPlayer : NSObject
 
 @property (strong, nonatomic, nonnull) NSArray <NSURL *>* itemsURLs;
 
 @property (weak, nonatomic, nullable) id<NKAudioPlayerDelegate> delegate;
+
+@property (weak, nonatomic, nullable) id<NKAudioPlayerPlaybackDelegate> playbackDelegate;
 
 - (nonnull instancetype)initWithItemsURLs: (nonnull NSArray <NSURL *>*) urls;
 
@@ -32,7 +36,7 @@
 
 - (BOOL) isPlaying;
 
-- (nullable UIViewController*) playerViewController;
+- (nullable NKPlayerView*) playerViewWithHeight: (CGFloat) height;
 
 @end
 
@@ -43,5 +47,13 @@
 - (void) trackDidStartPlayingWithIndex: (NSInteger) index;
 
 - (void) trackDidStopPlayingWithIndex: (NSInteger) index;
+
+@end
+
+@protocol NKAudioPlayerPlaybackDelegate <NSObject>
+
+- (void) audioDidPausePlaying;
+
+- (void) audioDidStartPlaying;
 
 @end

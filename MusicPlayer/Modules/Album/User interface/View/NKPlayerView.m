@@ -7,22 +7,29 @@
 //
 
 #import "NKPlayerView.h"
+#import "NKAudioPlayer.h"
 
 CGFloat const kHideAnimationDuration = 0.3;
 
-@interface NKPlayerView ()
+@interface NKPlayerView () <NKAudioPlayerPlaybackDelegate>
 
 @property (assign, nonatomic) CGFloat playerHeight;
 
 @property (weak, nonatomic) NSLayoutConstraint* bottomConstraint;
 
+@property (weak, nonatomic) NKAudioPlayer* player;
+
 @end
 
 @implementation NKPlayerView
 
-- (instancetype) initWithHeight: (CGFloat) height {
+#pragma mark - Initialization
+
+- (instancetype) initWithHeight: (CGFloat) height andPlayer: (NKAudioPlayer*) player {
     if (self = [super init]){
         _playerHeight = height;
+        _player = player;
+        _player.playbackDelegate = self;
         [self createPlayerControlsSubviews];
     }
     return self;
@@ -44,23 +51,119 @@ CGFloat const kHideAnimationDuration = 0.3;
     }
 }
 
+- (void)didMoveToSuperview {
+    [self addSelfConstraints];
+}
+
+- (void) changeBottomConstraintConstantValue: (CGFloat) value animated: (BOOL) animated {
+    self.bottomConstraint.constant = value;
+    if (animated){
+        [UIView animateWithDuration: kHideAnimationDuration
+                         animations:^{
+                             [self layoutIfNeeded];
+                         }];
+    } else {
+        [self layoutIfNeeded];
+    }
+}
+
 #pragma mark - Configure view
 
 - (void) createPlayerControlsSubviews {
     CGSize buttonSize = CGSizeMake(44.0, 44.0);
     
+    /** Play button */
     UIButton* playButton = [UIButton buttonWithType: UIButtonTypeCustom];
     CGSize playButtonSize = buttonSize;
-    [playButton setTitle: @"Play" forState: UIControlStateNormal];
+    UIImage* playImage = [UIImage imageNamed:@"play"];
+    UIImage* pauseImage = [UIImage imageNamed:@"pause"];
+    [playButton setImage: playImage forState: UIControlStateNormal];
+    [playButton setImage: pauseImage forState: UIControlStateSelected];
     [self addSubview: playButton];
     playButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSizeContstraints: playButtonSize forSubview: playButton];
     [self addCenterConstraintsForView: playButton];
     
     self.playButton = playButton;
+    
+    /** Next button */
+    UIButton* nextButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    CGSize nextButtonSize = buttonSize;
+    UIImage* nextImage = [UIImage imageNamed:@"next"];
+    [nextButton setImage: nextImage forState: UIControlStateNormal];
+    [self addSubview: nextButton];
+    
+    self.nextButton = nextButton;
+    [self addNextButtonConstraintsWithSize: nextButtonSize];
+    
+    /** Previous button */
+    UIButton* previousButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    CGSize previousButtonSize = buttonSize;
+    UIImage* previousImage = [UIImage imageNamed:@"previous"];
+    [previousButton setImage: previousImage forState: UIControlStateNormal];
+    [self addSubview: previousButton];
+    
+    self.prevButton = previousButton;
+    [self addPreviousButtonConstraintsWithSize: previousButtonSize];
+}
+
+#pragma mark - NKAudioPlayerPlaybackDelegate
+
+- (void) audioDidPausePlaying {
+    [self.playButton setSelected: NO];
+}
+
+- (void) audioDidStartPlaying {
+    [self.playButton setSelected: YES];
 }
 
 #pragma mark - Autolayout
+
+- (void) addNextButtonConstraintsWithSize: (CGSize) nextButtonSize {
+    self.nextButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSizeContstraints: nextButtonSize forSubview: self.nextButton];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.nextButton
+                                  attribute: NSLayoutAttributeLeading
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.playButton
+                                  attribute: NSLayoutAttributeTrailing
+                                 multiplier: 1.0
+                                   constant: 8.0]];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.playButton
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.nextButton
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+}
+
+- (void) addPreviousButtonConstraintsWithSize: (CGSize) previousButtonSize {
+    self.prevButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSizeContstraints: previousButtonSize forSubview: self.prevButton];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.playButton
+                                  attribute: NSLayoutAttributeLeading
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.prevButton
+                                  attribute: NSLayoutAttributeTrailing
+                                 multiplier: 1.0
+                                   constant: 8.0]];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.playButton
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.prevButton
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+}
 
 - (void) addSelfConstraints {
     self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -125,20 +228,6 @@ CGFloat const kHideAnimationDuration = 0.3;
                                    constant: 0.0]];
 }
 
-- (void)didMoveToSuperview {
-    [self addSelfConstraints];
-}
 
-- (void) changeBottomConstraintConstantValue: (CGFloat) value animated: (BOOL) animated {
-    self.bottomConstraint.constant = value;
-    if (animated){
-        [UIView animateWithDuration: kHideAnimationDuration
-                         animations:^{
-                             [self layoutIfNeeded];
-                         }];
-    } else {
-        [self layoutIfNeeded];
-    }
-}
 
 @end
