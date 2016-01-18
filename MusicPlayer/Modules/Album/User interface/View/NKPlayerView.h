@@ -13,13 +13,17 @@
 
 @interface NKPlayerView : UIView
 
+@property (weak, nonatomic, nullable) UILabel* progressLabel;
+
+@property (weak, nonatomic, nullable) UILabel* durationLabel;
+
 @property (weak, nonatomic, nullable) UIButton* playButton;
 
 @property (weak, nonatomic, nullable) UIButton* nextButton;
 
 @property (weak, nonatomic, nullable) UIButton* prevButton;
 
-@property (weak, nonatomic, nullable) UISlider* progressBar;
+@property (weak, nonatomic, nullable) UIProgressView* progressBar;
 
 @property (weak, nonatomic, nullable) id <NKPlayerViewDelegate> delegate;
 

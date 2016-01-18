@@ -52,8 +52,12 @@
 
 @protocol NKAudioPlayerPlaybackDelegate <NSObject>
 
+@optional
+
 - (void) audioDidPausePlaying;
 
 - (void) audioDidStartPlaying;
+
+- (void) audioProgressDidChangeTo: (NSTimeInterval) time withDuration: (NSTimeInterval) duration;
 
 @end

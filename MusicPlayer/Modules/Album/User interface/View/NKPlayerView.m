@@ -10,6 +10,8 @@
 #import "NKAudioPlayer.h"
 
 CGFloat const kHideAnimationDuration = 0.3;
+CGFloat const kSpaceBetweenButtonsX = 25.0;
+NSString* const kTimeLabelPlaceholder = @"--:--:--";
 
 @interface NKPlayerView () <NKAudioPlayerPlaybackDelegate>
 
@@ -71,6 +73,34 @@ CGFloat const kHideAnimationDuration = 0.3;
 
 - (void) createPlayerControlsSubviews {
     CGSize buttonSize = CGSizeMake(44.0, 44.0);
+    CGFloat labelWidth = 44.0;
+    
+    /** Progress label */
+    UILabel* progressLabel = [[UILabel alloc] init];
+    progressLabel.adjustsFontSizeToFitWidth = YES;
+    progressLabel.text = kTimeLabelPlaceholder;
+    progressLabel.textAlignment = NSTextAlignmentRight;
+    [self addSubview: progressLabel];
+    
+    self.progressLabel = progressLabel;
+    [self addProgressLabelConstraintsWithWidth: labelWidth];
+    
+    /** Duration label */
+    UILabel* durationLabel = [[UILabel alloc] init];
+    durationLabel.adjustsFontSizeToFitWidth = YES;
+    durationLabel.text = kTimeLabelPlaceholder;
+    progressLabel.textAlignment = NSTextAlignmentRight;
+    [self addSubview: durationLabel];
+    
+    self.durationLabel = durationLabel;
+    [self addDurationLabelConstraintsWithWidth: labelWidth];
+    
+    /** Progress slider */
+    UIProgressView* progressView = [[UIProgressView alloc] init];
+    [self addSubview: progressView];
+    
+    self.progressBar = progressView;
+    [self addProgressBarConstraints];
     
     /** Play button */
     UIButton* playButton = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -80,11 +110,9 @@ CGFloat const kHideAnimationDuration = 0.3;
     [playButton setImage: playImage forState: UIControlStateNormal];
     [playButton setImage: pauseImage forState: UIControlStateSelected];
     [self addSubview: playButton];
-    playButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSizeContstraints: playButtonSize forSubview: playButton];
-    [self addCenterConstraintsForView: playButton];
     
     self.playButton = playButton;
+    [self addPlayButtonConstraintsWithSize: playButtonSize];
     
     /** Next button */
     UIButton* nextButton = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -105,6 +133,17 @@ CGFloat const kHideAnimationDuration = 0.3;
     
     self.prevButton = previousButton;
     [self addPreviousButtonConstraintsWithSize: previousButtonSize];
+    
+    
+}
+
+- (NSString*) stringFromTimeInterval: (NSTimeInterval) time {
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+    NSDate* date = [NSDate dateWithTimeIntervalSinceReferenceDate: time];
+    
+    return [formatter stringFromDate: date];
 }
 
 #pragma mark - NKAudioPlayerPlaybackDelegate
@@ -117,7 +156,97 @@ CGFloat const kHideAnimationDuration = 0.3;
     [self.playButton setSelected: YES];
 }
 
+- (void) audioProgressDidChangeTo: (NSTimeInterval) time withDuration: (NSTimeInterval) duration {
+    CGFloat progress = time/duration;
+    self.progressBar.progress = progress;
+    self.progressLabel.text = [self stringFromTimeInterval: time];
+    self.durationLabel.text = [NSString stringWithFormat:@"-%@", [self stringFromTimeInterval: duration-time]];
+}
+
 #pragma mark - Autolayout
+
+- (void) addProgressLabelConstraintsWithWidth: (CGFloat) labelWidth{
+    self.progressLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSString* hFormat = @"H:|-[_progressLabel(==labelWidth)]";
+    NSString* vFormat = @"V:|-[_progressLabel]";
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: hFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: @{@"labelWidth": @(labelWidth)}
+                                               views: NSDictionaryOfVariableBindings(_progressLabel)]];
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: vFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(_progressLabel)]];
+}
+
+- (void) addDurationLabelConstraintsWithWidth: (CGFloat) labelWidth {
+    self.durationLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSString* hFormat = @"H:[_durationLabel(==labelWidth)]-|";
+    NSString* vFormat = @"V:|-[_durationLabel]";
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: hFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: @{@"labelWidth": @(labelWidth)}
+                                               views: NSDictionaryOfVariableBindings(_durationLabel)]];
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: vFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(_durationLabel)]];
+}
+
+- (void) addPlayButtonConstraintsWithSize: (CGSize) playButtonSize{
+    CGFloat playButtonTopPadding = kDefaultPadding;
+    self.playButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSizeContstraints: playButtonSize forSubview: self.playButton];
+    [self addCenterConstraintsForView: self.playButton withAttribute: NSLayoutAttributeCenterX];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.progressBar
+                                  attribute: NSLayoutAttributeBottom
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.playButton
+                                  attribute: NSLayoutAttributeTop
+                                 multiplier: 1.0
+                                   constant: -playButtonTopPadding]];
+}
+
+- (void) addProgressBarConstraints {
+    CGFloat topPadding = kDefaultPadding;
+    self.progressBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSString* hFormat = @"H:[_progressLabel]-[_progressBar]-[_durationLabel]";
+    NSString* vFormat = @"V:[_progressBar(==topPadding)]";
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: hFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(_progressBar, _progressLabel, _durationLabel)]];
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: vFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: @{@"topPadding": @(topPadding)}
+                                               views: NSDictionaryOfVariableBindings(_progressBar)]];
+
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.progressLabel
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.progressBar
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: -2.0]];
+}
 
 - (void) addNextButtonConstraintsWithSize: (CGSize) nextButtonSize {
     self.nextButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -130,7 +259,7 @@ CGFloat const kHideAnimationDuration = 0.3;
                                      toItem: self.playButton
                                   attribute: NSLayoutAttributeTrailing
                                  multiplier: 1.0
-                                   constant: 8.0]];
+                                   constant: kSpaceBetweenButtonsX]];
     
     [self addConstraint:
      [NSLayoutConstraint constraintWithItem: self.playButton
@@ -153,7 +282,7 @@ CGFloat const kHideAnimationDuration = 0.3;
                                      toItem: self.prevButton
                                   attribute: NSLayoutAttributeTrailing
                                  multiplier: 1.0
-                                   constant: 8.0]];
+                                   constant: kSpaceBetweenButtonsX]];
     
     [self addConstraint:
      [NSLayoutConstraint constraintWithItem: self.playButton

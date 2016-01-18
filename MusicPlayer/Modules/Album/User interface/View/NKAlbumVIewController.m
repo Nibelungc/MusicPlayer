@@ -11,7 +11,7 @@
 #import "NKAudioTrackCell.h"
 #import "NKPlayerView.h"
 
-CGFloat const kPlayerViewHeight = 88.0;
+CGFloat const kPlayerViewHeight = 110.0;
 
 @interface NKAlbumVIewController () <NKPlayerViewDelegate>
 

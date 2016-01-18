@@ -16,8 +16,6 @@
 static CGFloat kAudioPlayerPlayingRate = 1.0;
 static CGFloat kAudioPlayerStoppedRate = 0.0;
 
-static NSString* const kRateKey = @"rate";
-
 @interface NKAudioPlayer ()
 
 @property (strong, nonatomic, nullable) AVPlayer* player;
@@ -25,6 +23,8 @@ static NSString* const kRateKey = @"rate";
 @property (strong, nonatomic) AVPlayerViewController* playerController;
 
 @property (nonatomic) NSInteger currentTrackIndex;
+
+@property (strong, nonatomic) id timeObserver;
 
 @end
 
@@ -115,13 +115,22 @@ static NSString* const kRateKey = @"rate";
     self.playerController = [[AVPlayerViewController alloc] init];
     self.playerController.player = player;
     
-    
+    @weakify(self)
+    CMTime cmtime = CMTimeMake(1, 10);
+    self.timeObserver = [player addPeriodicTimeObserverForInterval: cmtime
+                                         queue: NULL
+                                    usingBlock:^(CMTime time) {
+                                        @strongify(self)
+                                        [self audioProgressDidChangeTo: time];
+                                    }];
     
     return player;
 }
 
 - (void) destroyCurrentPlayer {
+    [self.player removeTimeObserver: self.timeObserver];
     self.player = nil;
+    self.timeObserver = nil;
 }
 
 #pragma mark - Presentation layer
@@ -133,6 +142,13 @@ static NSString* const kRateKey = @"rate";
 
 #pragma mark - Events
 
+- (void) audioProgressDidChangeTo: (CMTime) time {
+    NSTimeInterval duration = CMTimeGetSeconds(self.player.currentItem.duration);
+    NSTimeInterval progress = CMTimeGetSeconds(time);
+    if ([self.playbackDelegate respondsToSelector: @selector(audioProgressDidChangeTo:withDuration:)]){
+        [self.playbackDelegate audioProgressDidChangeTo: progress withDuration: duration];
+    }
+}
 
 #pragma mark - Remote control
 
@@ -153,9 +169,7 @@ static NSString* const kRateKey = @"rate";
 #pragma mark - Observarion
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString: kRateKey]){
-        NSLog(@"Rate changed: %2.f", self.player.rate);
-    }
+
 }
 
 @end
