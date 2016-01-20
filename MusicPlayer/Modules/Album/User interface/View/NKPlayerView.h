@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NKAudioPlayer.h"
 
 @protocol NKPlayerViewDelegate;
 @class NKAudioPlayer;
 
-@interface NKPlayerView : UIView
+@interface NKPlayerView : UIView <NKAudioPlayerPlaybackDelegate>
 
 @property (weak, nonatomic, nullable) UILabel* progressLabel;
 
@@ -24,6 +25,8 @@
 @property (weak, nonatomic, nullable) UIButton* prevButton;
 
 @property (weak, nonatomic, nullable) UIProgressView* progressBar;
+
+@property (weak, nonatomic, nullable) UILabel* trackTitleLabel;
 
 @property (weak, nonatomic, nullable) id <NKPlayerViewDelegate> delegate;
 

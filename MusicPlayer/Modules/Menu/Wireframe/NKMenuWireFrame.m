@@ -74,7 +74,7 @@
 - (MMDrawerController*) drawerControllerWithCenterVC: (UIViewController*) centerVC andLeftVC: (UIViewController*) leftVC {
     MMDrawerController* drawerController = [[MMDrawerController alloc] initWithCenterViewController: centerVC
                                                                            leftDrawerViewController: leftVC];
-    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
     [drawerController setCloseDrawerGestureModeMask: MMCloseDrawerGestureModeAll];
     drawerController.shouldStretchDrawer = NO;
     [drawerController setDrawerVisualStateBlock:[MMDrawerVisualState slideAndScaleVisualStateBlock]];

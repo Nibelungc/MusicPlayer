@@ -9,17 +9,22 @@
 #import "NKPlayerView.h"
 #import "NKAudioPlayer.h"
 
+#import <MediaPlayer/MPVolumeView.h>
+#import <MarqueeLabel/MarqueeLabel.h>
+
 CGFloat const kHideAnimationDuration = 0.3;
 CGFloat const kSpaceBetweenButtonsX = 25.0;
 NSString* const kTimeLabelPlaceholder = @"--:--:--";
 
-@interface NKPlayerView () <NKAudioPlayerPlaybackDelegate>
+@interface NKPlayerView ()
 
 @property (assign, nonatomic) CGFloat playerHeight;
 
 @property (weak, nonatomic) NSLayoutConstraint* bottomConstraint;
 
 @property (weak, nonatomic) NKAudioPlayer* player;
+
+@property (weak, nonatomic) MPVolumeView* volumeView;
 
 @end
 
@@ -102,6 +107,15 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     self.progressBar = progressView;
     [self addProgressBarConstraints];
     
+    /** Track title label */
+    MarqueeLabel* titleLabel = [[MarqueeLabel alloc] initWithFrame: CGRectZero];
+    titleLabel.fadeLength = kDefaultPadding * 2;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview: titleLabel];
+    
+    self.trackTitleLabel = titleLabel;
+    [self trackTitleLabelAddContstraints];
+    
     /** Play button */
     UIButton* playButton = [UIButton buttonWithType: UIButtonTypeCustom];
     CGSize playButtonSize = buttonSize;
@@ -134,12 +148,24 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     self.prevButton = previousButton;
     [self addPreviousButtonConstraintsWithSize: previousButtonSize];
     
+    /** Volume view */
+    UIImage* volumeThumbImage = [UIImage imageNamed:@"github_1"];
+    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
+    [volumeView setVolumeThumbImage: volumeThumbImage forState: UIControlStateNormal];
+    [self addSubview: volumeView];
     
+    self.volumeView = volumeView;
+    [self addVolumeViewConstraints];
 }
 
 - (NSString*) stringFromTimeInterval: (NSTimeInterval) time {
+    NSInteger maxTime = 24 * 60 * 60;
+    if (time >= maxTime){
+        return @"> 24 ч.";
+    }
+    NSString* format = time > 60 * 60 ? @"HH:mm:ss" : @"mm:ss";
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm:ss"];
+    [formatter setDateFormat: format];
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
     NSDate* date = [NSDate dateWithTimeIntervalSinceReferenceDate: time];
     
@@ -159,11 +185,109 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
 - (void) audioProgressDidChangeTo: (NSTimeInterval) time withDuration: (NSTimeInterval) duration {
     CGFloat progress = time/duration;
     self.progressBar.progress = progress;
-    self.progressLabel.text = [self stringFromTimeInterval: time];
+    self.progressLabel.text = [NSString stringWithFormat:@" %@", [self stringFromTimeInterval: time]];
     self.durationLabel.text = [NSString stringWithFormat:@"-%@", [self stringFromTimeInterval: duration-time]];
 }
 
 #pragma mark - Autolayout
+
+- (void) trackTitleLabelAddContstraints {
+    self.trackTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSString* hFormat = @"H:|-[_trackTitleLabel]-|";
+    NSString* vFormat = @"V:[_progressBar]-[_trackTitleLabel]";
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: hFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(_trackTitleLabel)]];
+    
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: vFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(_progressBar, _trackTitleLabel)]];
+}
+
+- (void) addVolumeViewConstraints {
+    UIImage* volumeDown = [UIImage imageNamed:@"volume_down@3x"];
+    UIImage* volumeUp = [UIImage imageNamed:@"volume_up@3x"];
+    CGSize volumeImageSize = CGSizeMake(15.0, 15.0);
+    
+    UIImageView* volumeDownImageView = [[UIImageView alloc]initWithImage: volumeDown];
+    UIImageView* volumeUpImageView = [[UIImageView alloc] initWithImage: volumeUp];
+    volumeDownImageView.contentMode = UIViewContentModeScaleAspectFit;
+    volumeUpImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self addSubview: volumeDownImageView];
+    [self addSubview: volumeUpImageView];
+    
+    
+    self.volumeView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSString* vFormat = @"V:[_volumeView(==20)]-|";
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: vFormat
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(_volumeView)]];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.progressBar
+                                  attribute: NSLayoutAttributeWidth
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.volumeView
+                                  attribute: NSLayoutAttributeWidth
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+    
+    [self addCenterConstraintsForView: self.volumeView withAttribute: NSLayoutAttributeCenterX];
+    
+    /**  Volume Down Image View Constraints*/
+    volumeDownImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSizeContstraints: volumeImageSize forSubview: volumeDownImageView];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: volumeDownImageView
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.volumeView
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.volumeView
+                                  attribute: NSLayoutAttributeLeading
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: volumeDownImageView
+                                  attribute: NSLayoutAttributeTrailing
+                                 multiplier: 1.0
+                                   constant: kDefaultPadding]];
+    
+    /**  Volume Up Image View Constraints*/
+    volumeUpImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSizeContstraints: volumeImageSize forSubview: volumeUpImageView];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: volumeUpImageView
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.volumeView
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: volumeUpImageView
+                                  attribute: NSLayoutAttributeLeading
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.volumeView
+                                  attribute: NSLayoutAttributeTrailing
+                                 multiplier: 1.0
+                                   constant: kDefaultPadding]];
+    
+}
 
 - (void) addProgressLabelConstraintsWithWidth: (CGFloat) labelWidth{
     self.progressLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -210,21 +334,21 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     [self addCenterConstraintsForView: self.playButton withAttribute: NSLayoutAttributeCenterX];
     
     [self addConstraint:
-     [NSLayoutConstraint constraintWithItem: self.progressBar
-                                  attribute: NSLayoutAttributeBottom
-                                  relatedBy: NSLayoutRelationEqual
-                                     toItem: self.playButton
+     [NSLayoutConstraint constraintWithItem: self.playButton
                                   attribute: NSLayoutAttributeTop
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.trackTitleLabel
+                                  attribute: NSLayoutAttributeBottom
                                  multiplier: 1.0
-                                   constant: -playButtonTopPadding]];
+                                   constant: playButtonTopPadding]];
 }
 
 - (void) addProgressBarConstraints {
-    CGFloat topPadding = kDefaultPadding;
+    CGFloat height = kDefaultPadding;
     self.progressBar.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSString* hFormat = @"H:[_progressLabel]-[_progressBar]-[_durationLabel]";
-    NSString* vFormat = @"V:[_progressBar(==topPadding)]";
+    NSString* vFormat = @"V:[_progressBar(==height)]";
     
     [self addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat: hFormat
@@ -234,7 +358,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     [self addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat: vFormat
                                              options: NSLayoutFormatDirectionLeadingToTrailing
-                                             metrics: @{@"topPadding": @(topPadding)}
+                                             metrics: @{@"height": @(height)}
                                                views: NSDictionaryOfVariableBindings(_progressBar)]];
 
     
@@ -245,7 +369,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
                                      toItem: self.progressBar
                                   attribute: NSLayoutAttributeCenterY
                                  multiplier: 1.0
-                                   constant: -2.0]];
+                                   constant: 0.0]];
 }
 
 - (void) addNextButtonConstraintsWithSize: (CGSize) nextButtonSize {

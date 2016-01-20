@@ -14,7 +14,11 @@
 #import "NKPLayerView.h"
 
 static CGFloat kAudioPlayerPlayingRate = 1.0;
-static CGFloat kAudioPlayerStoppedRate = 0.0;
+__unused static CGFloat kAudioPlayerStoppedRate = 0.0;
+
+static NSString* kRateKey = @"rate";
+
+static __weak NKPlayerView* currentPlayerView;
 
 @interface NKAudioPlayer ()
 
@@ -36,6 +40,7 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
         [[self class] configureAudioSession];
         [self startReceivingRemoteControlEvents];
         self.itemsURLs = urls;
+        self.playbackDelegate = currentPlayerView;
     }
     return self;
 }
@@ -136,7 +141,9 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
 #pragma mark - Presentation layer
 
 - (nullable NKPlayerView*) playerViewWithHeight: (CGFloat) height {
-    return [[NKPlayerView alloc] initWithHeight: height andPlayer: self];
+    NKPlayerView* playerView = [[NKPlayerView alloc] initWithHeight: height andPlayer: self];
+    currentPlayerView = playerView;
+    return playerView;
 }
 
 
@@ -148,6 +155,16 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
     if ([self.playbackDelegate respondsToSelector: @selector(audioProgressDidChangeTo:withDuration:)]){
         [self.playbackDelegate audioProgressDidChangeTo: progress withDuration: duration];
     }
+    if (progress >= duration){
+        [self currentAudioTrackFinishedPlaying];
+    }
+//    if (progress == 0){
+//        NSLog(@"Start playing at index %ld", _currentTrackIndex);
+//    }
+}
+
+- (void) currentAudioTrackFinishedPlaying {
+    [self playNext];
 }
 
 #pragma mark - Remote control
@@ -169,7 +186,7 @@ static CGFloat kAudioPlayerStoppedRate = 0.0;
 #pragma mark - Observarion
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-
+    
 }
 
 @end

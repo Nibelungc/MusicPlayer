@@ -11,7 +11,7 @@
 #import "NKAudioTrackCell.h"
 #import "NKPlayerView.h"
 
-CGFloat const kPlayerViewHeight = 110.0;
+CGFloat const kPlayerViewHeight = 140.0;
 
 @interface NKAlbumVIewController () <NKPlayerViewDelegate>
 
@@ -43,7 +43,6 @@ CGFloat const kPlayerViewHeight = 110.0;
     tableView.dataSource = self;
     [self.view addSubview: tableView];
     self.tableView = tableView;
-
     
 }
 
@@ -85,6 +84,9 @@ CGFloat const kPlayerViewHeight = 110.0;
 
 - (void) trackDidStartPlayingWithIndex: (NSInteger) index {
     [self.playerView showAnimated: YES];
+    NKAudioTrack* track = self.audioTracks[index];
+    NSString* title = [NSString stringWithFormat:@"%@ - %@", track.artist, track.title];
+    [self.playerView.trackTitleLabel setText: title];
     [self.tableView selectRowAtIndexPath: [self indexPathForIndex: index]
                                 animated: YES
                           scrollPosition: UITableViewScrollPositionNone];

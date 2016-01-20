@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicPlayer/Common/Services/Audio/NKAudioPlayer.m"
-            timestampString = "474817569.994284"
+            timestampString = "474981418.084741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "-startReceivingRemoteControlEvents"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicPlayer/Modules/Album/User interface/View/NKAlbumVIewController.m"
-            timestampString = "474714781.947737"
+            timestampString = "474977472.144558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "-updateListOfAudioTracks:"
             landmarkType = "5">
          </BreakpointContent>
