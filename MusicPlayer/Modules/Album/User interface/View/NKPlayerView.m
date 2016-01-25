@@ -15,6 +15,7 @@
 CGFloat const kHideAnimationDuration = 0.3;
 CGFloat const kSpaceBetweenButtonsX = 25.0;
 NSString* const kTimeLabelPlaceholder = @"--:--:--";
+UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTemplate;
 
 @interface NKPlayerView ()
 
@@ -79,9 +80,11 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
 - (void) createPlayerControlsSubviews {
     CGSize buttonSize = CGSizeMake(44.0, 44.0);
     CGFloat labelWidth = 44.0;
+    self.tintColor = [UIColor whiteColor];
     
     /** Progress label */
     UILabel* progressLabel = [[UILabel alloc] init];
+    progressLabel.textColor = [UIColor playerTextColor];
     progressLabel.adjustsFontSizeToFitWidth = YES;
     progressLabel.text = kTimeLabelPlaceholder;
     progressLabel.textAlignment = NSTextAlignmentRight;
@@ -92,6 +95,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     
     /** Duration label */
     UILabel* durationLabel = [[UILabel alloc] init];
+    durationLabel.textColor = [UIColor playerTextColor];
     durationLabel.adjustsFontSizeToFitWidth = YES;
     durationLabel.text = kTimeLabelPlaceholder;
     progressLabel.textAlignment = NSTextAlignmentRight;
@@ -109,6 +113,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     
     /** Track title label */
     MarqueeLabel* titleLabel = [[MarqueeLabel alloc] initWithFrame: CGRectZero];
+    titleLabel.textColor = [UIColor playerTextColor];
     titleLabel.fadeLength = kDefaultPadding * 2;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview: titleLabel];
@@ -119,8 +124,8 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     /** Play button */
     UIButton* playButton = [UIButton buttonWithType: UIButtonTypeCustom];
     CGSize playButtonSize = buttonSize;
-    UIImage* playImage = [UIImage imageNamed:@"play"];
-    UIImage* pauseImage = [UIImage imageNamed:@"pause"];
+    UIImage* playImage = [[UIImage imageNamed:@"play"] imageWithRenderingMode: imagesRenderingMode];
+    UIImage* pauseImage = [[UIImage imageNamed:@"pause"] imageWithRenderingMode: imagesRenderingMode];
     [playButton setImage: playImage forState: UIControlStateNormal];
     [playButton setImage: pauseImage forState: UIControlStateSelected];
     [self addSubview: playButton];
@@ -131,7 +136,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     /** Next button */
     UIButton* nextButton = [UIButton buttonWithType: UIButtonTypeCustom];
     CGSize nextButtonSize = buttonSize;
-    UIImage* nextImage = [UIImage imageNamed:@"next"];
+    UIImage* nextImage = [[UIImage imageNamed:@"next"]imageWithRenderingMode: imagesRenderingMode];
     [nextButton setImage: nextImage forState: UIControlStateNormal];
     [self addSubview: nextButton];
     
@@ -141,7 +146,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     /** Previous button */
     UIButton* previousButton = [UIButton buttonWithType: UIButtonTypeCustom];
     CGSize previousButtonSize = buttonSize;
-    UIImage* previousImage = [UIImage imageNamed:@"previous"];
+    UIImage* previousImage = [[UIImage imageNamed:@"previous"]imageWithRenderingMode: imagesRenderingMode];
     [previousButton setImage: previousImage forState: UIControlStateNormal];
     [self addSubview: previousButton];
     
@@ -149,7 +154,7 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
     [self addPreviousButtonConstraintsWithSize: previousButtonSize];
     
     /** Volume view */
-    UIImage* volumeThumbImage = [UIImage imageNamed:@"github_1"];
+    UIImage* volumeThumbImage = [[UIImage imageNamed:@"github_1"]imageWithRenderingMode: imagesRenderingMode];
     MPVolumeView* volumeView = [[MPVolumeView alloc] init];
     [volumeView setVolumeThumbImage: volumeThumbImage forState: UIControlStateNormal];
     [self addSubview: volumeView];
@@ -211,8 +216,8 @@ NSString* const kTimeLabelPlaceholder = @"--:--:--";
 }
 
 - (void) addVolumeViewConstraints {
-    UIImage* volumeDown = [UIImage imageNamed:@"volume_down@3x"];
-    UIImage* volumeUp = [UIImage imageNamed:@"volume_up@3x"];
+    UIImage* volumeDown = [[UIImage imageNamed:@"volume_down@3x"]imageWithRenderingMode: imagesRenderingMode];
+    UIImage* volumeUp = [[UIImage imageNamed:@"volume_up@3x"]imageWithRenderingMode: imagesRenderingMode];
     CGSize volumeImageSize = CGSizeMake(15.0, 15.0);
     
     UIImageView* volumeDownImageView = [[UIImageView alloc]initWithImage: volumeDown];

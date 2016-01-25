@@ -52,7 +52,7 @@
 
 - (void) configureView {
     [super configureView];
-    
+    self.view.tintColor = [UIColor lightBlueColor];
     [self.view insertSubview: [self createMotionView] atIndex: 0];
 }
 
@@ -81,9 +81,11 @@
 }
 
 - (UIView*) createMotionView {
-    CGFloat shift = 20.0;
+    CGFloat shift = 30.0;
     UIView* motionView = [[UIView alloc] initWithFrame: CGRectInset(self.view.bounds, -shift, -shift)];
-    motionView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"music_background.jpg"]];
+    
+    UIImage* backgroundImage = [[UIImage imageNamed:@"music_background@3x.jpg"] imageWithRenderingMode: UIImageRenderingModeAlwaysTemplate];
+    motionView.backgroundColor = [UIColor colorWithPatternImage: backgroundImage];
     
     UIInterpolatingMotionEffect *verticalMotionEffect =
     [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
@@ -112,7 +114,7 @@
     button.backgroundColor = [UIColor appTintColor];
     button.layer.cornerRadius = 10.0;
     button.layer.masksToBounds = YES;
-    [button setTitleColor: [UIColor appBackgroundColor] forState: UIControlStateNormal];
+    [button setTitleColor: [UIColor lightTextColor] forState: UIControlStateNormal];
     [button setTitle: title forState: UIControlStateNormal];
     
     return button;

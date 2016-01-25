@@ -57,7 +57,7 @@ static NSDictionary* albumsTitles;
     [[VKSdk instance] setUiDelegate: self];
     
     [self wakeUpSessionWithCompletion:^(NKUser * _Nullable user, NSError * _Nullable errorOrNil) {
-        if (errorOrNil == nil) {
+        if (user) {
             completion([self userFromVKSdk], nil);
         } else {
             [VKSdk authorize: self.permissions];

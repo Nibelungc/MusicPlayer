@@ -53,7 +53,7 @@ CGFloat const kUserInfoHeightInPercent = 20;
 - (void) configureView {
     [super configureView];
     
-    self.view.backgroundColor = [UIColor brownColor];
+    self.view.backgroundColor = [UIColor appBackgroundColor];
     
     CGRect drawerRect = [self.view bounds];
     drawerRect.size.width = [self.mm_drawerController maximumLeftDrawerWidth];
@@ -88,6 +88,7 @@ CGFloat const kUserInfoHeightInPercent = 20;
     userNameLabel.textAlignment = NSTextAlignmentLeft;
     userNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
     userNameLabel.numberOfLines = 0;
+    userNameLabel.textColor = [UIColor lightTextColor];
     [self.view addSubview: userNameLabel];
     
     self.userNameLabel = userNameLabel;
@@ -201,6 +202,12 @@ CGFloat const kUserInfoHeightInPercent = 20;
     [self.eventHandler menuItemChosenWithIdentifier: selectedItem.identifier];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIView* view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor lightBlueColor];
+    cell.selectedBackgroundView = view;
+}
+
 @end
 
 #pragma mark - UITableViewDataSource
@@ -220,6 +227,7 @@ CGFloat const kUserInfoHeightInPercent = 20;
     }
     NKMenuItem* menuItem = self.dataSource[indexPath.row];
     cell.textLabel.text = menuItem.title;
+    cell.textLabel.textColor = [UIColor lightTextColor];
     cell.backgroundColor = tableView.backgroundColor;
     return cell;
 }

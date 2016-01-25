@@ -48,7 +48,7 @@ CGFloat const kPlayerViewHeight = 140.0;
 
 - (void) configurePlayerView: (NKPlayerView*) playerView {
     
-    playerView.backgroundColor = [UIColor brownColor];
+    playerView.backgroundColor = [UIColor lightBlueColor];
     playerView.delegate = self;
     [self.view addSubview: playerView];
     

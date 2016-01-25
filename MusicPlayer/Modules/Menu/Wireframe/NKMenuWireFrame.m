@@ -59,7 +59,12 @@
     UIViewController* centerViewcontroller = self.albumWireframe.presenter.output;
 
     UINavigationController* mainNavigationController = [[UINavigationController alloc] initWithRootViewController: centerViewcontroller];
-    
+    mainNavigationController.navigationBar.barTintColor = [UIColor lightBlueColor];
+    mainNavigationController.navigationBar.tintColor = [UIColor lightTextColor];
+    mainNavigationController.navigationBar.translucent = NO;
+    [mainNavigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
     MMDrawerController* drawerController = [self drawerControllerWithCenterVC: mainNavigationController
                                                                     andLeftVC: viewcontroller];
     

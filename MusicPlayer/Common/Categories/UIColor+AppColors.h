@@ -14,4 +14,12 @@
 
 + (UIColor*) appBackgroundColor;
 
++ (UIColor*) navigationBarColor;
+
++ (UIColor*) darkBlueColor;
+
++ (UIColor*) lightBlueColor;
+
++ (UIColor*) playerTextColor;
+
 @end

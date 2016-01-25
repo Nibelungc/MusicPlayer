@@ -31,8 +31,15 @@
 }
 
 - (void) configureCellWithTrack: (NKAudioTrack*) track {
+    UIFont* titleFont = [UIFont boldSystemFontOfSize: [UIFont systemFontSize]];
+    UIFont* artistFont = [UIFont italicSystemFontOfSize: [UIFont systemFontSize]];
+    
     self.textLabel.text = track.title;
+    self.textLabel.font = titleFont;
+    
     self.detailTextLabel.text = track.artist;
+    self.detailTextLabel.font = artistFont;
+    self.detailTextLabel.textColor = [UIColor grayColor];
 }
 
 @end
