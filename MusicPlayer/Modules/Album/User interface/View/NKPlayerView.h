@@ -24,7 +24,7 @@
 
 @property (weak, nonatomic, nullable) UIButton* prevButton;
 
-@property (weak, nonatomic, nullable) UIProgressView* progressBar;
+@property (weak, nonatomic, nullable) UISlider* progressBar;
 
 @property (weak, nonatomic, nullable) UILabel* trackTitleLabel;
 

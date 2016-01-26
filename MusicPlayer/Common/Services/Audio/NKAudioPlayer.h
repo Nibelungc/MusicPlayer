@@ -38,6 +38,8 @@
 
 - (nullable NKPlayerView*) playerViewWithHeight: (CGFloat) height;
 
+- (void) seekToPosition: (CGFloat) position;
+
 @end
 
 @protocol NKAudioPlayerDelegate <NSObject>

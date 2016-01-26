@@ -27,6 +27,8 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 
 @property (weak, nonatomic) MPVolumeView* volumeView;
 
+@property (assign, nonatomic) BOOL progressBarDragged;
+
 @end
 
 @implementation NKPlayerView
@@ -75,6 +77,20 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
     }
 }
 
+#pragma mark - Actions
+
+- (void) progressBarTouchDown: (UISlider*) sender{
+    self.progressBarDragged = YES;
+}
+
+- (void) progressBarReleased: (UISlider*) sender {
+    [self.player seekToPosition: sender.value];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.progressBarDragged = NO;
+    });
+    
+}
+
 #pragma mark - Configure view
 
 - (void) createPlayerControlsSubviews {
@@ -105,7 +121,9 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
     [self addDurationLabelConstraintsWithWidth: labelWidth];
     
     /** Progress slider */
-    UIProgressView* progressView = [[UIProgressView alloc] init];
+    UISlider* progressView = [[UISlider alloc] init];
+    [progressView addTarget: self action: @selector(progressBarTouchDown:) forControlEvents: UIControlEventTouchDown];
+    [progressView addTarget: self action: @selector(progressBarReleased:) forControlEvents: UIControlEventTouchUpInside];
     [self addSubview: progressView];
     
     self.progressBar = progressView;
@@ -189,9 +207,13 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 
 - (void) audioProgressDidChangeTo: (NSTimeInterval) time withDuration: (NSTimeInterval) duration {
     CGFloat progress = time/duration;
-    self.progressBar.progress = progress;
+    
     self.progressLabel.text = [NSString stringWithFormat:@" %@", [self stringFromTimeInterval: time]];
     self.durationLabel.text = [NSString stringWithFormat:@"-%@", [self stringFromTimeInterval: duration-time]];
+    
+    if (!self.progressBarDragged){
+        self.progressBar.value = progress;
+    }
 }
 
 #pragma mark - Autolayout

@@ -104,6 +104,13 @@ static __weak NKPlayerView* currentPlayerView;
     }
 }
 
+- (void) seekToPosition: (CGFloat) position {
+    CGFloat durationInSeconds = CMTimeGetSeconds([self.player.currentItem duration]);
+    CGFloat seconds = durationInSeconds * position;
+    CMTime seekTime = CMTimeMakeWithSeconds(seconds, self.player.currentTime.timescale);
+    [self.player seekToTime: seekTime];
+}
+
 - (BOOL) isPlaying {
     return [self.player rate] == kAudioPlayerPlayingRate;
 }
