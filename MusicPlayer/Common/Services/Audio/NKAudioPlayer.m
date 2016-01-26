@@ -17,6 +17,7 @@ static CGFloat kAudioPlayerPlayingRate = 1.0;
 __unused static CGFloat kAudioPlayerStoppedRate = 0.0;
 
 static NSString* kRateKey = @"rate";
+static NSString* kStatusKey = @"status";
 
 static __weak NKPlayerView* currentPlayerView;
 
@@ -120,23 +121,18 @@ static __weak NKPlayerView* currentPlayerView;
     self.playerController = [[AVPlayerViewController alloc] init];
     self.playerController.player = player;
     
-    @weakify(self)
-    CMTime cmtime = CMTimeMake(1, 10);
-    self.timeObserver = [player addPeriodicTimeObserverForInterval: cmtime
-                                         queue: NULL
-                                    usingBlock:^(CMTime time) {
-                                        @strongify(self)
-                                        [self audioProgressDidChangeTo: time];
-                                    }];
+    [self addObserversToPlayer: player];
     
     return player;
 }
 
 - (void) destroyCurrentPlayer {
-    [self.player removeTimeObserver: self.timeObserver];
+    [self removePlayerObservers];
     self.player = nil;
     self.timeObserver = nil;
 }
+
+
 
 #pragma mark - Presentation layer
 
@@ -155,15 +151,12 @@ static __weak NKPlayerView* currentPlayerView;
     if ([self.playbackDelegate respondsToSelector: @selector(audioProgressDidChangeTo:withDuration:)]){
         [self.playbackDelegate audioProgressDidChangeTo: progress withDuration: duration];
     }
-    if (progress >= duration){
-        [self currentAudioTrackFinishedPlaying];
-    }
 //    if (progress == 0){
 //        NSLog(@"Start playing at index %ld", _currentTrackIndex);
 //    }
 }
 
-- (void) currentAudioTrackFinishedPlaying {
+- (void) itemDidFinishPlaying: (NSNotification*) notification {
     [self playNext];
 }
 
@@ -173,7 +166,8 @@ static __weak NKPlayerView* currentPlayerView;
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
     return;
-    [[MPRemoteCommandCenter sharedCommandCenter].nextTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+    [[MPRemoteCommandCenter sharedCommandCenter].nextTrackCommand
+     addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         [self playNext];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
@@ -185,8 +179,33 @@ static __weak NKPlayerView* currentPlayerView;
 
 #pragma mark - Observarion
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+- (void) addObserversToPlayer: (AVPlayer*) player {
+    @weakify(self)
+    CMTime cmtime = CMTimeMake(1, 10);
+    self.timeObserver = [player addPeriodicTimeObserverForInterval: cmtime
+                                                             queue: NULL
+                                                        usingBlock:^(CMTime time) {
+                                                            @strongify(self)
+                                                            [self audioProgressDidChangeTo: time];
+                                                        }];
     
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(itemDidFinishPlaying:)
+                                                 name: AVPlayerItemDidPlayToEndTimeNotification
+                                               object: player.currentItem];
+}
+
+- (void) removePlayerObservers {
+    [self.player removeTimeObserver: self.timeObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: AVPlayerItemDidPlayToEndTimeNotification
+                                                  object: self.player.currentItem];
+}
+
+-(void)observeValueForKeyPath: (NSString *)keyPath
+                     ofObject: (id)object
+                       change: (NSDictionary<NSString *,id> *)change
+                      context: (void *)context {
 }
 
 @end
