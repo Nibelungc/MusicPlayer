@@ -85,10 +85,20 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 
 - (void) progressBarReleased: (UISlider*) sender {
     [self.player seekToPosition: sender.value];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.progressBarDragged = NO;
     });
-    
+}
+
+- (void) sliderTapped: (UITapGestureRecognizer*) gestureRecognizer {
+    UISlider* slider = (UISlider*) gestureRecognizer.view;
+    self.progressBarDragged = YES;
+    CGPoint point = [gestureRecognizer locationInView: slider];
+    CGFloat percentage = point.x / slider.bounds.size.width;
+    CGFloat delta = percentage * (slider.maximumValue - slider.minimumValue);
+    CGFloat value = slider.minimumValue + delta;
+    [slider setValue:value animated:YES];
+    [self progressBarReleased: slider];
 }
 
 #pragma mark - Configure view
@@ -124,6 +134,7 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
     UISlider* progressView = [[UISlider alloc] init];
     [progressView addTarget: self action: @selector(progressBarTouchDown:) forControlEvents: UIControlEventTouchDown];
     [progressView addTarget: self action: @selector(progressBarReleased:) forControlEvents: UIControlEventTouchUpInside];
+    [progressView addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(sliderTapped:)]];
     [self addSubview: progressView];
     
     self.progressBar = progressView;
