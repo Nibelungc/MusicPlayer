@@ -8,6 +8,9 @@
 
 #import "NKAudioTrack+VKService.h"
 #import <VKApiConst.h>
+#import <objc/runtime.h>
+
+static char ownerIDHashKey;
 
 @implementation NKAudioTrack (VKService)
 
@@ -32,8 +35,17 @@
         self.title = json[@"title"];
         self.duration = json[@"duration"];
         self.url = [NSURL URLWithString: json[@"url"]];
+        self.ownerID = json[@"owner_id"];
     }
     return self;
+}
+
+- (NSNumber *)ownerID {
+    return objc_getAssociatedObject(self, &ownerIDHashKey);
+}
+
+- (void) setOwnerID:(NSNumber *)ownerID {
+    objc_setAssociatedObject(self, &ownerIDHashKey, ownerID, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

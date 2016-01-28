@@ -10,6 +10,8 @@
 
 @interface NKAudioTrack (VKService)
 
+@property (strong, nonatomic) NSNumber* ownerID;
+
 - (instancetype) initWithVKJson: (NSDictionary*) json;
 
 @end

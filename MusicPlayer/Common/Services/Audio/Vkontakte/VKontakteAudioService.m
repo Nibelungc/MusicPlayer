@@ -17,6 +17,8 @@
 NSString * const VKServiceTitle = @"Vkontakte";
 NSString * const VK_API_ITEMS = @"items";
 
+NSInteger const kDefaultItemsCountForFetch = 200;
+
 static NSDictionary* albumsTitles;
 
 @interface VKontakteAudioService () <VKSdkUIDelegate>
@@ -89,7 +91,8 @@ static NSDictionary* albumsTitles;
         return;
     }
     NSString* methodName = @"search";
-    NSDictionary* parametrs = @{VK_API_Q : searchString};
+    NSDictionary* parametrs = @{VK_API_Q        : searchString,
+                                VK_API_COUNT    : @(kDefaultItemsCountForFetch) };
     
     VKRequest* request = [VKApi requestWithMethod: [self audioRequsetWithMethodName: methodName]
                                     andParameters: parametrs];
