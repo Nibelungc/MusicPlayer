@@ -29,4 +29,6 @@
 
 - (void) needToAddPlayerWithHeight: (CGFloat) height;
 
+- (void) findTracksForSearchingString: (NSString*) string;
+
 @end

@@ -84,7 +84,24 @@ static NSDictionary* albumsTitles;
 }
 
 - (void) getAudioTracksForSearchString: (NSString* _Nonnull) searchString withCompletion: (_Nonnull NKAudioServiceSearchCompletion) completion {
+    if (!searchString){
+        completion(nil, nil);
+        return;
+    }
+    NSString* methodName = @"search";
+    NSDictionary* parametrs = @{VK_API_Q : searchString};
     
+    VKRequest* request = [VKApi requestWithMethod: [self audioRequsetWithMethodName: methodName]
+                                    andParameters: parametrs];
+    [request executeWithResultBlock:^(VKResponse *response) {
+        NSArray* tracksJson = response.json[VK_API_ITEMS];
+        NSArray* tracks = [tracksJson map:^id(id obj) {
+            return [[NKAudioTrack alloc] initWithVKJson: obj];
+        }];
+        completion(tracks, nil);
+    } errorBlock:^(NSError *error) {
+        completion(nil, error);
+    }];
 }
 
 - (void) getAudioTracksForAlbumIdentifier: (NSNumber* _Nullable) identifier withCompletion: (_Nonnull NKAudioServiceTracksCompletion) completion {

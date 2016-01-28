@@ -29,3 +29,8 @@
 @interface NKAlbumVIewController (TableViewDelegate) <UITableViewDelegate>
 
 @end
+
+
+@interface NKAlbumVIewController (SearchBarDelegate) <UISearchBarDelegate>
+
+@end

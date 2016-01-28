@@ -16,6 +16,8 @@
 
 - (void) getTitleForAlbumID: (NSNumber*) identifier;
 
+- (void) getTracksForSearchingText: (NSString*) text;
+
 @end
 
 @protocol NKAlbumInteractorOutput <NSObject>

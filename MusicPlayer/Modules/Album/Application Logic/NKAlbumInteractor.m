@@ -13,20 +13,8 @@
 @implementation NKAlbumInteractor
 
 - (void) getTracksForAlbumID: (NSNumber*) identifier {
-    @weakify(self)
     [self.audioService getAudioTracksForAlbumIdentifier: identifier
-     withCompletion:^(NSArray<NKAudioTrack *> * _Nullable tracks, NSError * _Nullable errorOrNil) {
-         @strongify(self)
-         if (errorOrNil == nil) {
-             if (tracks.count > 0) {
-                 [self.output tracksFound: tracks];
-             } else {
-                 [self.output tracksNotFoundWithError: nil];
-             }
-         } else {
-             [self.output tracksNotFoundWithError: errorOrNil];
-         }
-     }];
+                                         withCompletion:[self defaultTracksCompletion]];
 }
 
 - (void) getTitleForAlbumID: (NSNumber*) identifier {
@@ -40,6 +28,27 @@
              [self.output albumTitleNotFoundWithError: errorOrNil];
          }
      }];
+}
+
+- (void) getTracksForSearchingText:(NSString *)text {
+    [self.audioService getAudioTracksForSearchString: text
+                                      withCompletion: [self defaultTracksCompletion]];
+}
+
+- (NKAudioServiceTracksCompletion) defaultTracksCompletion {
+    @weakify(self)
+    return ^(NSArray<NKAudioTrack *> * _Nullable tracks, NSError * _Nullable errorOrNil) {
+        @strongify(self)
+        if (errorOrNil == nil) {
+            if (tracks.count > 0) {
+                [self.output tracksFound: tracks];
+            } else {
+                [self.output tracksNotFoundWithError: nil];
+            }
+        } else {
+            [self.output tracksNotFoundWithError: errorOrNil];
+        }
+    };
 }
 
 @end

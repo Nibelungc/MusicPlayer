@@ -23,8 +23,6 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 
 @property (weak, nonatomic) NSLayoutConstraint* bottomConstraint;
 
-@property (weak, nonatomic) NKAudioPlayer* player;
-
 @property (weak, nonatomic) MPVolumeView* volumeView;
 
 @property (assign, nonatomic) BOOL progressBarDragged;
@@ -84,7 +82,6 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 }
 
 - (void) progressBarReleased: (UISlider*) sender {
-    // self.player is nil, if we switch the album
     [self.player seekToPosition: sender.value];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.progressBarDragged = NO;

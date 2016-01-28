@@ -42,6 +42,7 @@ static __weak NKPlayerView* currentPlayerView;
         [self startReceivingRemoteControlEvents];
         self.itemsURLs = urls;
         self.playbackDelegate = currentPlayerView;
+        currentPlayerView.player = self;
     }
     return self;
 }

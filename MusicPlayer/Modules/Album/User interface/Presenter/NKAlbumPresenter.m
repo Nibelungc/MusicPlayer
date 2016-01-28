@@ -60,6 +60,10 @@
 
 #pragma mark - NKAlbumModule
 
+- (void) findTracksForSearchingString: (NSString*) string {
+    [self.interactor getTracksForSearchingText: string];
+}
+
 - (void) selectAudioTrackWithID: (NSNumber*) trackID {
     if (trackID.integerValue == self.playingTrackID.integerValue) {
         [self playOrPauseAudio];

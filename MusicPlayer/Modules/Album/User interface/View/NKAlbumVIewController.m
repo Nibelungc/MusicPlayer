@@ -36,11 +36,17 @@ CGFloat const kPlayerViewHeight = 140.0;
 - (void) configureView {
     [super configureView];
     
+    UISearchBar* searchBar = [[UISearchBar alloc] init];
+    searchBar.delegate = self;
+    self.navigationItem.titleView = searchBar;
+    
     CGRect tableViewFrame = self.view.bounds;
     UITableView* tableView = [[UITableView alloc] initWithFrame: tableViewFrame
                                                           style: UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [self.view addSubview: tableView];
     self.tableView = tableView;
     
@@ -170,5 +176,16 @@ CGFloat const kPlayerViewHeight = 140.0;
     NKAudioTrack* selectedTrack = [self audioTrackForIndexPath: indexPath];
     [self.eventHandler selectAudioTrackWithID: selectedTrack.identifier];
 }
+
+@end
+
+#pragma mark - UISearchBarDelegate
+
+@implementation NKAlbumVIewController (SearchBarDelegate)
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.eventHandler findTracksForSearchingString: searchBar.text];
+}
+
 
 @end

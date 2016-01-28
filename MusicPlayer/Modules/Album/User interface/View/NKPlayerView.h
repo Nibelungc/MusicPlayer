@@ -14,6 +14,8 @@
 
 @interface NKPlayerView : UIView <NKAudioPlayerPlaybackDelegate>
 
+@property (weak, nonatomic) NKAudioPlayer* player;
+
 @property (weak, nonatomic, nullable) UILabel* progressLabel;
 
 @property (weak, nonatomic, nullable) UILabel* durationLabel;
