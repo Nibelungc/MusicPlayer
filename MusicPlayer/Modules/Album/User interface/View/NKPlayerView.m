@@ -84,6 +84,7 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 }
 
 - (void) progressBarReleased: (UISlider*) sender {
+    // self.player is nil, if we switch the album
     [self.player seekToPosition: sender.value];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.progressBarDragged = NO;
@@ -106,12 +107,13 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 - (void) createPlayerControlsSubviews {
     CGSize buttonSize = CGSizeMake(44.0, 44.0);
     CGFloat labelWidth = 44.0;
+    UIFont* timeLabelFont = [UIFont systemFontOfSize: 13.0];
     self.tintColor = [UIColor whiteColor];
     
     /** Progress label */
     UILabel* progressLabel = [[UILabel alloc] init];
     progressLabel.textColor = [UIColor playerTextColor];
-    progressLabel.adjustsFontSizeToFitWidth = YES;
+    progressLabel.font = timeLabelFont;
     progressLabel.text = kTimeLabelPlaceholder;
     progressLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview: progressLabel];
@@ -122,11 +124,11 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
     /** Duration label */
     UILabel* durationLabel = [[UILabel alloc] init];
     durationLabel.textColor = [UIColor playerTextColor];
-    durationLabel.adjustsFontSizeToFitWidth = YES;
+    durationLabel.font = timeLabelFont;
     durationLabel.text = kTimeLabelPlaceholder;
     progressLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview: durationLabel];
-    
+
     self.durationLabel = durationLabel;
     [self addDurationLabelConstraintsWithWidth: labelWidth];
     
