@@ -11,22 +11,23 @@
 @protocol NKAudioPlayerDelegate;
 @protocol NKAudioPlayerPlaybackDelegate;
 @class NKPlayerView;
+@class NKAudioTrack;
 
 @interface NKAudioPlayer : NSObject
-
-@property (strong, nonatomic, nonnull) NSArray <NSURL *>* itemsURLs;
 
 @property (weak, nonatomic, nullable) id<NKAudioPlayerDelegate> delegate;
 
 @property (weak, nonatomic, nullable) id<NKAudioPlayerPlaybackDelegate> playbackDelegate;
 
-- (nonnull instancetype)initWithItemsURLs: (nonnull NSArray <NSURL *>*) urls;
++ (nonnull instancetype) sharedPlayer;
 
-- (void) playTrackAtIndex: (NSInteger) index;
+- (void) loadItemsURLs: (nonnull NSArray <NKAudioTrack *>*) urls;
 
-- (void) playNext;
+- (BOOL) playTrackAtIndex: (NSInteger) index;
 
-- (void) playPrevious;
+- (BOOL) playNext;
+
+- (BOOL) playPrevious;
 
 - (void) play;
 

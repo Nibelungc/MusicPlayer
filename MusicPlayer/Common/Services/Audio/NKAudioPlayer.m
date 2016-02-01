@@ -12,6 +12,8 @@
 #import <AVKit/AVKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "NKPLayerView.h"
+#import "NKAudioTrack.h"
+#import "NKRemoteControlCenter.h"
 
 static CGFloat kAudioPlayerPlayingRate = 1.0;
 __unused static CGFloat kAudioPlayerStoppedRate = 0.0;
@@ -23,26 +25,34 @@ static __weak NKPlayerView* currentPlayerView;
 
 @interface NKAudioPlayer ()
 
-@property (strong, nonatomic, nullable) AVPlayer* player;
+@property (strong, nonatomic, nonnull) NSArray <NKAudioTrack *>* items;
 
-@property (strong, nonatomic) AVPlayerViewController* playerController;
+@property (strong, nonatomic, nullable) AVPlayer* player;
 
 @property (nonatomic) NSInteger currentTrackIndex;
 
 @property (strong, nonatomic) id timeObserver;
 
+@property (strong, nonatomic, nonnull) NKRemoteControlCenter* remoteControlCenter;
+
 @end
 
 @implementation NKAudioPlayer
 
-- (instancetype)initWithItemsURLs: (NSArray <NSURL *>*) urls{
-    self = [super init];
-    if (self) {
++ (nonnull instancetype) sharedPlayer {
+    static NKAudioPlayer* instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
+
+- (instancetype) init {
+    if (self = [super init]){
         [[self class] configureAudioSession];
-        [self startReceivingRemoteControlEvents];
-        self.itemsURLs = urls;
-        self.playbackDelegate = currentPlayerView;
-        currentPlayerView.player = self;
+        _remoteControlCenter = [NKRemoteControlCenter remoteControlCenterWithPlayer: self];
+        [_remoteControlCenter startReceivingRemoteControlEvents];
     }
     return self;
 }
@@ -53,31 +63,48 @@ static __weak NKPlayerView* currentPlayerView;
 }
 
 - (void) dealloc {
-    [self stopReceivingRemoteControlEvents];
+    [self.remoteControlCenter stopReceivingRemoteControlEvents];
+}
+
+- (void) loadItemsURLs: (nonnull NSArray <NKAudioTrack *>*) tracks {
+    self.items = tracks;
+    self.playbackDelegate = currentPlayerView;
+    currentPlayerView.player = self;
 }
 
 #pragma mark - Playback control
 
-- (void) playTrackAtIndex: (NSInteger) index {
-    if (index < 0 || index >= self.itemsURLs.count){
-        NSLog(@"Can't find the audio track at the index: (%ld)", index);
-        return;
+- (void) togglePlayPause {
+    if ([self isPlaying]){
+        [self pause];
+    } else {
+        [self play];
     }
-    [self playTrackWithURL: self.itemsURLs[index]];
+}
+
+- (BOOL) playTrackAtIndex: (NSInteger) index {
+    if (index < 0 || index >= self.items.count){
+        NSLog(@"Can't find the audio track at the index: (%ld)", index);
+        return NO;
+    }
+    NKAudioTrack* track = self.items[index];
+    [self playTrackWithURL: track.url];
     
     self.currentTrackIndex = index;
     
     if ([self.delegate respondsToSelector: @selector(trackDidStartPlayingWithIndex:)]){
         [self.delegate trackDidStartPlayingWithIndex: index];
     }
+    [self.remoteControlCenter presentAudioTrack: track];
+    return YES;
 }
 
-- (void) playNext {
-    [self playTrackAtIndex: self.currentTrackIndex + 1];
+- (BOOL) playNext {
+    return [self playTrackAtIndex: self.currentTrackIndex + 1];
 }
 
-- (void) playPrevious {
-    [self playTrackAtIndex: self.currentTrackIndex - 1];
+- (BOOL) playPrevious {
+    return [self playTrackAtIndex: self.currentTrackIndex - 1];
 }
 
 - (void) play {
@@ -126,8 +153,6 @@ static __weak NKPlayerView* currentPlayerView;
 
 - (AVPlayer*) createPlayerWithUrl: (NSURL*) url {
     AVPlayer* player = [[AVPlayer alloc] initWithURL: url];
-    self.playerController = [[AVPlayerViewController alloc] init];
-    self.playerController.player = player;
     
     [self addObserversToPlayer: player];
     
@@ -139,7 +164,6 @@ static __weak NKPlayerView* currentPlayerView;
     self.player = nil;
     self.timeObserver = nil;
 }
-
 
 
 #pragma mark - Presentation layer
@@ -159,31 +183,12 @@ static __weak NKPlayerView* currentPlayerView;
     if ([self.playbackDelegate respondsToSelector: @selector(audioProgressDidChangeTo:withDuration:)]){
         [self.playbackDelegate audioProgressDidChangeTo: progress withDuration: duration];
     }
-//    if (progress == 0){
-//        NSLog(@"Start playing at index %ld", _currentTrackIndex);
-//    }
 }
 
 - (void) itemDidFinishPlaying: (NSNotification*) notification {
     [self playNext];
 }
 
-#pragma mark - Remote control
-
-- (void) startReceivingRemoteControlEvents {
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    
-    return;
-    [[MPRemoteCommandCenter sharedCommandCenter].nextTrackCommand
-     addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-        [self playNext];
-        return MPRemoteCommandHandlerStatusSuccess;
-    }];
-}
-
-- (void) stopReceivingRemoteControlEvents {
-    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
-}
 
 #pragma mark - Observarion
 

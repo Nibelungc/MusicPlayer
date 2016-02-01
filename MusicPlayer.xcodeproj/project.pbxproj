@@ -60,6 +60,7 @@
 		08CEF5421C3FF9CE00C10747 /* NKAudioTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CEF5411C3FF9CE00C10747 /* NKAudioTrackCell.m */; };
 		08CEF5451C4117D400C10747 /* NKAudioTrack+VKService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CEF5441C4117D400C10747 /* NKAudioTrack+VKService.m */; };
 		80062EC01C565F5F0003B51B /* pattern_017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80062EBF1C565F5F0003B51B /* pattern_017@2x.png */; };
+		80988EF91C5FA1B500A9EA46 /* NKRemoteControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 80988EF81C5FA1B500A9EA46 /* NKRemoteControlCenter.m */; };
 		D0814F5F3D0E232CB101449C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +178,8 @@
 		1603F17F27DD683F8B9A1F18 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		364804C9C29BB94A1C05C0AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		80062EBF1C565F5F0003B51B /* pattern_017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pattern_017@2x.png"; sourceTree = "<group>"; };
+		80988EF71C5FA1B500A9EA46 /* NKRemoteControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKRemoteControlCenter.h; sourceTree = "<group>"; };
+		80988EF81C5FA1B500A9EA46 /* NKRemoteControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKRemoteControlCenter.m; sourceTree = "<group>"; };
 		8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -354,6 +357,8 @@
 				089621681C41691300FA6EC2 /* NKAudioPlayer.m */,
 				0808075F1C4A47D20068A3EF /* NKPlayerView.h */,
 				080807601C4A47D20068A3EF /* NKPlayerView.m */,
+				80988EF71C5FA1B500A9EA46 /* NKRemoteControlCenter.h */,
+				80988EF81C5FA1B500A9EA46 /* NKRemoteControlCenter.m */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -849,6 +854,7 @@
 				08129F0A1C3D12FF0015CC31 /* NKAudioAlbum+VKService.m in Sources */,
 				087955301C32CEEE002761C6 /* NKCoreDataStorage.m in Sources */,
 				08CEF53F1C3E880300C10747 /* NKAlbumVIewController.m in Sources */,
+				80988EF91C5FA1B500A9EA46 /* NKRemoteControlCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

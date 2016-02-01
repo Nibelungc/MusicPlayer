@@ -35,29 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MusicPlayer/Common/Services/Audio/Vkontakte/VKontakteAudioService.m"
-            timestampString = "475681761.780651"
+            filePath = "MusicPlayer/Common/Services/Audio/NKRemoteControlCenter.m"
+            timestampString = "476031711.237176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-getAudioTracksForSearchString:withCompletion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicPlayer/Common/Services/Audio/Vkontakte/VKontakteAudioService.m"
-            timestampString = "475683103.623389"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-getAudioTracksForSearchString:withCompletion:"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-loadImageFromAudioTrack:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

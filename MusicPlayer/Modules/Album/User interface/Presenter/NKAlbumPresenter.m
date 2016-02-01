@@ -74,10 +74,11 @@
 
 - (void) albumWasLoaded {
     [self.interactor getTitleForAlbumID: self.albumID];
-    NSArray* tracksUrls = [self.tracks map:^id(NKAudioTrack* track) {
-        return track.url;
-    }];
-    self.player = [[NKAudioPlayer alloc] initWithItemsURLs:tracksUrls];
+//    NSArray* tracksUrls = [self.tracks map:^id(NKAudioTrack* track) {
+//        return track.url;
+//    }];
+    self.player = [NKAudioPlayer sharedPlayer];
+    [self.player loadItemsURLs: self.tracks];
     self.player.delegate = self;
     
     [self.albumWireframe closeMenu];

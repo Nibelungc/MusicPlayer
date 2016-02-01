@@ -10,4 +10,8 @@
 
 @implementation NKAudioTrack
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ - %@", self.artist, self.title];
+}
+
 @end
