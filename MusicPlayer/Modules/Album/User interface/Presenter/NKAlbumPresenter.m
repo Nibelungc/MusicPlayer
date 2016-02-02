@@ -60,6 +60,10 @@
 
 #pragma mark - NKAlbumModule
 
+- (void) favoriteOperation {
+#warning interactor
+}
+
 - (void) findTracksForSearchingString: (NSString*) string {
     [self.interactor getTracksForSearchingText: string];
 }
@@ -74,9 +78,6 @@
 
 - (void) albumWasLoaded {
     [self.interactor getTitleForAlbumID: self.albumID];
-//    NSArray* tracksUrls = [self.tracks map:^id(NKAudioTrack* track) {
-//        return track.url;
-//    }];
     self.player = [NKAudioPlayer sharedPlayer];
     [self.player loadItemsURLs: self.tracks];
     self.player.delegate = self;

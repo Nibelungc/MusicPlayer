@@ -181,6 +181,18 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
     self.prevButton = previousButton;
     [self addPreviousButtonConstraintsWithSize: previousButtonSize];
     
+    /** Favorite button */
+    UIButton* favoriteButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    CGSize favoriteButtonSize = CGSizeMake(buttonSize.width/2.0, buttonSize.height/2.0);
+    UIImage* favoriteImage = [[UIImage imageNamed:@"favorite@3x"] imageWithRenderingMode: imagesRenderingMode];
+    UIImage* notFavoriteImage = [[UIImage imageNamed:@"not_favorite@3x"] imageWithRenderingMode: imagesRenderingMode];
+    [favoriteButton setImage: favoriteImage forState: UIControlStateSelected];
+    [favoriteButton setImage: notFavoriteImage forState: UIControlStateNormal];
+    [self addSubview: favoriteButton];
+    
+    self.favoriteButton = favoriteButton;
+    [self addFavoriteButtonConstraintsWithSize: favoriteButtonSize];
+    
     /** Volume view */
     UIImage* volumeThumbImage = [[UIImage imageNamed:@"github_1"]imageWithRenderingMode: imagesRenderingMode];
     MPVolumeView* volumeView = [[MPVolumeView alloc] init];
@@ -227,6 +239,30 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 }
 
 #pragma mark - Autolayout
+
+- (void) addFavoriteButtonConstraintsWithSize: (CGSize) size {
+    self.favoriteButton.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self addSizeContstraints: size forSubview: self.favoriteButton];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.prevButton
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.favoriteButton
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+    
+    [self addConstraint:
+     [NSLayoutConstraint constraintWithItem: self.prevButton
+                                  attribute: NSLayoutAttributeLeft
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.favoriteButton
+                                  attribute: NSLayoutAttributeRight
+                                 multiplier: 1.0
+                                   constant: kSpaceBetweenButtonsX]];
+}
 
 - (void) trackTitleLabelAddContstraints {
     self.trackTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;

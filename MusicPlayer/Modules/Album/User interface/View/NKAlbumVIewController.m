@@ -70,7 +70,16 @@ CGFloat const kPlayerViewHeight = 140.0;
                               action: @selector(playPreviousAudioTrack)
                     forControlEvents: UIControlEventTouchUpInside];
     
+    [playerView.favoriteButton addTarget: self
+                                  action: @selector(favoriteOperation:)
+                        forControlEvents: UIControlEventTouchUpInside];
+    
     self.playerView = playerView;
+}
+
+- (void) favoriteOperation: (UIButton*) sender {
+#warning TEST_METHOD
+    sender.selected = !sender.selected;
 }
 
 #pragma mark - NKAlbumView

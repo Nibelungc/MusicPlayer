@@ -31,4 +31,6 @@
 
 - (void) findTracksForSearchingString: (NSString*) string;
 
+- (void) favoriteOperation;
+
 @end

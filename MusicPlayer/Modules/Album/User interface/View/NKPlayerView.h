@@ -30,6 +30,8 @@
 
 @property (weak, nonatomic, nullable) UILabel* trackTitleLabel;
 
+@property (weak, nonatomic, nullable) UIButton* favoriteButton;
+
 @property (weak, nonatomic, nullable) id <NKPlayerViewDelegate> delegate;
 
 - (nonnull instancetype) initWithHeight: (CGFloat) height andPlayer: (nullable NKAudioPlayer*) player;
