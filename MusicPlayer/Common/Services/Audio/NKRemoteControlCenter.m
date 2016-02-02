@@ -28,9 +28,9 @@
 - (void) presentAudioTrack:(nonnull NKAudioTrack *)track withImage: (nullable UIImage*) image {
     NSString* title = track.title ?: @"Unknown track";
     NSString* artist = track.artist ?: @"Unknown artist";
-    NSMutableDictionary* mediaInfo = [@{MPMediaItemPropertyTitle: title,
-                                        MPMediaItemPropertyAlbumTitle: artist,
-                                        MPMediaItemPropertyPlaybackDuration: track.duration} mutableCopy];
+    NSMutableDictionary* mediaInfo = [@{MPMediaItemPropertyTitle            : title,
+                                        MPMediaItemPropertyAlbumTitle       : artist,
+                                        MPMediaItemPropertyPlaybackDuration : track.duration} mutableCopy];
     if (image){
         MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithImage: image];
         mediaInfo[MPMediaItemPropertyArtwork] = artwork;

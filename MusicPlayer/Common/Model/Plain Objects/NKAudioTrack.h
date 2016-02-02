@@ -20,4 +20,6 @@
 
 @property (strong, nonatomic) NSURL* url;
 
+@property (assign, nonatomic, getter=isFavorite) BOOL favorite;
+
 @end

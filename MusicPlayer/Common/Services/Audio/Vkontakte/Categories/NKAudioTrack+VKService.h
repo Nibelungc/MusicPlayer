@@ -8,6 +8,9 @@
 
 #import "NKAudioTrack.h"
 
+extern NSString* const kVK_API_AUDIOTRACK_ID;
+extern NSString* const kVK_API_ITEMS;
+
 @interface NKAudioTrack (VKService)
 
 @property (strong, nonatomic) NSNumber* ownerID;

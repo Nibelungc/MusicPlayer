@@ -14,6 +14,7 @@
 @class NKAudioTrack;
 @class NKAudioAlbum;
 
+typedef void(^NKAudioServiceCompletion)(BOOL success, NSError* __nullable errorOrNil);
 typedef void(^NKAudioServiceLoginCompletion)(NKUser* __nullable user, NSError* __nullable errorOrNil);
 typedef void(^NKAudioServiceTracksCompletion)( NSArray <NKAudioTrack *> * __nullable tracks, NSError* __nullable errorOrNil);
 typedef void(^NKAudioServiceAlbumsCompletion)(NSArray <NKAudioAlbum *> * __nullable albums, NSError* __nullable errorOrNil);

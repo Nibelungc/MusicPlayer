@@ -12,6 +12,9 @@
 
 static char ownerIDHashKey;
 
+NSString* const kVK_API_AUDIOTRACK_ID = @"audio_id";
+NSString* const kVK_API_ITEMS = @"items";
+
 @implementation NKAudioTrack (VKService)
 
 /* VK Audio Album JSON model {
