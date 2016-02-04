@@ -8,6 +8,7 @@
 
 #import "NKPlayerView.h"
 #import "NKAudioPlayer.h"
+#import "NKAudioTrack.h"
 
 #import <MediaPlayer/MPVolumeView.h>
 #import <MarqueeLabel/MarqueeLabel.h>
@@ -76,6 +77,10 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 }
 
 #pragma mark - Actions
+
+- (void) setFavorite: (BOOL) favorite {
+    self.favoriteButton.selected = favorite;
+}
 
 - (void) progressBarTouchDown: (UISlider*) sender{
     self.progressBarDragged = YES;
@@ -225,6 +230,7 @@ UIImageRenderingMode const imagesRenderingMode = UIImageRenderingModeAlwaysTempl
 
 - (void) audioDidStartPlaying {
     [self.playButton setSelected: YES];
+    [self setFavorite: self.player.currentAudioTrack.isFavorite];
 }
 
 - (void) audioProgressDidChangeTo: (NSTimeInterval) time withDuration: (NSTimeInterval) duration {

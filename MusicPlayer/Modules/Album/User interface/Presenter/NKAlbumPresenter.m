@@ -36,6 +36,15 @@
 
 #pragma mark - NKAlbumInteractorOutput
 
+- (void) favoriteValueChangedForAudioTrack: (NKAudioTrack*) track {
+    [self.output favoriteValueForTrackChanged: track];
+}
+
+- (void) toogleFavoriteOperationFailed: (NSError*) error {
+    [self.output showErrorMessage: error.localizedDescription
+                        withTitle: @"Произошла ошибка в избранном"];
+}
+
 - (void) tracksNotFoundWithError: (NSError*) errorOrNil {
     if (errorOrNil == nil){
         [self.output showEmptyListOfAudioTracks];
@@ -60,8 +69,8 @@
 
 #pragma mark - NKAlbumModule
 
-- (void) favoriteOperation {
-#warning interactor
+- (void) toogleFavoriteForCurrentTrack {
+    [self.interactor toogleFavoriteForAudioTrack: self.player.currentAudioTrack];
 }
 
 - (void) findTracksForSearchingString: (NSString*) string {

@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicPlayer/Modules/Album/User interface/Presenter/NKAlbumPresenter.m"
-            timestampString = "476112555.59037"
+            timestampString = "476196490.602772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-findTracksForSearchingString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,22 +42,6 @@
             startingLineNumber = "107"
             endingLineNumber = "107"
             landmarkName = "-loadImageFromAudioTrack:completion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicPlayer/Modules/Album/User interface/Presenter/NKAlbumPresenter.m"
-            timestampString = "476112168.461819"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-favoriteOperation"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

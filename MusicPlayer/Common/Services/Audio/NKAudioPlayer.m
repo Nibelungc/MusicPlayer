@@ -35,6 +35,8 @@ static __weak NKPlayerView* currentPlayerView;
 
 @property (strong, nonatomic, nonnull) NKRemoteControlCenter* remoteControlCenter;
 
+@property (weak, nonatomic, nullable, readwrite) NKAudioTrack* currentAudioTrack;
+
 @end
 
 @implementation NKAudioPlayer
@@ -88,6 +90,7 @@ static __weak NKPlayerView* currentPlayerView;
         return NO;
     }
     NKAudioTrack* track = self.items[index];
+    self.currentAudioTrack = track;
     [self playTrackWithURL: track.url];
     
     self.currentTrackIndex = index;

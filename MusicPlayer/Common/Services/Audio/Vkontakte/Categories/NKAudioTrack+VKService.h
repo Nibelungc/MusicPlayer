@@ -15,6 +15,8 @@ extern NSString* const kVK_API_ITEMS;
 
 @property (strong, nonatomic) NSNumber* ownerID;
 
+@property (assign, nonatomic, getter=isRecentlyDeleted) BOOL recentlyDeleted;
+
 - (instancetype) initWithVKJson: (NSDictionary*) json;
 
 @end

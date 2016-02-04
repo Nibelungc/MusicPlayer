@@ -28,4 +28,6 @@
 
 - (void) trackDidStopPlayingWithIndex: (NSInteger) index;
 
+- (void) favoriteValueForTrackChanged: (NKAudioTrack*) track;
+
 @end

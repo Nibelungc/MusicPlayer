@@ -40,6 +40,8 @@
 
 - (void) hideAnimated: (BOOL) animated;
 
+- (void) setFavorite: (BOOL) favorite;
+
 @end
 
 

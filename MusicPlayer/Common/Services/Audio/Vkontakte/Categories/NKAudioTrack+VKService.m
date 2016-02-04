@@ -10,7 +10,8 @@
 #import <VKApiConst.h>
 #import <objc/runtime.h>
 
-static char ownerIDHashKey;
+static char owner_id_hash_key;
+static char recently_deleted_hash_key;
 
 NSString* const kVK_API_AUDIOTRACK_ID = @"audio_id";
 NSString* const kVK_API_ITEMS = @"items";
@@ -43,12 +44,28 @@ NSString* const kVK_API_ITEMS = @"items";
     return self;
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"id: %ld / owner_id: %ld", self.identifier.integerValue, self.ownerID.integerValue];
+}
+
+#pragma mark - Accessors
+
 - (NSNumber *)ownerID {
-    return objc_getAssociatedObject(self, &ownerIDHashKey);
+    return objc_getAssociatedObject(self, &owner_id_hash_key);
 }
 
 - (void) setOwnerID:(NSNumber *)ownerID {
-    objc_setAssociatedObject(self, &ownerIDHashKey, ownerID, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &owner_id_hash_key, ownerID, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL) isRecentlyDeleted {
+    NSNumber* wrapper = objc_getAssociatedObject(self, &recently_deleted_hash_key);
+    return wrapper.boolValue;
+}
+
+- (void) setRecentlyDeleted: (BOOL) recentlyDeleted {
+    NSNumber* wrapper = @(recentlyDeleted);
+    objc_setAssociatedObject(self, &recently_deleted_hash_key, wrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class NKAudioTrack;
+
 @protocol NKAlbumInteractorInput <NSObject>
 
 @required
@@ -17,6 +19,8 @@
 - (void) getTitleForAlbumID: (NSNumber*) identifier;
 
 - (void) getTracksForSearchingText: (NSString*) text;
+
+- (void) toogleFavoriteForAudioTrack: (NKAudioTrack*) track;
 
 @end
 
@@ -31,5 +35,9 @@
 - (void) albumTitleNotFoundWithError: (NSError*) error;
 
 - (void) albumTitleFound: (NSString*) title;
+
+- (void) favoriteValueChangedForAudioTrack: (NKAudioTrack*) track;
+
+- (void) toogleFavoriteOperationFailed: (NSError*) error;
 
 @end

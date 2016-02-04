@@ -70,19 +70,18 @@ CGFloat const kPlayerViewHeight = 140.0;
                               action: @selector(playPreviousAudioTrack)
                     forControlEvents: UIControlEventTouchUpInside];
     
-    [playerView.favoriteButton addTarget: self
-                                  action: @selector(favoriteOperation:)
+    [playerView.favoriteButton addTarget: self.eventHandler
+                                  action: @selector(toogleFavoriteForCurrentTrack)
                         forControlEvents: UIControlEventTouchUpInside];
     
     self.playerView = playerView;
 }
 
-- (void) favoriteOperation: (UIButton*) sender {
-#warning TEST_METHOD
-    sender.selected = !sender.selected;
-}
-
 #pragma mark - NKAlbumView
+
+- (void) favoriteValueForTrackChanged: (NKAudioTrack*) track {
+    [self.playerView setFavorite: track.isFavorite];
+}
 
 - (void) setModuleTitle: (NSString*) title {
     self.navigationItem.title = title.uppercaseString;

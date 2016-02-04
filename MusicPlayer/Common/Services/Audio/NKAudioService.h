@@ -48,5 +48,11 @@ typedef void(^NKAudioServiceWakeupSessionCompletion)(BOOL success, NSError* __nu
 - (void) getAlbumTitleForIdentifier: (NSNumber* _Nullable) identifier
                      withCompletion: (_Nonnull NKAudioServiceAlbumNameCompletion) completion;
 
+- (void) addAudioTrackToFavorite: (nonnull NKAudioTrack*) audioTrack
+                      completion: (nonnull NKAudioServiceCompletion) completion;
+
+- (void) removeAudioTrackFromFavorite: (nonnull NKAudioTrack*) audioTrack
+                           completion: (nonnull NKAudioServiceCompletion) completion;
+
 
 @end

@@ -8,9 +8,29 @@
 
 #import "NKAlbumInteractor.h"
 #import "NKAudioService.h"
-
+#import "NKAudioTrack.h"
 
 @implementation NKAlbumInteractor
+
+- (void) toogleFavoriteForAudioTrack: (NKAudioTrack*) track {
+    @weakify(self)
+    NKAudioServiceCompletion completion = ^(BOOL success, NSError * _Nullable errorOrNil){
+        @strongify(self)
+        if (errorOrNil){
+            [self.output toogleFavoriteOperationFailed: errorOrNil];
+        } else{
+            [self.output favoriteValueChangedForAudioTrack: track];
+        }
+    };
+    
+    if (track.isFavorite){
+        [self.audioService removeAudioTrackFromFavorite: track
+                                             completion: completion];
+    } else {
+        [self.audioService addAudioTrackToFavorite: track
+                                        completion: completion];
+    }
+}
 
 - (void) getTracksForAlbumID: (NSNumber*) identifier {
     [self.audioService getAudioTracksForAlbumIdentifier: identifier

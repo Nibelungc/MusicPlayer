@@ -19,6 +19,8 @@
 
 @property (weak, nonatomic, nullable) id<NKAudioPlayerPlaybackDelegate> playbackDelegate;
 
+@property (weak, nonatomic, nullable, readonly) NKAudioTrack* currentAudioTrack;
+
 + (nonnull instancetype) sharedPlayer;
 
 - (void) loadItemsURLs: (nonnull NSArray <NKAudioTrack *>*) urls;

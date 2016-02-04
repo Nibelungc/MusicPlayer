@@ -32,12 +32,5 @@
 - (void) getAlbumTitleForIdentifier: (NSNumber* _Nullable) identifier
                      withCompletion: (_Nonnull NKAudioServiceAlbumNameCompletion) completion;
 
-- (BOOL) isAudioTrackFavorite: (nonnull NKAudioTrack*) audioTrack;
-
-- (void) addAudioTrackToFavorite: (nonnull NKAudioTrack*) audioTrack
-                      completion: (nonnull NKAudioServiceCompletion) completion;
-
-- (void) removeAudioTrackFromFavorite: (nonnull NKAudioTrack*) audioTrack
-                           completion: (nonnull NKAudioServiceCompletion) completion;
 
 @end

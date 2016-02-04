@@ -27,8 +27,6 @@ static NSDictionary* albumsTitles;
 
 @property (strong, nonatomic) NSArray* permissions;
 
-@property (strong, nonatomic) NSMutableSet* favoriteTrackIDs;
-
 @end
 
 @implementation VKontakteAudioService
@@ -40,7 +38,6 @@ static NSDictionary* albumsTitles;
     if (self) {
         title = VKServiceTitle;
         _permissions = @[VK_PER_AUDIO];
-        _favoriteTrackIDs = [NSMutableSet set];
     }
     return self;
 }
@@ -121,15 +118,12 @@ static NSDictionary* albumsTitles;
         
         NSArray* tracksJson = response.json[kVK_API_ITEMS];
         NSArray* tracks = [tracksJson map:^id(id obj) {
-            return [[NKAudioTrack alloc] initWithVKJson: obj];
+            NKAudioTrack* track = [[NKAudioTrack alloc] initWithVKJson: obj];
+            if ([self isAlbumFavorite: identifier]){
+                track.favorite = YES;
+            }
+            return track;
         }];
-        
-        if ([self isAlbumFavorite: identifier]){
-            NSArray* ownerIdArray = [tracks map:^id(NKAudioTrack* track) {
-                return track.ownerID;
-            }];
-            [self.favoriteTrackIDs addObjectsFromArray: ownerIdArray];
-        }
         
         completion(tracks, nil);
     } errorBlock:^(NSError *error) {
@@ -166,25 +160,53 @@ static NSDictionary* albumsTitles;
 
 #pragma mark - Favorite
 
-- (BOOL) isAudioTrackFavorite: (nonnull NKAudioTrack*) audioTrack {
-    return [self.favoriteTrackIDs containsObject: audioTrack.ownerID];
+- (void) restoreFavoriteAudioTrack: (nonnull NKAudioTrack*) audioTrack
+                        completion: (nonnull NKAudioServiceCompletion) completion {
+    
+    NSString* methodName = @"restore";
+    
+    NSDictionary* params = @{VK_API_OWNER_ID        : audioTrack.ownerID,
+                             kVK_API_AUDIOTRACK_ID  : audioTrack.identifier};
+    
+    VKRequest* request = [VKRequest requestWithMethod: [self audioRequsetWithMethodName: methodName]
+                                        andParameters: params];
+    [request executeWithResultBlock:^(VKResponse *response) {
+        audioTrack.favorite = YES;
+        audioTrack.recentlyDeleted = NO;
+        completion(YES, nil);
+    } errorBlock:^(NSError *error) {
+        completion(NO, error);
+    }];
+}
+
+- (NSNumber*) favoriteAlbumID {
+    return @(0);
 }
 
 - (void) addAudioTrackToFavorite: (nonnull NKAudioTrack*) audioTrack
                       completion: (nonnull NKAudioServiceCompletion) completion {
-    if ([self isAudioTrackFavorite: audioTrack]){
+    if (audioTrack.isFavorite){
         completion(YES, nil);
         return;
     }
+    
+    if (audioTrack.isRecentlyDeleted){
+        [self restoreFavoriteAudioTrack: audioTrack completion: completion];
+        return;
+    }
+    
     NSString* methodName = @"add";
     NSDictionary* parametrs = @{kVK_API_AUDIOTRACK_ID   : audioTrack.identifier,
-                                VK_API_OWNER_ID         : audioTrack.ownerID};
+                                VK_API_OWNER_ID         : audioTrack.ownerID,
+                                VK_API_ALBUM_ID         : [self favoriteAlbumID]};
     
     VKRequest* request = [VKRequest requestWithMethod: [self audioRequsetWithMethodName: methodName]
                                         andParameters: parametrs];
     
     [request executeWithResultBlock:^(VKResponse *response) {
-        NSLog(@"Adding an audio track into the favorite list successfully ended with the response: (%@)", response);
+        audioTrack.ownerID = [VKSdk accessToken].localUser.id;
+        audioTrack.favorite = YES;
+        audioTrack.identifier = response.json;
         completion(YES, nil);
     } errorBlock:^(NSError *error) {
         completion(NO, error);
@@ -193,11 +215,10 @@ static NSDictionary* albumsTitles;
 
 - (void) removeAudioTrackFromFavorite: (nonnull NKAudioTrack*) audioTrack
                            completion: (nonnull NKAudioServiceCompletion) completion {
-    if (![self isAudioTrackFavorite: audioTrack]){
+    if (!audioTrack.isFavorite){
         completion(YES, nil);
         return;
     }
-    
     NSString* methodName = @"delete";
     NSDictionary* parametrs = @{kVK_API_AUDIOTRACK_ID   : audioTrack.identifier,
                                 VK_API_OWNER_ID         : audioTrack.ownerID};
@@ -206,7 +227,8 @@ static NSDictionary* albumsTitles;
                                         andParameters: parametrs];
     
     [request executeWithResultBlock:^(VKResponse *response) {
-        NSLog(@"Removing an audio track from the favorite list successfully ended with the response: (%@)", response);
+        audioTrack.favorite = NO;
+        audioTrack.recentlyDeleted = YES;
         completion(YES, nil);
     } errorBlock:^(NSError *error) {
         completion(NO, error);
@@ -215,7 +237,7 @@ static NSDictionary* albumsTitles;
 }
 
 - (BOOL) isAlbumFavorite: (NSNumber*) identifier {
-    return identifier.integerValue == 0;
+    return [identifier compare: [self favoriteAlbumID]] == NSOrderedSame;
 }
 
 #pragma mark - Private
