@@ -35,6 +35,7 @@
         MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithImage: image];
         mediaInfo[MPMediaItemPropertyArtwork] = artwork;
     }
+    
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:mediaInfo];
 }
 
@@ -81,6 +82,12 @@
          [self.player play];
          return MPRemoteCommandHandlerStatusSuccess;
      }];
+    
+    [rc.ratingCommand
+     addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+         return MPRemoteCommandHandlerStatusSuccess;
+     }];
+    
 }
 
 - (void) stopReceivingRemoteControlEvents {

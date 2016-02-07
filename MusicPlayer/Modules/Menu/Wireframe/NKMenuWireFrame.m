@@ -94,7 +94,7 @@
     [self.albumWireframe configureWithAlbumID: initialItemID];
 }
 
-- (void) configureAlbumModuleWithItemID: (NSNumber*) identifier {
+- (void) configureModuleWithItemID: (NSNumber*) identifier {
     [self.albumWireframe configureWithAlbumID: identifier];
 }
 

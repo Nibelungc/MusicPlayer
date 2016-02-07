@@ -99,7 +99,9 @@ static NSDictionary* albumsTitles;
     [request executeWithResultBlock:^(VKResponse *response) {
         NSArray* tracksJson = response.json[kVK_API_ITEMS];
         NSArray* tracks = [tracksJson map:^id(id obj) {
-            return [[NKAudioTrack alloc] initWithVKJson: obj];
+            NKAudioTrack* track = [[NKAudioTrack alloc] initWithVKJson: obj];
+            track.favorite = [self isTrackFavorite: track];
+            return track;
         }];
         completion(tracks, nil);
     } errorBlock:^(NSError *error) {
@@ -119,9 +121,7 @@ static NSDictionary* albumsTitles;
         NSArray* tracksJson = response.json[kVK_API_ITEMS];
         NSArray* tracks = [tracksJson map:^id(id obj) {
             NKAudioTrack* track = [[NKAudioTrack alloc] initWithVKJson: obj];
-            if ([self isAlbumFavorite: identifier]){
-                track.favorite = YES;
-            }
+            track.favorite = [self isTrackFavorite: track];
             return track;
         }];
         
@@ -133,8 +133,7 @@ static NSDictionary* albumsTitles;
 
 - (void) getAlbumsWithCompletion: (_Nonnull NKAudioServiceAlbumsCompletion) completion {
     NSString* methodName = @"getAlbums";
-    NSString* userId = [self currentUserID];
-    NSDictionary* parametrs = @{VK_API_OWNER_ID : userId,
+    NSDictionary* parametrs = @{VK_API_OWNER_ID : [self currentUserID],
                                 VK_API_COUNT    : @(20)};
     VKRequest* request = [VKApi requestWithMethod: [self audioRequsetWithMethodName: methodName]
                                     andParameters: parametrs];
@@ -159,6 +158,10 @@ static NSDictionary* albumsTitles;
 }
 
 #pragma mark - Favorite
+
+- (BOOL) isTrackFavorite: (NKAudioTrack*) track {
+    return [[self currentUserID] compare: track.ownerID] == NSOrderedSame;
+}
 
 - (void) restoreFavoriteAudioTrack: (nonnull NKAudioTrack*) audioTrack
                         completion: (nonnull NKAudioServiceCompletion) completion {
@@ -257,8 +260,8 @@ static NSDictionary* albumsTitles;
     return myMusic;
 }
 
-- (NSString*) currentUserID {
-    return [NSString stringWithFormat:@"%@", [VKSdk accessToken].localUser.id];
+- (NSNumber*) currentUserID {
+    return [VKSdk accessToken].localUser.id;
 }
 
 - (NKUser*) userFromVKSdk {

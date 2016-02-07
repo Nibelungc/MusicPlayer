@@ -47,6 +47,7 @@
 
 - (void) tracksNotFoundWithError: (NSError*) errorOrNil {
     if (errorOrNil == nil){
+        [self.albumWireframe closeMenu];
         [self.output showEmptyListOfAudioTracks];
     } else {
         [self.output showErrorMessage: errorOrNil.localizedDescription

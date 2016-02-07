@@ -36,6 +36,7 @@ CGFloat const kPlayerViewHeight = 140.0;
 - (void) configureView {
     [super configureView];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     UISearchBar* searchBar = [[UISearchBar alloc] init];
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
@@ -47,6 +48,30 @@ CGFloat const kPlayerViewHeight = 140.0;
     tableView.dataSource = self;
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    tableView.tableFooterView = [UIView new];
+    
+    UILabel* emptyLabel = [[UILabel alloc] init];
+    emptyLabel.textAlignment = NSTextAlignmentCenter;
+    emptyLabel.text = @"No tracks found";
+    emptyLabel.textColor = [UIColor darkTextColor];
+    emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addSubview: emptyLabel];
+    
+    [self.view addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: @"H:|-20-[emptyLabel]-(20)-|"
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(emptyLabel)]];
+    [self.view addConstraint:
+     [NSLayoutConstraint constraintWithItem: emptyLabel
+                                  attribute: NSLayoutAttributeCenterY
+                                  relatedBy: NSLayoutRelationEqual
+                                     toItem: self.view
+                                  attribute: NSLayoutAttributeCenterY
+                                 multiplier: 1.0
+                                   constant: 0.0]];
+    
     [self.view addSubview: tableView];
     self.tableView = tableView;
     
@@ -88,7 +113,7 @@ CGFloat const kPlayerViewHeight = 140.0;
 }
 
 - (void) showEmptyListOfAudioTracks {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    self.tableView.alpha = 0.0;
 }
 
 - (void) presentPlayerView: (NKPlayerView*) playerView {
@@ -114,6 +139,7 @@ CGFloat const kPlayerViewHeight = 140.0;
 #pragma mark - Private
 
 - (void) updateListOfAudioTracks: (NSArray <NKAudioTrack *>*) audioTracks {
+    self.tableView.alpha = 1.0;
     self.audioTracks = audioTracks;
     [self reloadData];
     [self.eventHandler albumWasLoaded];

@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicPlayer/Modules/Album/User interface/Presenter/NKAlbumPresenter.m"
-            timestampString = "476196490.602772"
+            timestampString = "476538766.26192"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-findTracksForSearchingString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicPlayer/Common/Services/Audio/NKRemoteControlCenter.m"
-            timestampString = "476031711.237176"
+            timestampString = "476537643.27789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-loadImageFromAudioTrack:completion:"
             landmarkType = "5">
          </BreakpointContent>

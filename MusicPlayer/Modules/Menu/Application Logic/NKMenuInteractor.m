@@ -37,6 +37,12 @@
     }];
 }
 
+- (NKMenuItem*) downloadsItem {
+    NKMenuItem* item = [[NKMenuItem alloc] init];
+    
+    return item;
+}
+
 - (void) getUser {
     __weak typeof(self) welf = self;
     [self.dataStorage fetchSavedUser:^(NKUser * _Nullable user) {

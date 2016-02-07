@@ -24,7 +24,7 @@
 }
 
 - (void) menuItemChosenWithIdentifier: (NSNumber*) identifier {
-    [self.wireframe configureAlbumModuleWithItemID: identifier];
+    [self.wireframe configureModuleWithItemID: identifier];
 }
 
 - (void) userLogoutAction {

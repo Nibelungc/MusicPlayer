@@ -30,7 +30,7 @@
 
 - (void) menuLoadedWithInitialItemID: (NSNumber*) initialAlbumID;
 
-- (void) configureAlbumModuleWithItemID: (NSNumber*) identifier;
+- (void) configureModuleWithItemID: (NSNumber*) identifier;
 
 - (void) closeMenu;
 
