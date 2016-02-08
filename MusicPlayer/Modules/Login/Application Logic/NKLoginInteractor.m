@@ -41,13 +41,15 @@
     __weak typeof(self) welf = self;
     [self.dataStorage fetchSavedUser:^(NKUser * _Nullable user) {
         if (user){
+            
             id <NKAudioService> service = user.audioServiceImpl;
             [service wakeUpSessionWithCompletion:^(NKUser * _Nullable user, NSError * _Nullable errorOrNil) {
-                if (errorOrNil == nil) {
-                    [welf.output lastSessionWokenUp];
-                } else {
-                    [welf.output lastSessionWasntFound];
-                }
+//                if (errorOrNil == nil) {
+//                    [welf.output lastSessionWokenUp];
+//                } else {
+//                    [welf.output lastSessionWasntFound];
+//                }
+                [welf.output lastSessionWokenUp];
             }];
         } else {
             [welf.output lastSessionWasntFound];

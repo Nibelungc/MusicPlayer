@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="NKManagedAudioTrack" representedClassName="NKManagedAudioTrack" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="NKManagedUser" representedClassName="NKManagedUser" syncable="YES">
         <attribute name="audioService" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,6 +16,7 @@
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NKManagedUser" positionX="-63" positionY="-27" width="128" height="120"/>
+        <element name="NKManagedUser" positionX="-3861" positionY="-864" width="128" height="120"/>
+        <element name="NKManagedAudioTrack" positionX="-4034" positionY="-844" width="128" height="133"/>
     </elements>
 </model>

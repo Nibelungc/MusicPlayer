@@ -14,6 +14,7 @@
 #import "NKAudioService.h"
 #import "NKAlbumVIewController.h"
 #import "NKMenuWireFrame.h"
+#import "NKDownloadsManager.h"
 
 @implementation NKAlbumWireframe
 
@@ -34,6 +35,7 @@
         interactor.audioService = [dataStorage userAudioService];
         
         view.eventHandler = presenter;
+        dataStorage.fileManager = [[NKDownloadsManager alloc] init];
         
         _presenter = presenter;
     }

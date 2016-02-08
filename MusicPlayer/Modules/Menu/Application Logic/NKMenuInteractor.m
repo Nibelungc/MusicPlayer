@@ -21,25 +21,31 @@
     @weakify(self)
     [self.audioService getAlbumsWithCompletion:^(NSArray<NKAudioAlbum *> * _Nullable albums, NSError * _Nullable errorOrNil) {
         @strongify(self)
+        NSMutableArray* items = [@[[self downloadsItem]] mutableCopy];
         if (errorOrNil == nil) {
             NSArray* menuItems = [albums map:^id(NKAudioAlbum* album) {
                 NKMenuItem* item = [[NKMenuItem alloc] init];
-                NSInteger index = [albums indexOfObject: album];
-                item.index = @(index);
                 item.title = album.title;
                 item.identifier = album.identifier;
                 return item;
             }];
-            [self.output menuItemsWereFound: menuItems];
-        } else {
+            if (menuItems){
+                [items addObjectsFromArray: menuItems];
+            }
+        }
+        
+        if (items.count == 0){
             [self.output menuItemsNotFound: errorOrNil];
+        } else {
+            [self.output menuItemsWereFound: items];
         }
     }];
 }
 
 - (NKMenuItem*) downloadsItem {
     NKMenuItem* item = [[NKMenuItem alloc] init];
-    
+    item.title = @"Downloads";
+    item.identifier = @(-1);
     return item;
 }
 

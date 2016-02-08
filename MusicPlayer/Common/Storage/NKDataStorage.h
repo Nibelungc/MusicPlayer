@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class NKUser;
+@class NKAudioTrack;
 @protocol NKAudioService;
 
 typedef void(^NKDataStorageSavedUserCompletion)(NKUser* __nullable user);
@@ -22,5 +23,13 @@ typedef void(^NKDataStorageSavedUserCompletion)(NKUser* __nullable user);
 - (void) saveUserAndDeleteOldOne: ( NKUser* _Nonnull ) user;
 
 - (id<NKAudioService> __nullable) userAudioService;
+
+- (nullable NSArray <NKAudioTrack *>*) downloadedTracks;
+
+- (void) addDownloadedAudioTrack: (nonnull NKAudioTrack*) track;
+
+- (void) removeDownloadedAudioTrack: (nonnull NKAudioTrack*) track;
+
+- (BOOL) isDownloadsAlbumIdentifier: (nonnull NSNumber*) identifier;
 
 @end

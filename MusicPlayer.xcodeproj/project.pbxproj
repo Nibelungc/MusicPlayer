@@ -63,6 +63,9 @@
 		80988EF91C5FA1B500A9EA46 /* NKRemoteControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 80988EF81C5FA1B500A9EA46 /* NKRemoteControlCenter.m */; };
 		80CF40A51C60DFAF00AE1ACB /* favorite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CF40A31C60DFAF00AE1ACB /* favorite@3x.png */; };
 		80CF40A61C60DFAF00AE1ACB /* not_favorite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CF40A41C60DFAF00AE1ACB /* not_favorite@3x.png */; };
+		80EB28B31C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EB28B01C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.m */; };
+		80EB28B41C68CDF400DC0953 /* NKManagedAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EB28B21C68CDF400DC0953 /* NKManagedAudioTrack.m */; };
+		80EB28B71C68D3C100DC0953 /* NKDownloadsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EB28B61C68D3C100DC0953 /* NKDownloadsManager.m */; };
 		D0814F5F3D0E232CB101449C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +187,12 @@
 		80988EF81C5FA1B500A9EA46 /* NKRemoteControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKRemoteControlCenter.m; sourceTree = "<group>"; };
 		80CF40A31C60DFAF00AE1ACB /* favorite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite@3x.png"; sourceTree = "<group>"; };
 		80CF40A41C60DFAF00AE1ACB /* not_favorite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "not_favorite@3x.png"; sourceTree = "<group>"; };
+		80EB28AF1C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NKManagedAudioTrack+CoreDataProperties.h"; sourceTree = "<group>"; };
+		80EB28B01C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NKManagedAudioTrack+CoreDataProperties.m"; sourceTree = "<group>"; };
+		80EB28B11C68CDF400DC0953 /* NKManagedAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKManagedAudioTrack.h; sourceTree = "<group>"; };
+		80EB28B21C68CDF400DC0953 /* NKManagedAudioTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKManagedAudioTrack.m; sourceTree = "<group>"; };
+		80EB28B51C68D3C100DC0953 /* NKDownloadsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKDownloadsManager.h; sourceTree = "<group>"; };
+		80EB28B61C68D3C100DC0953 /* NKDownloadsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKDownloadsManager.m; sourceTree = "<group>"; };
 		8F1DDA6A848A4E8F6A3D8F05 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -351,6 +360,8 @@
 				086D70A11C33C7F600FB8143 /* MusicPlayer.xcdatamodeld */,
 				0879552E1C32CEEE002761C6 /* NKCoreDataStorage.h */,
 				0879552F1C32CEEE002761C6 /* NKCoreDataStorage.m */,
+				80EB28B51C68D3C100DC0953 /* NKDownloadsManager.h */,
+				80EB28B61C68D3C100DC0953 /* NKDownloadsManager.m */,
 				0879552D1C32CED7002761C6 /* NKDataStorage.h */,
 			);
 			path = Storage;
@@ -481,6 +492,10 @@
 		08A1A18C1C227EF9005B478B /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
+				80EB28AF1C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.h */,
+				80EB28B01C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.m */,
+				80EB28B11C68CDF400DC0953 /* NKManagedAudioTrack.h */,
+				80EB28B21C68CDF400DC0953 /* NKManagedAudioTrack.m */,
 				086D70A41C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.h */,
 				086D70A51C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m */,
 				086D70A61C33CA0200FB8143 /* NKManagedUser.h */,
@@ -835,6 +850,7 @@
 				080807611C4A47D20068A3EF /* NKPlayerView.m in Sources */,
 				08A1A19C1C22A8D3005B478B /* NKConstants.m in Sources */,
 				083DB0DD1C2407EB0043B214 /* NSArray+HOM.m in Sources */,
+				80EB28B31C68CDF400DC0953 /* NKManagedAudioTrack+CoreDataProperties.m in Sources */,
 				08ADEE7A1C22FCEE003542EB /* NKThirdPartiesConfigurator.m in Sources */,
 				08A1A18A1C227DE6005B478B /* NKAudioTrack.m in Sources */,
 				08ADEE881C2309E6003542EB /* NKRootWireframe.m in Sources */,
@@ -855,6 +871,7 @@
 				08ADEE8B1C230C36003542EB /* NKLoginPresenter.m in Sources */,
 				08A1A18F1C229E29005B478B /* NKUser.m in Sources */,
 				083DB12D1C2852410043B214 /* NKMenuItem.m in Sources */,
+				80EB28B71C68D3C100DC0953 /* NKDownloadsManager.m in Sources */,
 				083DB13B1C2856B60043B214 /* NKMenuViewController.m in Sources */,
 				086D70A81C33CA0200FB8143 /* NKManagedUser+CoreDataProperties.m in Sources */,
 				08A1A1981C22A418005B478B /* NKLoginViewController.m in Sources */,
@@ -863,6 +880,7 @@
 				087955301C32CEEE002761C6 /* NKCoreDataStorage.m in Sources */,
 				08CEF53F1C3E880300C10747 /* NKAlbumVIewController.m in Sources */,
 				80988EF91C5FA1B500A9EA46 /* NKRemoteControlCenter.m in Sources */,
+				80EB28B41C68CDF400DC0953 /* NKManagedAudioTrack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

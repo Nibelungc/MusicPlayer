@@ -12,6 +12,9 @@
 #import "NKManagedUser.h"
 #import "NKUser.h"
 
+#import "NKManagedAudioTrack.h"
+#import "NKAudioTrack.h"
+
 @implementation NKCoreDataStorage
 
 - (void) saveContext {
@@ -23,6 +26,35 @@
             }
         }
     }];
+}
+
+#pragma mark - Audio Tracks
+
+- (nullable NSArray <NKAudioTrack *>*) downloadedTracks {
+    NSArray<NKManagedAudioTrack*>* managedTracks = [NKManagedAudioTrack MR_findAll];
+    NSArray<NKAudioTrack*>* tracks = [managedTracks map:^id(NKManagedAudioTrack* managedTrack) {
+        return [self audioTrackFromManagedTrack: managedTrack];
+    }];
+    return tracks;
+}
+
+- (void) addDownloadedAudioTrack: (NKAudioTrack*) track {
+    [self createManagedAudioTrackFromTrack: track];
+    [self saveContext];
+}
+
+- (void) removeDownloadedAudioTrack: (NKAudioTrack*) track {
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"identifier == %@", track.identifier];
+    [NKManagedAudioTrack MR_deleteAllMatchingPredicate: predicate];
+}
+
+- (BOOL) isDownloadsAlbumIdentifier: (nonnull NSNumber*) identifier {
+    if (!identifier) {return NO;}
+    return [[self downloadsAlbumIdentifier] compare: identifier] == NSOrderedSame;
+}
+
+- (NSNumber*) downloadsAlbumIdentifier {
+    return @(-1);
 }
 
 #pragma mark - User
@@ -74,6 +106,30 @@
     managedUser.imageUrl = [user.imageUrl absoluteString];
     managedUser.audioService = user.audioService;
     return managedUser;
+}
+
+- (NKAudioTrack*) audioTrackFromManagedTrack: (NKManagedAudioTrack*) managedAudioTrack {
+    if (!managedAudioTrack) { return nil; }
+    NKAudioTrack* track = [[NKAudioTrack alloc] init];
+    track.identifier = managedAudioTrack.identifier;
+    track.title = managedAudioTrack.title;
+    track.artist = managedAudioTrack.artist;
+    track.duration = managedAudioTrack.duration;
+    track.url = [NSURL URLWithString: managedAudioTrack.url];
+    track.favorite = managedAudioTrack.favorite.boolValue;
+    return track;
+}
+
+- (NKManagedAudioTrack*) createManagedAudioTrackFromTrack: (NKAudioTrack*) track {
+    if (!track) { return nil; }
+    NKManagedAudioTrack* managedTrack = [NKManagedAudioTrack MR_createEntity];
+    managedTrack.identifier = track.identifier;
+    managedTrack.title = track.title;
+    managedTrack.artist = track.artist;
+    managedTrack.duration = track.duration;
+    managedTrack.url = track.url.path;
+    managedTrack.favorite = @(track.favorite);
+    return managedTrack;
 }
 
 @end

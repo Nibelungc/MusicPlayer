@@ -261,7 +261,7 @@ static NSDictionary* albumsTitles;
 }
 
 - (NSNumber*) currentUserID {
-    return [VKSdk accessToken].localUser.id;
+    return ZeroOrNSNumber([VKSdk accessToken].localUser.id);
 }
 
 - (NKUser*) userFromVKSdk {

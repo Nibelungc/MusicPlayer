@@ -9,6 +9,7 @@
 #import "NKAlbumInteractor.h"
 #import "NKAudioService.h"
 #import "NKAudioTrack.h"
+#import "NKDataStorage.h"
 
 @implementation NKAlbumInteractor
 
@@ -33,8 +34,13 @@
 }
 
 - (void) getTracksForAlbumID: (NSNumber*) identifier {
-    [self.audioService getAudioTracksForAlbumIdentifier: identifier
-                                         withCompletion:[self defaultTracksCompletion]];
+    if ([self.dataStorage isDownloadsAlbumIdentifier: identifier]){
+        NSArray<NKAudioTrack*>* tracks = [self.dataStorage downloadedTracks];
+        [self defaultTracksCompletion](tracks, nil);
+    } else {
+        [self.audioService getAudioTracksForAlbumIdentifier: identifier
+                                             withCompletion:[self defaultTracksCompletion]];
+    }
 }
 
 - (void) getTitleForAlbumID: (NSNumber*) identifier {
