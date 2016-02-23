@@ -25,6 +25,8 @@
 
 - (void) loadItemsURLs: (nonnull NSArray <NKAudioTrack *>*) urls;
 
+- (void) togglePlayPause;
+
 - (BOOL) playTrackAtIndex: (NSInteger) index;
 
 - (BOOL) playNext;

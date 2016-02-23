@@ -53,7 +53,7 @@ CGFloat const kPlayerViewHeight = 140.0;
     UILabel* emptyLabel = [[UILabel alloc] init];
     emptyLabel.textAlignment = NSTextAlignmentCenter;
     emptyLabel.text = @"No tracks found";
-    emptyLabel.textColor = [UIColor darkTextColor];
+    emptyLabel.textColor = [UIColor grayColor];
     emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview: emptyLabel];
@@ -63,14 +63,12 @@ CGFloat const kPlayerViewHeight = 140.0;
                                              options: NSLayoutFormatDirectionLeadingToTrailing
                                              metrics: nil
                                                views: NSDictionaryOfVariableBindings(emptyLabel)]];
-    [self.view addConstraint:
-     [NSLayoutConstraint constraintWithItem: emptyLabel
-                                  attribute: NSLayoutAttributeCenterY
-                                  relatedBy: NSLayoutRelationEqual
-                                     toItem: self.view
-                                  attribute: NSLayoutAttributeCenterY
-                                 multiplier: 1.0
-                                   constant: 0.0]];
+    
+    [self.view addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-20-[emptyLabel]"
+                                             options: NSLayoutFormatDirectionLeadingToTrailing
+                                             metrics: nil
+                                               views: NSDictionaryOfVariableBindings(emptyLabel)]];
     
     [self.view addSubview: tableView];
     self.tableView = tableView;

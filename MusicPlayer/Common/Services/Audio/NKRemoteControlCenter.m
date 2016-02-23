@@ -83,14 +83,16 @@
          return MPRemoteCommandHandlerStatusSuccess;
      }];
     
-    [rc.ratingCommand
+    [rc.togglePlayPauseCommand
      addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+         [self.player togglePlayPause];
          return MPRemoteCommandHandlerStatusSuccess;
      }];
     
 }
 
 - (void) stopReceivingRemoteControlEvents {
+    
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
 }
 

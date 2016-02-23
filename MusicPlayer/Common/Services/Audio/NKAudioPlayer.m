@@ -85,10 +85,12 @@ static __weak NKPlayerView* currentPlayerView;
 }
 
 - (BOOL) playTrackAtIndex: (NSInteger) index {
+    
     if (index < 0 || index >= self.items.count){
         NSLog(@"Can't find the audio track at the index: (%ld)", index);
         return NO;
     }
+
     NKAudioTrack* track = self.items[index];
     self.currentAudioTrack = track;
     [self playTrackWithURL: track.url];

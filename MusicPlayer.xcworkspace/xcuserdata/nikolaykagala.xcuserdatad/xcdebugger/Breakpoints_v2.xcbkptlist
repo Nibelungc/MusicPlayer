@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MusicPlayer/Common/Services/Audio/NKRemoteControlCenter.m"
-            timestampString = "476537643.27789"
+            filePath = "MusicPlayer/Modules/Album/User interface/Presenter/NKAlbumPresenter.m"
+            timestampString = "477903869.326772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-loadImageFromAudioTrack:completion:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-tracksFound:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
