@@ -44,10 +44,6 @@ NSString* const kVK_API_ITEMS = @"items";
     return self;
 }
 
-- (NSString*) description {
-    return [NSString stringWithFormat:@"id: %ld / owner_id: %ld", self.identifier.integerValue, self.ownerID.integerValue];
-}
-
 #pragma mark - Accessors
 
 - (NSNumber *)ownerID {

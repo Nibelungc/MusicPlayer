@@ -34,4 +34,6 @@
 
 - (void) closeMenu;
 
+- (void) toggleMenu;
+
 @end

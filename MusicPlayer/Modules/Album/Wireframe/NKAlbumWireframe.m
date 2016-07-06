@@ -50,4 +50,8 @@
     [self.menuWireframe closeMenu];
 }
 
+- (void) toggleMenu {
+    [self.menuWireframe toggleMenu];
+}
+
 @end

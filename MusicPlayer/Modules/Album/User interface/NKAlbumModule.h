@@ -33,4 +33,6 @@
 
 - (void) toogleFavoriteForCurrentTrack;
 
+- (void) toggleMenu;
+
 @end

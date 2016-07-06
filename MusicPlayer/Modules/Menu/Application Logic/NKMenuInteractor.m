@@ -21,7 +21,7 @@
     @weakify(self)
     [self.audioService getAlbumsWithCompletion:^(NSArray<NKAudioAlbum *> * _Nullable albums, NSError * _Nullable errorOrNil) {
         @strongify(self)
-        NSMutableArray* items = [@[[self downloadsItem]] mutableCopy];
+        NSMutableArray* items = [@[] mutableCopy];
         if (errorOrNil == nil) {
             NSArray* menuItems = [albums map:^id(NKAudioAlbum* album) {
                 NKMenuItem* item = [[NKMenuItem alloc] init];

@@ -139,6 +139,10 @@
     [self.player playPrevious];
 }
 
+- (void) toggleMenu {
+    [self.albumWireframe toggleMenu];
+}
+
 #pragma mark - Private
 
 - (NKAudioTrack*) audioTrackForID: (NSNumber*) identifier{

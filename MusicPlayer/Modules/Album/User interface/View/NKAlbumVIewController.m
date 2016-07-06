@@ -6,6 +6,8 @@
 //  Copyright © 2016 Sequenia. All rights reserved.
 //
 
+#import <MMDrawerController/MMDrawerBarButtonItem.h>
+
 #import "NKAlbumVIewController.h"
 #import "NKAudioTrack.h"
 #import "NKAudioTrackCell.h"
@@ -72,6 +74,9 @@ CGFloat const kPlayerViewHeight = 140.0;
     
     [self.view addSubview: tableView];
     self.tableView = tableView;
+    
+    self.navigationItem.leftBarButtonItem = [[MMDrawerBarButtonItem alloc] initWithTarget:self.eventHandler
+                                                                                   action:@selector(toggleMenu)];
     
 }
 

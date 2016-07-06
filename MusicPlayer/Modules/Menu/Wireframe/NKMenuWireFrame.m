@@ -103,4 +103,9 @@
     [drawer closeDrawerAnimated: YES completion: nil];
 }
 
+- (void) toggleMenu {
+    MMDrawerController* drawer = (MMDrawerController*) self.applicationWindow.rootViewController;
+    [drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
 @end
